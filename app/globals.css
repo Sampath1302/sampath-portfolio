@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* Fonts come from next/font variables set on <body> */
+@theme inline {
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-plex-condensed), var(--font-plex-sans), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+/*
+ * "Night shift" palette
+ * signal   = needs attention (amber, like alert severity)
+ * resolved = done / held (teal)
+ */
+@theme {
+  --color-night: #0e141c;
+  --color-surface: #151e29;
+  --color-raised: #1b2633;
+  --color-line: #263345;
+  --color-ink: #e4e9f0;
+  --color-muted: #8b98aa;
+  --color-faint: #66758a;
+  --color-signal: #f0b43c;
+  --color-resolved: #4fc3a1;
+  --color-info: #7aa7ff;
+  --color-threat: #e5604f;
+
+  /* legacy names still used by project demo components */
+  --color-background: #0e141c;
+  --color-purple: #7aa7ff;
+  --color-cyan: #8fb4e8;
+  --color-neon: #4fc3a1;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  background: var(--color-night);
+}
+
+body {
+  font-feature-settings: "ss01", "tnum" 0;
+}
+
+::selection {
+  background: var(--color-signal);
+  color: var(--color-night);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
