@@ -4,6 +4,8 @@
  */
 
 export const siteConfig = {
+  /** Placeholder domain: change to the real one before deploying (used for link previews) */
+  url: "https://sampathkumar.example",
   name: "Sampath Kumar MS",
   role: "SOC analyst, detection and response",
   location: "Bengaluru, India",

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- A three-row case queue: one case needs attention (amber), two are resolved (teal) -->
+  <rect width="32" height="32" rx="7" fill="#151E29"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="6.5" fill="none" stroke="#263345"/>
+  <circle cx="9" cy="10" r="2.5" fill="#F0B43C"/>
+  <rect x="14" y="8.5" width="11" height="3" rx="1.5" fill="#E4E9F0"/>
+  <circle cx="9" cy="16" r="2.5" fill="#4FC3A1"/>
+  <rect x="14" y="14.5" width="8" height="3" rx="1.5" fill="#8B98AA"/>
+  <circle cx="9" cy="22" r="2.5" fill="#4FC3A1"/>
+  <rect x="14" y="20.5" width="9.5" height="3" rx="1.5" fill="#8B98AA"/>
+</svg>
