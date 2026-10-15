@@ -3,7 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Experience() {
   return (
-    <section aria-labelledby="experience" className="border-t border-line py-20 lg:py-24">
+    <section aria-labelledby="experience" className="border-t border-line py-20 lg:py-28">
       <div className="grid gap-10 lg:grid-cols-12">
         <SectionHeading id="experience" title="Experience" />
 
@@ -23,7 +23,7 @@ export default function Experience() {
                 </h3>
                 <p className="text-sm tabular-nums text-muted">{r.period}</p>
               </div>
-              <ul className="mt-4 max-w-[40rem] space-y-2.5">
+              <ul className="mt-4 max-w-[34rem] space-y-2.5">
                 {r.points.map((pt) => (
                   <li key={pt} className="text-[0.9375rem] leading-relaxed text-ink/85">
                     {pt}

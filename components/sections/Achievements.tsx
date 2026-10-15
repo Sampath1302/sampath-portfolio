@@ -3,7 +3,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Achievements() {
   return (
-    <section aria-labelledby="recognition" className="border-t border-line py-20 lg:py-24">
+    <section aria-labelledby="recognition" className="border-t border-line py-20 lg:py-28">
       <div className="grid gap-10 lg:grid-cols-12">
         <SectionHeading id="recognition" title="Hackathons and CTFs" />
 
@@ -12,7 +12,7 @@ export default function Achievements() {
             <li key={r.title}>
               <p className="font-display text-xl font-semibold leading-tight text-ink">{r.result}</p>
               <h3 className="mt-2 text-[0.9375rem] font-medium text-ink/85">{r.title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted">{r.detail}</p>
+              <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-muted">{r.detail}</p>
             </li>
           ))}
         </ul>

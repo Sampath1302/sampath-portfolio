@@ -23,7 +23,7 @@ export default function CaseQueue() {
 
       <div
         aria-hidden
-        className="hidden sm:grid grid-cols-[4.75rem_1fr_auto] gap-4 border-b border-line px-5 py-2 text-xs text-faint"
+        className="hidden sm:grid grid-cols-[4.75rem_1fr_auto] gap-4 border-b border-line px-5 py-2 text-xs text-muted"
       >
         <span>Category</span>
         <span>Case</span>
@@ -43,7 +43,7 @@ export default function CaseQueue() {
               href={`/projects/${p.slug}`}
               className="group grid grid-cols-[1fr_auto] sm:grid-cols-[4.75rem_1fr_auto] items-center gap-x-4 gap-y-1 px-5 py-4 transition-colors hover:bg-raised focus-visible:bg-raised focus-visible:outline-offset-[-2px]"
             >
-              <span className="order-2 col-span-2 sm:order-none sm:col-span-1 text-xs text-faint">
+              <span className="order-2 col-span-2 sm:order-none sm:col-span-1 text-xs text-muted">
                 {p.category}
               </span>
               <span className="min-w-0">

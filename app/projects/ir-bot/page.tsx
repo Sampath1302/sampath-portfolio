@@ -50,7 +50,7 @@ export default function IRBotPage() {
                     <span className="font-mono text-sm tabular-nums text-muted">{t.time}</span>
                     <span>
                       <span className="block font-medium text-ink">{t.label}</span>
-                      <span className="mt-0.5 block text-sm text-muted">{t.detail}</span>
+                      <span className="mt-0.5 block text-[0.9375rem] text-muted">{t.detail}</span>
                     </span>
                   </li>
                 ))}

@@ -46,7 +46,7 @@ export function WriteupSection({
     <section className="grid gap-6 border-t border-line py-14 lg:grid-cols-12 lg:gap-10">
       <div className="lg:col-span-4">
         <h2 className="font-display text-2xl font-semibold leading-tight text-ink sm:text-[1.75rem]">{title}</h2>
-        {note && <p className="mt-2.5 max-w-xs text-sm leading-relaxed text-muted">{note}</p>}
+        {note && <p className="mt-2.5 max-w-xs text-[0.9375rem] leading-relaxed text-muted">{note}</p>}
       </div>
       <div className="min-w-0 lg:col-span-8">{children}</div>
     </section>
@@ -86,7 +86,7 @@ export default function ProjectWriteup({
 
         <dl className="grid h-fit grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-6 text-sm lg:col-span-4 lg:grid-cols-1 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-1">
           <div>
-            <dt className="text-faint">Status</dt>
+            <dt className="text-muted">Status</dt>
             <dd className="mt-1">
               <StatusTag
                 label={project.status === "complete" ? "Complete" : "In progress"}
@@ -95,23 +95,22 @@ export default function ProjectWriteup({
             </dd>
           </div>
           <div>
-            <dt className="text-faint">Focus</dt>
+            <dt className="text-muted">Focus</dt>
             <dd className="mt-1 text-ink">{project.category}</dd>
           </div>
           <div className="col-span-2 lg:col-span-1">
-            <dt className="text-faint">Built with</dt>
+            <dt className="text-muted">Built with</dt>
             <dd className="mt-1 leading-relaxed text-ink">{stack.join(", ")}</dd>
           </div>
         </dl>
 
-        <figure className="lg:col-span-12">
+        <figure className="lg:col-span-8">
           <ProjectClip
             slug={project.slug}
             label={`${project.title} walkthrough: ${project.summary}`}
-            className="aspect-[4/3] sm:aspect-[16/9]"
           />
           {onWatchWalkthrough && (
-            <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm text-muted">
+            <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-3 text-[0.9375rem] text-muted">
               <span>{project.summary}.</span>
               <button
                 type="button"
@@ -135,7 +134,7 @@ export default function ProjectWriteup({
               </span>
               <div className="-mt-0.5">
                 <p className="font-medium text-ink">{step.label}</p>
-                <p className="mt-0.5 text-sm text-muted">{step.detail}</p>
+                <p className="mt-0.5 text-[0.9375rem] text-muted">{step.detail}</p>
               </div>
             </li>
           ))}
@@ -158,7 +157,7 @@ export default function ProjectWriteup({
       {demo && (
         <section className="border-t border-line py-14">
           <h2 className="font-display text-2xl font-semibold leading-tight text-ink sm:text-[1.75rem]">Try it</h2>
-          <p className="mt-2.5 max-w-[38rem] text-sm leading-relaxed text-muted">
+          <p className="mt-2.5 max-w-[38rem] text-[0.9375rem] leading-relaxed text-muted">
             A simulated, interactive version of the workflow. The data is made up for the demo.
           </p>
           <div className="mt-8">{demo}</div>
@@ -192,7 +191,7 @@ export default function ProjectWriteup({
       </WriteupSection>
 
       <nav aria-label="Next project" className="border-t border-line pt-10">
-        <p className="text-sm text-faint">Next project</p>
+        <p className="text-[0.9375rem] text-muted">Next project</p>
         <Link
           href={`/projects/${next.slug}`}
           className="group mt-2 inline-block font-display text-3xl font-semibold text-ink transition-colors hover:text-signal sm:text-4xl"

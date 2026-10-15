@@ -47,7 +47,7 @@ export default function Contact() {
         <li className="text-muted">{siteConfig.location}</li>
       </ul>
 
-      <footer className="mt-24 flex flex-wrap justify-between gap-4 border-t border-line pt-6 text-sm text-faint">
+      <footer className="mt-20 flex flex-wrap justify-between gap-4 border-t border-line pt-6 text-sm text-muted">
         <p>© {year} {siteConfig.name}</p>
         <p>Built with Next.js and set in IBM Plex</p>
       </footer>

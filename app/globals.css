@@ -24,18 +24,14 @@
   --color-resolved: #4fc3a1;
   --color-info: #7aa7ff;
   --color-threat: #e5604f;
-
-  /* legacy names still used by project demo components */
-  --color-background: #0e141c;
-  --color-purple: #7aa7ff;
-  --color-cyan: #8fb4e8;
-  --color-neon: #4fc3a1;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
   background: var(--color-night);
+  color-scheme: dark;
+  scrollbar-color: var(--color-line) var(--color-night);
 }
 
 body {
