@@ -23,7 +23,7 @@ export default function Certifications() {
               </tr>
             </thead>
             <tbody>
-              {certifications.map((c) => (
+              {certifications.map((c, i) => (
                 <tr
                   key={c.title}
                   className="grid grid-cols-[1fr_auto] gap-x-4 gap-y-0.5 border-b border-line py-3 sm:table-row sm:py-0"
@@ -43,6 +43,7 @@ export default function Certifications() {
                     <StatusTag
                       label={c.status === "held" ? "Held" : "In progress"}
                       tone={c.status === "held" ? "resolved" : "signal"}
+                      enterIndex={i}
                     />
                   </td>
                 </tr>

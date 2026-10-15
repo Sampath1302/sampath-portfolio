@@ -18,7 +18,7 @@ export default function Contact() {
 
       <a
         href={`mailto:${siteConfig.email}`}
-        className="mt-8 inline-block break-all font-display text-2xl font-medium text-signal underline decoration-signal/40 underline-offset-[6px] transition-colors hover:decoration-signal sm:text-3xl"
+        className="mt-8 inline-block break-all font-display text-2xl font-medium text-signal link-sweep sm:text-3xl"
       >
         {siteConfig.email.toLowerCase()}
       </a>
@@ -29,7 +29,7 @@ export default function Contact() {
             href={siteConfig.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-ink underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
+            className="text-ink link-sweep"
           >
             GitHub
           </a>
@@ -39,7 +39,7 @@ export default function Contact() {
             href={siteConfig.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-ink underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
+            className="text-ink link-sweep"
           >
             LinkedIn
           </a>

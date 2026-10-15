@@ -1,5 +1,6 @@
 import { siteConfig } from "@/lib/siteConfig";
 import CaseQueue from "@/components/ui/CaseQueue";
+import EventTicker from "@/components/ui/EventTicker";
 
 export default function Hero() {
   return (
@@ -15,9 +16,8 @@ export default function Hero() {
             id="hero-title"
             className="font-display text-[3.5rem] font-semibold leading-[0.92] tracking-[-0.025em] text-ink sm:text-[5rem] lg:text-[6.25rem]"
           >
-            Sampath
-            <br />
-            Kumar MS
+            <span className="hero-line">Sampath</span>
+            <span className="hero-line">Kumar MS</span>
           </h1>
 
           <p className="mt-6 font-display text-xl font-medium text-ink/80 sm:text-2xl">
@@ -33,6 +33,7 @@ export default function Hero() {
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <a
               href={`mailto:${siteConfig.email}`}
+              data-magnetic
               className="rounded-md bg-signal px-5 py-2.5 text-[0.9375rem] font-semibold text-night transition-colors hover:bg-[#f5c562]"
             >
               Email me
@@ -58,6 +59,7 @@ export default function Hero() {
 
         <div className="lg:col-span-6 lg:pl-6">
           <CaseQueue />
+          <EventTicker />
         </div>
       </div>
     </section>

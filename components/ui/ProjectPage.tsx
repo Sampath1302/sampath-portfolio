@@ -26,5 +26,5 @@ export default function ProjectPage({ intro, writeup }: ProjectPageProps) {
     window.scrollTo({ top: 0 });
   };
 
-  return <div className="min-h-screen bg-night text-ink">{watching ? intro(done) : writeup(watch)}</div>;
+  return <div className="min-h-screen text-ink">{watching ? intro(done) : writeup(watch)}</div>;
 }

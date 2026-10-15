@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { IBM_Plex_Sans, IBM_Plex_Sans_Condensed, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 import Nav from '@/components/ui/Nav';
+import SocBackground from '@/components/ui/SocBackground';
+import MotionLayer from '@/components/ui/MotionLayer';
 import { siteConfig } from '@/lib/siteConfig';
 
 const plexSans = IBM_Plex_Sans({
@@ -45,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark">
       <body
-        className={`${plexSans.variable} ${plexCondensed.variable} ${plexMono.variable} font-sans min-h-screen bg-night text-ink antialiased`}
+        className={`${plexSans.variable} ${plexCondensed.variable} ${plexMono.variable} font-sans min-h-screen text-ink antialiased`}
       >
         <a
           href="#main"
@@ -53,6 +55,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <SocBackground />
+        <MotionLayer />
         <Nav />
         {children}
       </body>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ViewTransition, type CSSProperties } from "react";
 import { projects } from "@/lib/content";
 import SectionHeading from "@/components/ui/SectionHeading";
 import StatusTag from "@/components/ui/StatusTag";
@@ -16,12 +17,18 @@ export default function CaseFiles() {
       <ol className="mt-14 lg:mt-20">
         {projects.map((p) => (
           <li key={p.slug} className="border-t border-line py-14 first:border-t-0 first:pt-0 last:pb-0 lg:py-20">
-            <article className="grid gap-x-10 gap-y-6 lg:grid-cols-12">
+            <article
+              data-spotlight
+              style={{ "--spot-size": "520px", "--spot-color": "var(--color-surface)" } as CSSProperties}
+              className="grid gap-x-10 gap-y-6 lg:grid-cols-12"
+            >
               <header className="lg:col-span-8">
                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
-                  <h3 className="font-display text-[1.75rem] font-semibold leading-tight tracking-[-0.01em] text-ink sm:text-[2rem]">
-                    {p.title}
-                  </h3>
+                  <ViewTransition name={`project-title-${p.slug}`}>
+                    <h3 className="font-display text-[1.75rem] font-semibold leading-tight tracking-[-0.01em] text-ink sm:text-[2rem]">
+                      {p.title}
+                    </h3>
+                  </ViewTransition>
                   <StatusTag
                     label={p.status === "complete" ? "Complete" : "In progress"}
                     tone={p.status === "complete" ? "resolved" : "signal"}
@@ -61,7 +68,7 @@ export default function CaseFiles() {
 
                 <Link
                   href={`/projects/${p.slug}`}
-                  className="mt-6 inline-block text-[0.9375rem] font-medium text-signal underline decoration-signal/40 underline-offset-4 transition-colors hover:decoration-signal"
+                  className="mt-6 inline-block text-[0.9375rem] font-medium text-signal link-sweep"
                 >
                   Read the {p.title} write-up
                 </Link>

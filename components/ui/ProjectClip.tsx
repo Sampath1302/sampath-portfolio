@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useReducedMotion } from "framer-motion";
 
 interface ProjectClipProps {
   slug: string;
@@ -25,12 +24,11 @@ const clipSize: Record<string, [number, number]> = {
  */
 export default function ProjectClip({ slug, label, className = "" }: ProjectClipProps) {
   const ref = useRef<HTMLVideoElement>(null);
-  const reduce = useReducedMotion();
   const [width, height] = clipSize[slug] ?? [1152, 720];
 
   useEffect(() => {
     const video = ref.current;
-    if (!video || reduce) return;
+    if (!video || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -43,10 +41,10 @@ export default function ProjectClip({ slug, label, className = "" }: ProjectClip
     );
     observer.observe(video);
     return () => observer.disconnect();
-  }, [reduce]);
+  }, []);
 
   return (
-    <div className={`overflow-hidden rounded-lg border border-line bg-surface ${className}`}>
+    <div data-enter className={`enter-clip overflow-hidden rounded-lg border border-line bg-surface ${className}`}>
       <video
         ref={ref}
         className="block h-auto w-full"

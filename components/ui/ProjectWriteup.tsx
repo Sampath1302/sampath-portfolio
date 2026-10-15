@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { ViewTransition, type ReactNode } from "react";
 import { projects, type Project } from "@/lib/content";
 import StatusTag from "@/components/ui/StatusTag";
 import ProjectClip from "@/components/ui/ProjectClip";
@@ -70,7 +70,7 @@ export default function ProjectWriteup({
 
   return (
     <main id="main" className="mx-auto max-w-[1120px] px-5 pt-28 pb-16 sm:px-8 sm:pt-32">
-      <Link href="/#work" className="text-sm text-muted underline decoration-line underline-offset-4 hover:text-ink">
+      <Link href="/#work" className="text-sm text-muted link-sweep hover:text-ink">
         Back to all projects
       </Link>
 
@@ -78,9 +78,12 @@ export default function ProjectWriteup({
       <header className="grid gap-10 pt-10 pb-14 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-8">
           <p className="text-[0.9375rem] text-muted">{project.kind}</p>
-          <h1 className="mt-3 font-display text-[3rem] font-semibold leading-[0.95] tracking-[-0.025em] text-ink sm:text-[4.5rem]">
-            {project.title}
-          </h1>
+          {/* shares its name with the home page row, so the title glides between pages */}
+          <ViewTransition name={`project-title-${project.slug}`}>
+            <h1 className="mt-3 font-display text-[3rem] font-semibold leading-[0.95] tracking-[-0.025em] text-ink sm:text-[4.5rem]">
+              {project.title}
+            </h1>
+          </ViewTransition>
           <p className="mt-6 max-w-[38rem] text-[1.0625rem] leading-[1.65] text-ink/85">{intro}</p>
         </div>
 
@@ -115,7 +118,7 @@ export default function ProjectWriteup({
               <button
                 type="button"
                 onClick={onWatchWalkthrough}
-                className="text-ink underline decoration-line underline-offset-4 transition-colors hover:decoration-signal hover:text-signal"
+                className="text-ink link-sweep hover:text-signal"
               >
                 Open the live version
               </button>

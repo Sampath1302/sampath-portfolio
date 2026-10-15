@@ -57,7 +57,7 @@ export default function QurikPage() {
               <dl className="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-4">
                 {metrics.map((m) => (
                   <div key={m.label}>
-                    <dd className="font-display text-[2.25rem] font-semibold leading-none tabular-nums text-ink">
+                    <dd data-enter data-count-to={parseFloat(m.value)} className="font-display text-[2.25rem] font-semibold leading-none tabular-nums text-ink">
                       {m.value}
                     </dd>
                     <dt className="mt-2 text-[0.9375rem] text-muted">{m.label}</dt>

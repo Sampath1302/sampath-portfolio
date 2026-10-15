@@ -1,4 +1,5 @@
 import { experience } from "@/lib/content";
+import type { CSSProperties } from "react";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Experience() {
@@ -7,14 +8,15 @@ export default function Experience() {
       <div className="grid gap-10 lg:grid-cols-12">
         <SectionHeading id="experience" title="Experience" />
 
-        <ol className="relative lg:col-span-8">
-          {/* timeline rail */}
-          <span aria-hidden className="absolute left-[5px] top-2 bottom-2 w-px bg-line" />
-          {experience.map((r) => (
+        <ol data-enter className="timeline relative lg:col-span-8">
+          {/* timeline rail: draws down once it scrolls into view */}
+          <span aria-hidden className="timeline-rail absolute left-[5px] top-2 bottom-2 w-px bg-line" />
+          {experience.map((r, i) => (
             <li key={r.company} className="relative pl-9 pb-12 last:pb-0">
               <span
                 aria-hidden
-                className="absolute left-0 top-[0.45rem] h-[11px] w-[11px] rounded-full border-2 border-night bg-muted"
+                className="timeline-dot absolute left-0 top-[0.45rem] h-[11px] w-[11px] rounded-full border-2 border-night bg-muted"
+                style={{ "--i": i } as CSSProperties}
               />
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
                 <h3 className="text-lg font-semibold text-ink">

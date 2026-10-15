@@ -49,14 +49,190 @@ body {
   border-radius: 4px;
 }
 
+/*
+ * Motion ("live SOC"). Amber = alert / needs attention, teal = resolved.
+ * Scroll states come from MotionLayer: [data-enter="pending"] until the
+ * element enters, then "done". Without JS nothing is ever pending.
+ */
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Background network fades in once its code has loaded */
+.soc-background {
+  opacity: 0;
+  transition: opacity 1.2s ease-out;
+}
+.soc-background[data-ready] {
+  opacity: 1;
+}
+
+/* Hero name: each line rises out of its own clip */
+@keyframes line-in {
+  from {
+    transform: translateY(45%);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    transform: none;
+    clip-path: inset(-10% 0 -25% 0);
+  }
+}
+.hero-line {
+  display: block;
+  animation: line-in 0.7s var(--ease-out) both;
+}
+.hero-line + .hero-line {
+  animation-delay: 0.12s;
+}
+
+/* Case queue: rows are ingested one by one, arrive as "New" and are triaged to their status.
+   Pure CSS, so it matches the server HTML and plays even without JS. */
+@keyframes ingest {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.ingest {
+  animation: ingest 0.35s var(--ease-out) var(--ingest, 0s) both;
+}
+@keyframes triage-out {
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+@keyframes triage-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+.triage-new {
+  animation: triage-out 0.3s var(--ease-out) var(--triage, 0s) both;
+}
+.triage-status {
+  animation: triage-in 0.3s var(--ease-out) var(--triage, 0s) both;
+}
+
+/* Ticker: each new event slides up into the line */
+@keyframes ticker-in {
+  from {
+    opacity: 0;
+    transform: translateY(70%);
+  }
+}
+.ticker-in {
+  animation: ticker-in 0.35s var(--ease-out) both;
+}
+
+/* Experience: the rail draws down, then each role's marker lands */
+.timeline-rail {
+  transform-origin: top;
+  transition: transform 1.2s var(--ease-out);
+}
+.timeline-dot {
+  transition: transform 0.4s var(--ease-out) calc(0.35s + var(--i, 0) * 0.45s);
+}
+.timeline[data-enter="pending"] .timeline-rail {
+  transform: scaleY(0);
+}
+.timeline[data-enter="pending"] .timeline-dot {
+  transform: scale(0);
+}
+
+/* Certification statuses tick from unchecked to their real state */
+.status-tag[data-enter] {
+  transition: color 0.35s ease-out calc(var(--i, 0) * 70ms);
+}
+.status-tag[data-enter] .status-dot {
+  transition: background-color 0.35s ease-out calc(var(--i, 0) * 70ms);
+}
+.status-tag[data-enter="pending"] {
+  color: var(--color-muted);
+}
+.status-tag[data-enter="pending"] .status-dot {
+  background-color: var(--color-line);
+}
+
+/* Project clips settle into their frame */
+.enter-clip[data-enter] {
+  transition:
+    transform 0.9s var(--ease-out),
+    clip-path 0.9s var(--ease-out);
+}
+.enter-clip[data-enter="pending"] {
+  transform: scale(0.97);
+  clip-path: inset(3% 3% round 8px);
+}
+
+/* Cursor spotlight: a raised-surface tint under the pointer, hover only */
+[data-spotlight]:hover {
+  background-image: radial-gradient(
+    var(--spot-size, 260px) circle at var(--mx, 50%) var(--my, 50%),
+    var(--spot-color, var(--color-raised)),
+    transparent 75%
+  );
+}
+
+/* Magnetic buttons ease back when released */
+[data-magnetic] {
+  transition:
+    transform 0.25s var(--ease-out),
+    background-color 0.15s,
+    border-color 0.15s;
+}
+
+/* Links: a faint resting underline, swept to full colour on hover and focus */
+.link-sweep {
+  background-image:
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(color-mix(in srgb, currentColor 35%, transparent), color-mix(in srgb, currentColor 35%, transparent));
+  background-size:
+    0 1px,
+    100% 1px;
+  background-position:
+    0 100%,
+    0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition:
+    background-size 0.35s var(--ease-out),
+    color 0.15s;
+}
+.link-sweep:hover,
+.link-sweep:focus-visible {
+  background-size:
+    100% 1px,
+    100% 1px;
+}
+
+/* Page transitions: shared project titles glide, everything else crossfades */
+::view-transition-group(*) {
+  animation-duration: 0.4s;
+  animation-timing-function: var(--ease-out);
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.25s;
+}
+
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
     scroll-behavior: auto !important;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }
