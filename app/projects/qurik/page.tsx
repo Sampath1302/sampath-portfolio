@@ -19,7 +19,6 @@ const metrics = [
   { label: "False positive rate", value: "2.3%" },
   { label: "Detection latency", value: "340 ms" },
   { label: "Event throughput", value: "15K/s" },
-  { label: "Availability", value: "99.7%" },
 ];
 
 export default function QurikPage() {
@@ -55,13 +54,13 @@ export default function QurikPage() {
               title="Evaluation"
               note="Figures from project evaluation and testing, not production guarantees."
             >
-              <dl className="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3">
+              <dl className="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-4">
                 {metrics.map((m) => (
                   <div key={m.label}>
                     <dd className="font-display text-[2.25rem] font-semibold leading-none tabular-nums text-ink">
                       {m.value}
                     </dd>
-                    <dt className="mt-2 text-sm text-muted">{m.label}</dt>
+                    <dt className="mt-2 text-[0.9375rem] text-muted">{m.label}</dt>
                   </div>
                 ))}
               </dl>

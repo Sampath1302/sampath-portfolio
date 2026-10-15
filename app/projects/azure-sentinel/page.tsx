@@ -53,7 +53,7 @@ export default function SentinelPage() {
             "Logic App response playbooks",
             "Incident investigation workflow",
           ]}
-          stack={["Microsoft Sentinel", "KQL", "Azure Log Analytics", "Logic Apps", "Azure AD", "MITRE ATT&CK"]}
+          stack={["Microsoft Sentinel", "KQL (AI-assisted)", "Azure Log Analytics", "Logic Apps", "Azure AD", "MITRE ATT&CK"]}
           extra={
             <WriteupSection
               title="Sample detection"
