@@ -73,7 +73,7 @@ const STEPS: WorkflowStep[] = [
   },
 ];
 
-function WorkflowNode({ step, isLast }: { step: WorkflowStep; isLast: boolean }) {
+function WorkflowNode({ step, isLast, columnEnd }: { step: WorkflowStep; isLast: boolean; columnEnd: boolean }) {
   return (
     <div className="flex flex-col items-center">
       <motion.div
@@ -81,7 +81,7 @@ function WorkflowNode({ step, isLast }: { step: WorkflowStep; isLast: boolean })
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: step.delay, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         whileHover={step.interactive ? { scale: 1.03 } : {}}
-        className="relative w-64 sm:w-72 rounded-lg border px-4 py-3 cursor-default"
+        className="relative w-64 sm:w-60 rounded-lg border px-4 py-3 cursor-default"
         style={{ borderColor: `${step.stroke}35`, backgroundColor: step.bg }}
       >
         {/* Left accent bar */}
@@ -103,7 +103,7 @@ function WorkflowNode({ step, isLast }: { step: WorkflowStep; isLast: boolean })
             <p className="font-mono text-xs font-semibold" style={{ color: step.stroke }}>
               {step.label}
             </p>
-            <p className="font-mono text-[10px] text-slate-600 mt-0.5 leading-snug">
+            <p className="font-mono text-[10px] text-muted mt-0.5 leading-snug">
               {step.sublabel}
             </p>
           </div>
@@ -123,7 +123,7 @@ function WorkflowNode({ step, isLast }: { step: WorkflowStep; isLast: boolean })
       {/* Connector line between nodes */}
       {!isLast && (
         <motion.div
-          className="w-px"
+          className={`w-px ${columnEnd ? "sm:invisible" : ""}`}
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ delay: step.delay + 0.35, duration: 0.3, ease: "easeOut" }}
@@ -152,11 +152,11 @@ export default function IRBotAnimation({ onComplete }: { onComplete: () => void 
           <span className="text-[#7AA7FF] font-mono text-[10px] tracking-widest">APPROVAL WORKFLOW</span>
         </div>
 
-        {/* Workflow node chain */}
+        {/* Workflow node chain: two columns of three from sm up, so the panel reads landscape */}
         {inView && (
-          <div className="flex flex-col items-center gap-0">
+          <div className="flex flex-col items-center sm:grid sm:grid-flow-col sm:grid-rows-3 sm:justify-center sm:gap-x-6">
             {STEPS.map((step, i) => (
-              <WorkflowNode key={step.id} step={step} isLast={i === STEPS.length - 1} />
+              <WorkflowNode key={step.id} step={step} isLast={i === STEPS.length - 1} columnEnd={i === 2} />
             ))}
           </div>
         )}
@@ -167,7 +167,7 @@ export default function IRBotAnimation({ onComplete }: { onComplete: () => void 
             <span className="w-1.5 h-1.5 rounded-full bg-[#4FC3A1] animate-ping" style={{ animationDuration: "1.5s" }} />
             SOCKET MODE CONNECTED
           </span>
-          <span className="text-slate-600 font-mono text-[10px]">Response time: 4 min 12 sec</span>
+          <span className="text-muted font-mono text-[10px]">Response time: 4 min 12 sec</span>
           <span className="text-[#4FC3A1] font-mono text-[10px]">Host quarantined</span>
         </div>
       </div>

@@ -85,8 +85,8 @@ function QurikSVG({ inView }: { inView: boolean }) {
             transition={{ delay: 0.8, duration: 2.2, repeat: Infinity, ease: "easeInOut" }} />
           <circle cx={87} cy={104} r={27} fill="rgba(122,167,255,0.14)" stroke="#7AA7FF" strokeWidth={1.5} />
           <text x={87} y={109} textAnchor="middle" fill="white" fontSize={14} fontFamily="monospace">→</text>
-          <text x={87} y={148} textAnchor="middle" fill="#CBD5E1" fontSize={8.5} fontFamily="monospace" fontWeight="bold" letterSpacing="1">REQUESTS</text>
-          <text x={87} y={162} textAnchor="middle" fill="#475569" fontSize={7.5} fontFamily="monospace">HTTP/HTTPS</text>
+          <text x={87} y={148} textAnchor="middle" fill="#CBD5E1" fontSize={11} fontFamily="monospace" fontWeight="bold" letterSpacing="1">REQUESTS</text>
+          <text x={87} y={162} textAnchor="middle" fill="#8B98AA" fontSize={10} fontFamily="monospace">HTTP/HTTPS</text>
         </motion.g>
       )}
 
@@ -100,8 +100,8 @@ function QurikSVG({ inView }: { inView: boolean }) {
             transition={{ delay: 1.5, duration: 1.8, repeat: Infinity }} />
           <polygon points={hex} fill="rgba(91,139,235,0.14)" stroke="#5B8BEB" strokeWidth={1.5} />
           <text x={260} y={110} textAnchor="middle" fill="white" fontSize={13} fontFamily="monospace">◉</text>
-          <text x={260} y={153} textAnchor="middle" fill="#CBD5E1" fontSize={8.5} fontFamily="monospace" fontWeight="bold" letterSpacing="1">DETECTION ENGINE</text>
-          <text x={260} y={167} textAnchor="middle" fill="#475569" fontSize={7.5} fontFamily="monospace">ML + Rule-based</text>
+          <text x={260} y={153} textAnchor="middle" fill="#CBD5E1" fontSize={11} fontFamily="monospace" fontWeight="bold" letterSpacing="1">DETECTION ENGINE</text>
+          <text x={260} y={167} textAnchor="middle" fill="#8B98AA" fontSize={10} fontFamily="monospace">ML + Rule-based</text>
         </motion.g>
       )}
 
@@ -113,8 +113,8 @@ function QurikSVG({ inView }: { inView: boolean }) {
             transition={{ delay: 2, duration: 1.6, repeat: Infinity }} />
           <circle cx={447} cy={104} r={27} fill="rgba(229,96,79,0.13)" stroke="#E5604F" strokeWidth={1.5} />
           <text x={447} y={110} textAnchor="middle" fill="#F3AFA5" fontSize={14} fontFamily="monospace">⚠</text>
-          <text x={447} y={148} textAnchor="middle" fill="#CBD5E1" fontSize={8.5} fontFamily="monospace" fontWeight="bold" letterSpacing="1">THREAT ID</text>
-          <text x={447} y={162} textAnchor="middle" fill="#E5604F" fontSize={7.5} fontFamily="monospace">HIGH SEVERITY</text>
+          <text x={447} y={148} textAnchor="middle" fill="#CBD5E1" fontSize={11} fontFamily="monospace" fontWeight="bold" letterSpacing="1">THREAT ID</text>
+          <text x={447} y={162} textAnchor="middle" fill="#E5604F" fontSize={10} fontFamily="monospace">HIGH SEVERITY</text>
         </motion.g>
       )}
 
@@ -123,8 +123,8 @@ function QurikSVG({ inView }: { inView: boolean }) {
         <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2, duration: 0.4 }}>
           <circle cx={639} cy={104} r={27} fill="rgba(34,197,94,0.12)" stroke="#4FC3A1" strokeWidth={1.5} />
           <text x={639} y={110} textAnchor="middle" fill="#9BE0CB" fontSize={14} fontFamily="monospace">✓</text>
-          <text x={639} y={148} textAnchor="middle" fill="#CBD5E1" fontSize={8.5} fontFamily="monospace" fontWeight="bold" letterSpacing="1">BLOCKED</text>
-          <text x={639} y={162} textAnchor="middle" fill="#4FC3A1" fontSize={7.5} fontFamily="monospace">NEUTRALIZED</text>
+          <text x={639} y={148} textAnchor="middle" fill="#CBD5E1" fontSize={11} fontFamily="monospace" fontWeight="bold" letterSpacing="1">BLOCKED</text>
+          <text x={639} y={162} textAnchor="middle" fill="#4FC3A1" fontSize={10} fontFamily="monospace">NEUTRALIZED</text>
         </motion.g>
       )}
 
@@ -132,7 +132,7 @@ function QurikSVG({ inView }: { inView: boolean }) {
       {inView && (
         <motion.text
           x={447} y={60}
-          textAnchor="middle" fill="#EE8A7C" fontSize={7} fontFamily="monospace"
+          textAnchor="middle" fill="#EE8A7C" fontSize={9.5} fontFamily="monospace"
           initial={{ opacity: 0 }}
           animate={{ opacity: [0, 1, 1, 0] }}
           transition={{ delay: 2.6, duration: 2.4, repeat: Infinity, repeatDelay: 3.5 }}
@@ -174,9 +174,9 @@ export default function QurikAnimation({ onComplete }: { onComplete: () => void 
               style={{ animation: "ping 1.5s cubic-bezier(0,0,0.2,1) infinite" }} />
             SYSTEM ACTIVE
           </span>
-          <span className="text-slate-600 font-mono text-[10px]">96.8% accuracy</span>
-          <span className="text-slate-600 font-mono text-[10px]">15K events/sec</span>
-          <span className="text-slate-600 font-mono text-[10px]">340ms latency</span>
+          <span className="text-muted font-mono text-[10px]">96.8% accuracy</span>
+          <span className="text-muted font-mono text-[10px]">15K events/sec</span>
+          <span className="text-muted font-mono text-[10px]">340ms latency</span>
         </div>
       </div>
     </AnimationShell>

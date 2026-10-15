@@ -33,7 +33,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Home page sections**: `components/sections/` (Hero, Capabilities, CaseFiles, Experience, Certifications, Achievements, Contact).
 - **Shared UI**: `components/ui/` (Nav, CaseQueue, StatusTag, SectionHeading, ProjectWriteup, ProjectPage, ProjectClip).
 - **Project pages**: `app/projects/<slug>/page.tsx`, built on `ProjectWriteup`. Interactive demos in `components/project-demo/`; the two simulations are loaded with `next/dynamic` and `ssr: false` because they use random values and timers.
-- **Project clips**: `public/media/<slug>.webm|.mp4|-poster.jpg`, shown by `ProjectClip`. They are screen recordings of each walkthrough animation (opened via "Open the live version"), cropped to the animation panel and encoded at 1152px wide, 30 fps, BT.709. Re-record them if an animation changes.
+- **Project clips**: `public/media/<slug>.webm|.mp4|-poster.jpg`, shown by `ProjectClip`. They are screen recordings of each walkthrough animation (opened via "Open the live version"), cropped to the animation panel only, recorded at a 640px viewport and encoded at 1152px wide, 30 fps, BT.709. Each clip keeps its own aspect ratio, listed in `ProjectClip`. Re-record them if an animation changes.
 
 ## Architecture rules
 1. All routes live in `/app`. Do not create `/src/app`.

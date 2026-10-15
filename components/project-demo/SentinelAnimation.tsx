@@ -87,24 +87,24 @@ function SentinelSVG({ inView }: { inView: boolean }) {
           )}
           <circle cx={n.x} cy={110} r={26} fill={n.fill} stroke={n.stroke} strokeWidth={1.5} />
           <text x={n.x} y={115} textAnchor="middle" fill="white" fontSize={i === 2 ? 10 : 13} fontFamily="monospace">{n.icon}</text>
-          <text x={n.x} y={152} textAnchor="middle" fill="#CBD5E1" fontSize={8} fontFamily="monospace" fontWeight="bold" letterSpacing="0.8">{n.label}</text>
-          <text x={n.x} y={165} textAnchor="middle" fill="#475569" fontSize={7} fontFamily="monospace">{n.sub}</text>
+          <text x={n.x} y={152} textAnchor="middle" fill="#CBD5E1" fontSize={10.5} fontFamily="monospace" fontWeight="bold" letterSpacing="0.8">{n.label}</text>
+          <text x={n.x} y={165} textAnchor="middle" fill="#8B98AA" fontSize={9.5} fontFamily="monospace">{n.sub}</text>
         </motion.g>
       ))}
 
       {/* KQL query snippet */}
       {inView && (
         <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.0, duration: 0.5 }}>
-          <rect x={292} y={42} width={156} height={30} rx={3}
+          <rect x={272} y={41} width={196} height={31} rx={3}
             fill="rgba(0,0,0,0.6)" stroke="#5B8BEB" strokeWidth={1} strokeOpacity={0.4} />
-          <text x={370} y={53} textAnchor="middle" fill="#5B8BEB" fontSize={6.5} fontFamily="monospace">SigninLogs | where ResultType != 0</text>
-          <text x={370} y={64} textAnchor="middle" fill="#475569" fontSize={6.5} fontFamily="monospace">| where FailedAttempts {"> threshold"}</text>
+          <text x={370} y={53} textAnchor="middle" fill="#5B8BEB" fontSize={8.5} fontFamily="monospace">SigninLogs | where ResultType != 0</text>
+          <text x={370} y={64} textAnchor="middle" fill="#8B98AA" fontSize={8.5} fontFamily="monospace">| where FailedAttempts {"> threshold"}</text>
         </motion.g>
       )}
 
       {/* MITRE label near Incident node */}
       {inView && (
-        <motion.text x={530} y={62} textAnchor="middle" fill="#F0B43C" fontSize={7} fontFamily="monospace"
+        <motion.text x={566} y={62} textAnchor="middle" fill="#F0B43C" fontSize={9.5} fontFamily="monospace"
           initial={{ opacity: 0 }}
           animate={{ opacity: [0, 1, 1, 0] }}
           transition={{ delay: 3.0, duration: 2.5, repeat: Infinity, repeatDelay: 4 }}>
@@ -138,7 +138,7 @@ export default function SentinelAnimation({ onComplete }: { onComplete: () => vo
             <span className="w-1.5 h-1.5 rounded-full bg-[#4FC3A1] animate-ping" style={{ animationDuration: "1.5s" }} />
             24 RULES ACTIVE
           </span>
-          <span className="text-slate-600 font-mono text-[10px]">Incident #4821 created</span>
+          <span className="text-muted font-mono text-[10px]">Incident #4821 created</span>
           <span className="text-[#4FC3A1] font-mono text-[10px]">SOAR response triggered</span>
         </div>
       </div>

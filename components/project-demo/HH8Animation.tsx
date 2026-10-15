@@ -62,9 +62,9 @@ function NodeCircle({ cx, cy, r, fill, stroke, icon, label, sublabel, delay, pul
       )}
       <circle cx={cx} cy={cy} r={r} fill={fill} stroke={stroke} strokeWidth={1.5} />
       <text x={cx} y={cy + 4} textAnchor="middle" fill="white" fontSize={11} fontFamily="monospace">{icon}</text>
-      <text x={cx} y={cy + r + 16} textAnchor="middle" fill="#CBD5E1" fontSize={8} fontFamily="monospace" fontWeight="bold" letterSpacing="0.8">{label}</text>
+      <text x={cx} y={cy + r + 16} textAnchor="middle" fill="#CBD5E1" fontSize={10.5} fontFamily="monospace" fontWeight="bold" letterSpacing="0.8">{label}</text>
       {sublabel && (
-        <text x={cx} y={cy + r + 28} textAnchor="middle" fill="#475569" fontSize={7} fontFamily="monospace">{sublabel}</text>
+        <text x={cx} y={cy + r + 28} textAnchor="middle" fill="#8B98AA" fontSize={9.5} fontFamily="monospace">{sublabel}</text>
       )}
     </motion.g>
   );
@@ -77,7 +77,7 @@ function BranchNode({ cx, cy, label, delay }: BranchNodeProps) {
     <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay, duration: 0.35 }}>
       <rect x={cx - 30} y={cy - 12} width={60} height={24} rx={4}
         fill="rgba(122,167,255,0.08)" stroke="#7AA7FF" strokeWidth={1} strokeOpacity={0.35} />
-      <text x={cx} y={cy + 4} textAnchor="middle" fill="#7AA7FF" fontSize={8} fontFamily="monospace">{label}</text>
+      <text x={cx} y={cy + 4} textAnchor="middle" fill="#7AA7FF" fontSize={10.5} fontFamily="monospace">{label}</text>
     </motion.g>
   );
 }
@@ -155,7 +155,7 @@ function HH8SVG({ inView }: { inView: boolean }) {
           <BranchNode cx={BX[1]} cy={Y_BRANCH} label="/api/v1" delay={1.35} />
           <BranchNode cx={BX[2]} cy={Y_BRANCH} label="/admin" delay={1.5} />
           {/* Discovery count */}
-          <motion.text x={BX[2]} y={Y_BRANCH + 30} textAnchor="middle" fill="#475569" fontSize={7.5} fontFamily="monospace"
+          <motion.text x={BX[2]} y={Y_BRANCH + 30} textAnchor="middle" fill="#8B98AA" fontSize={10} fontFamily="monospace"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.7 }}>
             47 URLs discovered
           </motion.text>
@@ -197,7 +197,7 @@ export default function HH8Animation({ onComplete }: { onComplete: () => void })
             <span className="w-1.5 h-1.5 rounded-full bg-[#4FC3A1] animate-ping" style={{ animationDuration: "1.5s" }} />
             SCAN ACTIVE
           </span>
-          <span className="text-slate-600 font-mono text-[10px]">47 URLs crawled</span>
+          <span className="text-muted font-mono text-[10px]">47 URLs crawled</span>
           <span className="text-red-400 font-mono text-[10px]">3 HIGH severity findings</span>
         </div>
       </div>
