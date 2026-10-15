@@ -45,6 +45,20 @@ npm run build
 Edit text in `lib/content.ts` and `lib/siteConfig.ts`, not in components.
 `AGENTS.md` holds the full design and coding rules.
 
+## Motion
+
+The site behaves like a live SOC: a faint background network where amber alerts travel to a node
+and are resolved in teal, a case queue that ingests and triages its rows, and a "last event"
+ticker built from the site content. Scroll effects play once, and everything has a still version
+for reduced motion. `AGENTS.md` describes each piece.
+
+The background is kept faint on purpose so muted text stays readable over it. If you change its
+colours or opacity, rerun the check:
+
+```bash
+node scripts/check-background-contrast.mjs
+```
+
 ## Project clips
 
 Each project has a short silent loop (`<slug>.mp4`, `<slug>.webm`, `<slug>-poster.jpg`) recorded from
