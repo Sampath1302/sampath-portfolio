@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { projects, type Project } from "@/lib/content";
 import StatusTag from "@/components/ui/StatusTag";
+import ProjectClip from "@/components/ui/ProjectClip";
 
 export interface PipelineStep {
   label: string;
@@ -81,15 +82,6 @@ export default function ProjectWriteup({
             {project.title}
           </h1>
           <p className="mt-6 max-w-[38rem] text-[1.0625rem] leading-[1.65] text-ink/85">{intro}</p>
-          {onWatchWalkthrough && (
-            <button
-              type="button"
-              onClick={onWatchWalkthrough}
-              className="mt-8 rounded-md border border-line px-4 py-2 text-[0.9375rem] font-medium text-ink transition-colors hover:border-signal hover:text-signal"
-            >
-              Watch the walkthrough
-            </button>
-          )}
         </div>
 
         <dl className="grid h-fit grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-6 text-sm lg:col-span-4 lg:grid-cols-1 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-1">
@@ -111,6 +103,26 @@ export default function ProjectWriteup({
             <dd className="mt-1 leading-relaxed text-ink">{stack.join(", ")}</dd>
           </div>
         </dl>
+
+        <figure className="lg:col-span-12">
+          <ProjectClip
+            slug={project.slug}
+            label={`${project.title} walkthrough: ${project.summary}`}
+            className="aspect-[4/3] sm:aspect-[16/9]"
+          />
+          {onWatchWalkthrough && (
+            <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm text-muted">
+              <span>{project.summary}.</span>
+              <button
+                type="button"
+                onClick={onWatchWalkthrough}
+                className="text-ink underline decoration-line underline-offset-4 transition-colors hover:decoration-signal hover:text-signal"
+              >
+                Open the live version
+              </button>
+            </figcaption>
+          )}
+        </figure>
       </header>
 
       <WriteupSection title="How it works" note="The path a request or alert takes through the system.">

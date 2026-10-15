@@ -85,29 +85,31 @@ function BranchNode({ cx, cy, label, delay }: BranchNodeProps) {
 function HH8SVG({ inView }: { inView: boolean }) {
   const CX = 370; // center x
   // Y positions
-  const Y_ROOT = 32, Y_CRAWL = 98, Y_BRANCH = 178, Y_ANAL = 255, Y_VULN = 308, Y_REPORT = 358;
+  // Each node's label sits ~52px below its centre, so rows are spaced 90px apart
+  const Y_ROOT = 32, Y_CRAWL = 122, Y_BRANCH = 212, Y_ANAL = 302, Y_VULN = 392, Y_REPORT = 478;
+  const BELOW = 56; // first y clear of a node's label
   const BX = [200, CX, 540]; // branch x positions
 
   return (
-    <svg viewBox="0 0 740 390" className="w-full" role="img"
+    <svg viewBox="0 0 740 530" className="w-full" role="img"
       aria-label="HH8 Scanner: crawler discovery tree from target to vulnerability report">
 
       {/* ── Root → Crawler ── */}
-      {inView && <VLine x={CX} y1={Y_ROOT + 22} y2={Y_CRAWL - 22} delay={0.5} />}
+      {inView && <VLine x={CX} y1={Y_ROOT + BELOW} y2={Y_CRAWL - 22} delay={0.5} />}
 
       {/* ── Crawler → Branches (cubic bezier) ── */}
       {inView && (
         <>
           <PathConnector
-            d={`M ${CX} ${Y_CRAWL + 22} C ${CX} ${Y_CRAWL + 55} ${BX[0]} ${Y_BRANCH - 45} ${BX[0]} ${Y_BRANCH - 12}`}
+            d={`M ${CX} ${Y_CRAWL + BELOW} C ${CX} ${Y_CRAWL + 70} ${BX[0]} ${Y_BRANCH - 45} ${BX[0]} ${Y_BRANCH - 12}`}
             delay={1.0} color="#7AA7FF" dashLen={160}
           />
           <PathConnector
-            d={`M ${CX} ${Y_CRAWL + 22} L ${CX} ${Y_BRANCH - 12}`}
+            d={`M ${CX} ${Y_CRAWL + BELOW} L ${CX} ${Y_BRANCH - 12}`}
             delay={1.0} color="#7AA7FF" dashLen={80}
           />
           <PathConnector
-            d={`M ${CX} ${Y_CRAWL + 22} C ${CX} ${Y_CRAWL + 55} ${BX[2]} ${Y_BRANCH - 45} ${BX[2]} ${Y_BRANCH - 12}`}
+            d={`M ${CX} ${Y_CRAWL + BELOW} C ${CX} ${Y_CRAWL + 70} ${BX[2]} ${Y_BRANCH - 45} ${BX[2]} ${Y_BRANCH - 12}`}
             delay={1.0} color="#7AA7FF" dashLen={160}
           />
         </>
@@ -134,8 +136,8 @@ function HH8SVG({ inView }: { inView: boolean }) {
       {/* ── Analysis → Vuln → Report ── */}
       {inView && (
         <>
-          <VLine x={CX} y1={Y_ANAL + 22} y2={Y_VULN - 22} delay={2.3} color="#E5604F" />
-          <VLine x={CX} y1={Y_VULN + 22} y2={Y_REPORT - 18} delay={2.9} color="#4FC3A1" />
+          <VLine x={CX} y1={Y_ANAL + BELOW} y2={Y_VULN - 22} delay={2.3} color="#E5604F" />
+          <VLine x={CX} y1={Y_VULN + BELOW} y2={Y_REPORT - 18} delay={2.9} color="#4FC3A1" />
         </>
       )}
 
@@ -153,7 +155,7 @@ function HH8SVG({ inView }: { inView: boolean }) {
           <BranchNode cx={BX[1]} cy={Y_BRANCH} label="/api/v1" delay={1.35} />
           <BranchNode cx={BX[2]} cy={Y_BRANCH} label="/admin" delay={1.5} />
           {/* Discovery count */}
-          <motion.text x={CX} y={Y_BRANCH + 38} textAnchor="middle" fill="#475569" fontSize={7.5} fontFamily="monospace"
+          <motion.text x={BX[2]} y={Y_BRANCH + 30} textAnchor="middle" fill="#475569" fontSize={7.5} fontFamily="monospace"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.7 }}>
             47 URLs discovered
           </motion.text>

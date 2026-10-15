@@ -2,6 +2,7 @@ import Link from "next/link";
 import { projects } from "@/lib/content";
 import SectionHeading from "@/components/ui/SectionHeading";
 import StatusTag from "@/components/ui/StatusTag";
+import ProjectClip from "@/components/ui/ProjectClip";
 
 export default function CaseFiles() {
   return (
@@ -27,6 +28,11 @@ export default function CaseFiles() {
                 </div>
 
                 <div className="max-w-[38rem]">
+                  <ProjectClip
+                    slug={p.slug}
+                    label={`${p.title} walkthrough: ${p.summary}`}
+                    className="mb-6 aspect-[16/10]"
+                  />
                   <p className="text-[1rem] leading-[1.65] text-ink/90">{p.description}</p>
 
                   <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-sm text-muted">
