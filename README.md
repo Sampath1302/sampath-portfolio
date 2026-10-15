@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sampath Kumar MS — cybersecurity portfolio
 
-## Getting Started
+Personal portfolio for SOC analyst and security operations roles: four project write-ups with
+interactive walkthroughs, internship experience, certifications and contact details.
 
-First, run the development server:
+The design is called "night shift": a calm dark slate UI set in IBM Plex, where amber means
+in progress / needs attention and teal means complete / held. The hero shows the projects as a
+SIEM-style case queue.
+
+## Stack
+
+- Next.js 16 (App Router), React 19, TypeScript (strict)
+- Tailwind CSS v4, configured in `app/globals.css` (`tailwind.config.ts` is not used)
+- Framer Motion for the case queue and the project walkthroughs
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Before committing a change:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Where things live
 
-## Learn More
+| What | Where |
+| --- | --- |
+| All site text: projects, experience, certifications, recognition | `lib/content.ts` |
+| Name, email, links, site URL and page title | `lib/siteConfig.ts` |
+| Home page sections | `components/sections/` |
+| Shared UI (nav, case queue, status tags, project write-up layout) | `components/ui/` |
+| Project pages | `app/projects/<slug>/page.tsx` |
+| Walkthrough animations and interactive simulations | `components/project-demo/` |
+| Looping project clips and posters | `public/media/` |
+| Favicon, Apple touch icon, link-preview image | `app/icon.svg`, `app/apple-icon.png`, `app/opengraph-image.tsx` |
+| Colour tokens | `app/globals.css` |
 
-To learn more about Next.js, take a look at the following resources:
+Edit text in `lib/content.ts` and `lib/siteConfig.ts`, not in components.
+`AGENTS.md` holds the full design and coding rules.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project clips
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Each project has a short silent loop (`<slug>.mp4`, `<slug>.webm`, `<slug>-poster.jpg`) recorded from
+its walkthrough ("Open the live version" on the project page). They are cropped to the animation
+panel only, recorded at a 640px viewport so the text stays readable at card size, and encoded at
+1152px wide, 30 fps, BT.709. If an animation changes, re-record its clip and update the clip's
+size in `components/ui/ProjectClip.tsx`.
 
-## Deploy on Vercel
+## Before deploying
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Set `url` in `lib/siteConfig.ts` to the real domain. It is currently the placeholder
+  `https://sampathkumar.example`, and link previews (LinkedIn, Slack, X) are built from it.
+- After deploying, check the preview with LinkedIn's Post Inspector.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Fonts
+
+IBM Plex is served through `next/font/google`. The link-preview image needs static TTF files, so
+IBM Plex Sans Condensed is also kept in `assets/fonts/` (SIL Open Font License).
