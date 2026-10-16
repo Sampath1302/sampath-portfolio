@@ -48,3 +48,7 @@ next-env.d.ts
 # design references (local only)
 /design-refs/
 /.impeccable/
+
+# Remotion film project: dependencies and LinkedIn exports stay local
+/films/node_modules/
+/exports/

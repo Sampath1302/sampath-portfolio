@@ -54,10 +54,10 @@ const KQL_RESULTS = [
 
 const PIVOT_NODES = [
   { label: "Suspicious IP",           sub: "185.220.101.47",           color: "#E5604F" },
-  { label: "User Account",            sub: "j.martinez@corp.io",       color: "#F0B43C" },
-  { label: "Authentication Events",   sub: "7 failures + 1 success",   color: "#7AA7FF" },
-  { label: "Workstation",             sub: "WORKSTATION-14",           color: "#8FB4E8" },
-  { label: "Related Activity",        sub: "cmd.exe process creation", color: "#7AA7FF" },
+  { label: "User Account",            sub: "j.martinez@corp.io",       color: "#82a6e6" },
+  { label: "Authentication Events",   sub: "7 failures + 1 success",   color: "#82a6e6" },
+  { label: "Workstation",             sub: "WORKSTATION-14",           color: "#aec5f0" },
+  { label: "Related Activity",        sub: "cmd.exe process creation", color: "#82a6e6" },
 ];
 
 const TIMELINE_EVENTS = [
@@ -69,22 +69,22 @@ const TIMELINE_EVENTS = [
 ];
 
 const HUNT_PIPELINE = [
-  { label: "KQL HUNT",         color: "#7AA7FF" },
-  { label: "Detection Logic",  color: "#8FB4E8" },
-  { label: "Analytics Rule",   color: "#8FB4E8" },
-  { label: "Alert",            color: "#F0B43C" },
+  { label: "KQL HUNT",         color: "#82a6e6" },
+  { label: "Detection Logic",  color: "#aec5f0" },
+  { label: "Analytics Rule",   color: "#aec5f0" },
+  { label: "Alert",            color: "#82a6e6" },
   { label: "Incident",         color: "#E5604F" },
 ];
 
 const ARCH_STEPS = [
-  { label: "AZURE LOG SOURCES",     color: "#7AA7FF" },
-  { label: "MICROSOFT SENTINEL",    color: "#8FB4E8" },
-  { label: "KQL THREAT HUNTING",    color: "#7AA7FF" },
-  { label: "EVENT CORRELATION",     color: "#7AA7FF" },
-  { label: "MITRE ATT&CK",          color: "#F0B43C" },
+  { label: "AZURE LOG SOURCES",     color: "#82a6e6" },
+  { label: "MICROSOFT SENTINEL",    color: "#aec5f0" },
+  { label: "KQL THREAT HUNTING",    color: "#82a6e6" },
+  { label: "EVENT CORRELATION",     color: "#82a6e6" },
+  { label: "MITRE ATT&CK",          color: "#82a6e6" },
   { label: "THREAT FINDING",        color: "#E5604F" },
-  { label: "DETECTION ENGINEERING", color: "#8FB4E8" },
-  { label: "INCIDENT RESPONSE",     color: "#7AA7FF" },
+  { label: "DETECTION ENGINEERING", color: "#aec5f0" },
+  { label: "INCIDENT RESPONSE",     color: "#82a6e6" },
 ];
 
 const SUMMARY_STEPS = [
@@ -118,15 +118,15 @@ const LOG_STATUS_LABELS: Record<LogStatus, string> = {
   pending: "WAIT", failed: "FAIL", success: "OK", info: "INFO", alert: "ALERT",
 };
 const LOG_STATUS_COLORS: Record<LogStatus, string> = {
-  pending: "text-slate-500",
+  pending: "text-meta",
   failed:  "text-red-400",
-  success: "text-emerald-400",
-  info:    "text-blue-400",
-  alert:   "text-amber-400",
+  success: "text-mint",
+  info:    "text-blue-text",
+  alert:   "text-blue-text",
 };
 const LOG_SRC_COLORS: Record<string, string> = {
-  "SigninLogs":    "text-[#8FB4E8]/70",
-  "AuditLogs":    "text-blue-400/70",
+  "SigninLogs":    "text-[#aec5f0]/70",
+  "AuditLogs":    "text-blue/70",
   "DeviceEvents": "text-purple-400/70",
   "SecurityAlert":"text-red-400/70",
 };
@@ -135,7 +135,7 @@ const LOG_SRC_COLORS: Record<string, string> = {
 // SHARED UI
 // ──────────────────────────────────────────────────────────────
 
-function PulseDot({ color = "#8FB4E8" }: { color?: string }) {
+function PulseDot({ color = "#aec5f0" }: { color?: string }) {
   return (
     <span className="relative flex h-2 w-2 flex-shrink-0">
       <span
@@ -150,11 +150,11 @@ function PulseDot({ color = "#8FB4E8" }: { color?: string }) {
   );
 }
 
-function SectionLabel({ text, color = "#F0B43C" }: { text: string; color?: string }) {
+function SectionLabel({ text, color = "#82a6e6" }: { text: string; color?: string }) {
   return (
     <div className="flex items-center gap-2 mb-4">
       <PulseDot color={color} />
-      <span className="font-mono text-[11px] tracking-widest text-slate-400">{text}</span>
+      <span className="font-mono text-[11px] tracking-widest text-muted">{text}</span>
     </div>
   );
 }
@@ -173,12 +173,12 @@ function SimHeader({
       {/* Top row */}
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <PulseDot color="#8FB4E8" />
-          <span className="font-mono text-[10px] tracking-[0.2em] text-[#8FB4E8] uppercase">
+          <PulseDot color="#aec5f0" />
+          <span className="font-mono text-[11px] tracking-[0.2em] text-[#aec5f0] uppercase">
             Simulation Active
           </span>
         </div>
-        <span className="font-mono text-[9px] text-slate-600 tracking-widest uppercase border border-slate-800 px-2 py-0.5 rounded">
+        <span className="font-mono text-[11px] text-meta tracking-widest uppercase border border-line px-2 py-0.5 rounded">
           Authorized Lab Environment
         </span>
       </div>
@@ -188,19 +188,19 @@ function SimHeader({
           <p className="font-mono text-white text-xs font-bold tracking-[0.18em] uppercase">
             Live Threat Hunt Simulation
           </p>
-          <p className="font-mono text-slate-600 text-[10px] mt-0.5">
+          <p className="font-mono text-meta text-[11px] mt-0.5">
             Proactive investigation using Microsoft Sentinel + KQL · Simulated demonstration
           </p>
         </div>
         <div className="text-right ml-4 flex-shrink-0">
-          <p className="font-mono text-[#7AA7FF] text-[10px] tracking-widest">{SCENE_LABELS[scene - 1]}</p>
-          <p className="font-mono text-slate-700 text-[9px] mt-0.5">SCENE {scene} / 11</p>
+          <p className="font-mono text-[#82a6e6] text-[11px] tracking-widest">{SCENE_LABELS[scene - 1]}</p>
+          <p className="font-mono text-meta text-[11px] mt-0.5">SCENE {scene} / 11</p>
         </div>
       </div>
       {/* Progress bar */}
-      <div className="h-px bg-slate-900 rounded overflow-hidden">
+      <div className="h-px bg-surface rounded overflow-hidden">
         <motion.div
-          className="h-full bg-gradient-to-r from-[#7AA7FF] to-[#8FB4E8] rounded-full"
+          className="h-full bg-gradient-to-r from-[#82a6e6] to-[#aec5f0] rounded-full"
           animate={{ width: `${progress}%` }}
           transition={{ duration: 0.5, ease: "linear" }}
         />
@@ -212,18 +212,18 @@ function SimHeader({
             key={i}
             onClick={() => onJump(i + 1)}
             aria-label={`Jump to scene ${i + 1}: ${SCENE_LABELS[i]}`}
-            className="rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#7AA7FF]"
+            className="rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#82a6e6]"
             style={{
               width:  i + 1 === scene ? "18px" : "6px",
               height: "6px",
               backgroundColor:
-                i + 1 === scene ? "#7AA7FF"
-                : i + 1 < scene  ? "rgba(122,167,255,0.35)"
-                : "#27272a",
+                i + 1 === scene ? "#82a6e6"
+                : i + 1 < scene  ? "rgba(130,166,230,0.35)"
+                : "#262b34",
             }}
           />
         ))}
-        <span className="font-mono text-[9px] text-slate-700 ml-auto">{scene}/11</span>
+        <span className="font-mono text-[11px] text-meta ml-auto">{scene}/11</span>
       </div>
     </div>
   );
@@ -261,16 +261,16 @@ function Scene1({ onComplete, reduced }: SceneProps) {
     <div className="p-5">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <PulseDot color={anomaly ? "#F0B43C" : "#8FB4E8"} />
-          <span className={`font-mono text-[11px] tracking-widest transition-colors duration-500 ${anomaly ? "text-amber-400" : "text-slate-400"}`}>
+          <PulseDot color={anomaly ? "#82a6e6" : "#aec5f0"} />
+          <span className={`font-mono text-[11px] tracking-widest transition-colors duration-500 ${anomaly ? "text-blue-text" : "text-muted"}`}>
             {anomaly ? "ANOMALOUS ACTIVITY DETECTED" : "INGESTING SECURITY TELEMETRY..."}
           </span>
         </div>
-        <span className="font-mono text-[10px] text-slate-600">{count + 1}&nbsp;/&nbsp;{LOG_ENTRIES.length}</span>
+        <span className="font-mono text-[11px] text-meta">{count + 1}&nbsp;/&nbsp;{LOG_ENTRIES.length}</span>
       </div>
 
       <div className="rounded-lg border border-white/8 bg-black/50 overflow-hidden">
-        <div className="grid grid-cols-[3.5rem_6rem_1fr_3rem] gap-x-2 px-3 py-1.5 border-b border-white/5 font-mono text-[9px] text-slate-700 uppercase tracking-widest">
+        <div className="grid grid-cols-[3.5rem_6rem_1fr_3rem] gap-x-2 px-3 py-1.5 border-b border-white/5 font-mono text-[11px] text-meta uppercase tracking-widest">
           <span>Time</span><span>Source</span><span>Event</span><span className="text-right">Status</span>
         </div>
         <div className="px-2 py-1.5 space-y-0.5 min-h-[200px]">
@@ -283,12 +283,12 @@ function Scene1({ onComplete, reduced }: SceneProps) {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.22 }}
                 className={`grid grid-cols-[3.5rem_6rem_1fr_3rem] gap-x-2 px-1.5 py-1 rounded font-mono text-[11px] ${
-                  highlight ? "bg-amber-500/10 border border-amber-500/15" : ""
+                  highlight ? "bg-blue/10 border border-blue/15" : ""
                 }`}
               >
-                <span className="text-slate-600">{entry.time}</span>
-                <span className={`${LOG_SRC_COLORS[entry.src] ?? "text-slate-500"} truncate`}>{entry.src}</span>
-                <span className="text-slate-400 truncate">{entry.event}</span>
+                <span className="text-meta">{entry.time}</span>
+                <span className={`${LOG_SRC_COLORS[entry.src] ?? "text-meta"} truncate`}>{entry.src}</span>
+                <span className="text-muted truncate">{entry.event}</span>
                 <span className={`${LOG_STATUS_COLORS[entry.status]} text-right`}>
                   {LOG_STATUS_LABELS[entry.status]}
                 </span>
@@ -303,13 +303,13 @@ function Scene1({ onComplete, reduced }: SceneProps) {
           <motion.div
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-3 flex items-center gap-3 px-4 py-2.5 rounded-lg border border-amber-500/25 bg-amber-500/5"
+            className="mt-3 flex items-center gap-3 px-4 py-2.5 rounded-lg border border-blue/25 bg-blue/5"
           >
-            <PulseDot color="#F0B43C" />
-            <span className="font-mono text-xs text-amber-400 font-semibold tracking-widest">
+            <PulseDot color="#82a6e6" />
+            <span className="font-mono text-xs text-blue-text font-semibold tracking-widest">
               ANOMALOUS ACTIVITY DETECTED
             </span>
-            <span className="font-mono text-[10px] text-slate-600 ml-auto hidden sm:block">5 failures → success · 12s</span>
+            <span className="font-mono text-[11px] text-meta ml-auto hidden sm:block">5 failures → success · 12s</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -352,28 +352,28 @@ function Scene2({ onComplete, reduced }: SceneProps) {
     <div className="p-5">
       <SectionLabel
         text={showResults ? "QUERY RESULTS — 3 MATCHES" : executing ? "EXECUTING QUERY..." : "KQL THREAT HUNT"}
-        color="#7AA7FF"
+        color="#82a6e6"
       />
 
       {/* KQL editor */}
       <div className="rounded-lg border border-white/8 bg-black/60 overflow-hidden mb-4">
         <div className="flex items-center gap-2 px-3 py-2 border-b border-white/5 bg-white/[0.02]">
-          <span className="font-mono text-[10px] text-[#7AA7FF] font-bold">KQL</span>
-          <span className="font-mono text-slate-600 text-[10px]">sentinel-workspace · SigninLogs</span>
+          <span className="font-mono text-[11px] text-[#82a6e6] font-bold">KQL</span>
+          <span className="font-mono text-meta text-[11px]">sentinel-workspace · SigninLogs</span>
           {executing && !showResults && (
             <span className="ml-auto flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#8FB4E8] animate-pulse" />
-              <span className="font-mono text-[10px] text-[#8FB4E8]">Executing...</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#aec5f0] animate-pulse" />
+              <span className="font-mono text-[11px] text-[#aec5f0]">Executing...</span>
             </span>
           )}
           {showResults && (
-            <span className="ml-auto font-mono text-[10px] text-emerald-400">✓ Completed · 3 results</span>
+            <span className="ml-auto font-mono text-[11px] text-mint">✓ Completed · 3 results</span>
           )}
         </div>
-        <pre className="px-4 py-3 font-mono text-[12px] text-[#8FB4E8]/80 leading-[1.65] overflow-x-auto">
+        <pre className="px-4 py-3 font-mono text-[12px] text-[#aec5f0]/80 leading-[1.65] overflow-x-auto">
           {KQL_QUERY.slice(0, typed)}
           {typed < KQL_QUERY.length && (
-            <span className="inline-block w-[7px] h-[14px] bg-[#8FB4E8] animate-pulse align-middle" />
+            <span className="inline-block w-[7px] h-[14px] bg-[#aec5f0] animate-pulse align-middle" />
           )}
         </pre>
       </div>
@@ -386,7 +386,7 @@ function Scene2({ onComplete, reduced }: SceneProps) {
             animate={{ opacity: 1, y: 0 }}
             className="rounded-lg border border-white/8 bg-black/40 overflow-hidden"
           >
-            <div className="grid grid-cols-[1fr_8rem_4rem_6rem] gap-2 px-3 py-1.5 border-b border-white/5 font-mono text-[9px] text-slate-700 uppercase tracking-widest">
+            <div className="grid grid-cols-[1fr_8rem_4rem_6rem] gap-2 px-3 py-1.5 border-b border-white/5 font-mono text-[11px] text-meta uppercase tracking-widest">
               <span>UserPrincipalName</span>
               <span>IPAddress</span>
               <span>Failures</span>
@@ -402,10 +402,10 @@ function Scene2({ onComplete, reduced }: SceneProps) {
                   row.flag ? "bg-red-500/6 border-l-2 border-l-red-500/40" : ""
                 }`}
               >
-                <span className="text-slate-300 truncate">{row.user}</span>
-                <span className={row.flag ? "text-red-400 font-bold" : "text-slate-400"}>{row.ip}</span>
-                <span className={row.flag ? "text-amber-400 font-bold" : "text-slate-400"}>{row.failed}</span>
-                <span className="text-slate-500 hidden sm:block truncate">{row.loc}</span>
+                <span className="text-[#c6cad2] truncate">{row.user}</span>
+                <span className={row.flag ? "text-red-400 font-bold" : "text-muted"}>{row.ip}</span>
+                <span className={row.flag ? "text-blue-text font-bold" : "text-muted"}>{row.failed}</span>
+                <span className="text-meta hidden sm:block truncate">{row.loc}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -446,13 +446,13 @@ function Scene3({ onComplete, reduced }: SceneProps) {
   return (
     <div className="p-5">
       <div className="flex items-center justify-between mb-5">
-        <SectionLabel text="INVESTIGATION PIVOT" color="#7AA7FF" />
+        <SectionLabel text="INVESTIGATION PIVOT" color="#82a6e6" />
         <AnimatePresence>
           {related && (
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="font-mono text-[10px] text-emerald-400 -mt-4"
+              className="font-mono text-[11px] text-mint -mt-4"
             >
               RELATED EVENTS FOUND
             </motion.span>
@@ -472,7 +472,7 @@ function Scene3({ onComplete, reduced }: SceneProps) {
                 style={{ borderColor: `${node.color}30`, backgroundColor: `${node.color}06` }}
               >
                 <p className="font-mono text-xs font-bold" style={{ color: node.color }}>{node.label}</p>
-                <p className="font-mono text-[10px] text-slate-500 mt-0.5">{node.sub}</p>
+                <p className="font-mono text-[11px] text-meta mt-0.5">{node.sub}</p>
               </motion.div>
             )}
             {i < PIVOT_NODES.length - 1 && i < visible && (
@@ -482,8 +482,8 @@ function Scene3({ onComplete, reduced }: SceneProps) {
                 transition={{ duration: 0.25 }}
                 className="flex flex-col items-center"
               >
-                <div className="flex-1 w-px bg-slate-800" />
-                <div className="w-1.5 h-1.5 border-r border-b border-slate-700 rotate-45 -mt-1 mb-0.5" />
+                <div className="flex-1 w-px bg-raised" />
+                <div className="w-1.5 h-1.5 border-r border-b border-white/10 rotate-45 -mt-1 mb-0.5" />
               </motion.div>
             )}
           </div>
@@ -497,7 +497,7 @@ function Scene3({ onComplete, reduced }: SceneProps) {
 // SCENE 4 — EVENT CORRELATION
 // ──────────────────────────────────────────────────────────────
 
-const KIND_COLORS: Record<string, string> = { fail: "#E5604F", success: "#4FC3A1", alert: "#F0B43C" };
+const KIND_COLORS: Record<string, string> = { fail: "#E5604F", success: "#98dcc2", alert: "#82a6e6" };
 
 function Scene4({ onComplete, reduced }: SceneProps) {
   const [visible, setVisible] = useState(reduced ? TIMELINE_EVENTS.length : 0);
@@ -525,7 +525,7 @@ function Scene4({ onComplete, reduced }: SceneProps) {
 
   return (
     <div className="p-5">
-      <SectionLabel text="EVENT CORRELATION" color="#F0B43C" />
+      <SectionLabel text="EVENT CORRELATION" color="#82a6e6" />
 
       <div className="relative py-6 px-2">
         {/* Timeline spine */}
@@ -535,7 +535,7 @@ function Scene4({ onComplete, reduced }: SceneProps) {
             animate={{ scaleX: 1 }}
             style={{ originX: 0 }}
             transition={{ duration: 1.4, ease: "easeOut" }}
-            className="absolute top-[38px] left-8 right-8 h-px bg-gradient-to-r from-red-500/40 via-amber-500/40 to-emerald-500/40"
+            className="absolute top-[38px] left-8 right-8 h-px bg-gradient-to-r from-red-500/40 via-blue/40 to-mint/40"
           />
         )}
 
@@ -550,16 +550,16 @@ function Scene4({ onComplete, reduced }: SceneProps) {
                 className="flex flex-col items-center flex-1"
               >
                 {/* Timestamp */}
-                <p className="font-mono text-[9px] mb-2" style={{ color: KIND_COLORS[ev.kind] }}>
+                <p className="font-mono text-[11px] mb-2" style={{ color: KIND_COLORS[ev.kind] }}>
                   {ev.time}
                 </p>
                 {/* Node */}
                 <div
-                  className="w-3 h-3 rounded-full border-2 bg-[#0E141C] relative z-10"
+                  className="w-3 h-3 rounded-full border-2 bg-[#101318] relative z-10"
                   style={{ borderColor: KIND_COLORS[ev.kind] }}
                 />
                 {/* Label */}
-                <p className="font-mono text-[9px] text-center text-slate-500 mt-2 leading-tight max-w-[64px]">
+                <p className="font-mono text-[11px] text-center text-meta mt-2 leading-tight max-w-[64px]">
                   {ev.event}
                 </p>
               </motion.div>
@@ -610,16 +610,16 @@ function Scene5({ onComplete, reduced }: SceneProps) {
 
   return (
     <div className="p-5">
-      <SectionLabel text="MITRE ATT&CK MAPPING" color="#F0B43C" />
+      <SectionLabel text="MITRE ATT&CK MAPPING" color="#82a6e6" />
 
       <div className="grid sm:grid-cols-2 gap-4 mb-4">
         <AnimatePresence>
           {step >= 1 && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-              className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-4">
-              <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-2">Tactic</p>
-              <p className="font-mono text-amber-400 font-bold text-base">Credential Access</p>
-              <p className="font-mono text-slate-600 text-[10px] mt-1">TA0006</p>
+              className="rounded-lg border border-blue/20 bg-blue/5 p-4">
+              <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-2">Tactic</p>
+              <p className="font-mono text-blue-text font-bold text-base">Credential Access</p>
+              <p className="font-mono text-meta text-[11px] mt-1">TA0006</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -627,9 +627,9 @@ function Scene5({ onComplete, reduced }: SceneProps) {
           {step >= 2 && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
               className="rounded-lg border border-red-500/20 bg-red-500/5 p-4">
-              <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-2">Technique</p>
+              <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-2">Technique</p>
               <p className="font-mono text-red-400 font-bold text-sm leading-tight">Suspicious Authentication Activity</p>
-              <p className="font-mono text-slate-600 text-[10px] mt-1">Brute Force Pattern</p>
+              <p className="font-mono text-meta text-[11px] mt-1">Brute Force Pattern</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -639,7 +639,7 @@ function Scene5({ onComplete, reduced }: SceneProps) {
         {step >= 3 && (
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
             className="rounded-lg border border-white/8 bg-black/40 p-4">
-            <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-3">Observed Behavior</p>
+            <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-3">Observed Behavior</p>
             <div className="space-y-1.5">
               {[
                 "7 authentication failures from single IP within 12 seconds",
@@ -652,9 +652,9 @@ function Scene5({ onComplete, reduced }: SceneProps) {
                   initial={{ opacity: 0, x: -6 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-start gap-2 font-mono text-xs text-slate-400"
+                  className="flex items-start gap-2 font-mono text-xs text-muted"
                 >
-                  <span className="text-[#7AA7FF]/60 flex-shrink-0 mt-0.5">›</span>{b}
+                  <span className="text-[#82a6e6]/60 flex-shrink-0 mt-0.5">›</span>{b}
                 </motion.p>
               ))}
             </div>
@@ -690,9 +690,9 @@ function Scene6({ onComplete, reduced }: SceneProps) {
 
   const metrics = [
     { label: "Severity",   value: "HIGH",          color: "text-red-400",     visible: step >= 1 },
-    { label: "Status",     value: "INVESTIGATING",  color: "text-amber-400",   visible: step >= 2 },
-    { label: "Confidence", value: "HIGH",           color: "text-emerald-400", visible: step >= 3 },
-    { label: "Entity",     value: "User + IP",      color: "text-[#8FB4E8]",   visible: step >= 4 },
+    { label: "Status",     value: "INVESTIGATING",  color: "text-blue-text",   visible: step >= 2 },
+    { label: "Confidence", value: "HIGH",           color: "text-mint", visible: step >= 3 },
+    { label: "Entity",     value: "User + IP",      color: "text-[#aec5f0]",   visible: step >= 4 },
   ];
 
   return (
@@ -706,7 +706,7 @@ function Scene6({ onComplete, reduced }: SceneProps) {
               <AnimatePresence>
                 {m.visible && (
                   <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
-                    <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-1">{m.label}</p>
+                    <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-1">{m.label}</p>
                     <p className={`font-mono text-sm font-bold ${m.color}`}>{m.value}</p>
                   </motion.div>
                 )}
@@ -719,8 +719,8 @@ function Scene6({ onComplete, reduced }: SceneProps) {
           {step >= 4 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               className="border-t border-white/5 pt-4">
-              <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-2">Evidence Summary</p>
-              <p className="font-mono text-slate-400 text-xs leading-relaxed">
+              <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-2">Evidence Summary</p>
+              <p className="font-mono text-muted text-xs leading-relaxed">
                 Repeated authentication failures (7 attempts) from IP 185.220.101.47
                 followed by successful authentication — consistent with credential access
                 pattern. Post-authentication suspicious process creation observed.
@@ -761,8 +761,8 @@ function Scene7({ onComplete, reduced }: SceneProps) {
 
   return (
     <div className="p-5">
-      <SectionLabel text="HUNT → DETECTION" color="#8FB4E8" />
-      <p className="font-mono text-[10px] text-slate-600 mb-5">
+      <SectionLabel text="HUNT → DETECTION" color="#aec5f0" />
+      <p className="font-mono text-[11px] text-meta mb-5">
         Converting a successful threat hunt into a reusable analytics rule
       </p>
 
@@ -788,8 +788,8 @@ function Scene7({ onComplete, reduced }: SceneProps) {
                 animate={{ height: 18 }}
                 className="flex flex-col items-center overflow-hidden"
               >
-                <div className="flex-1 w-px bg-slate-800" />
-                <div className="w-1.5 h-1.5 border-r border-b border-slate-700 rotate-45 -mt-1" />
+                <div className="flex-1 w-px bg-raised" />
+                <div className="w-1.5 h-1.5 border-r border-b border-white/10 rotate-45 -mt-1" />
               </motion.div>
             )}
           </div>
@@ -800,7 +800,7 @@ function Scene7({ onComplete, reduced }: SceneProps) {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="font-mono text-[10px] text-emerald-400 text-center mt-5"
+          className="font-mono text-[11px] text-mint text-center mt-5"
         >
           ✓ Analytics rule created — future incidents trigger automatically
         </motion.p>
@@ -833,20 +833,20 @@ function Scene8({ onComplete, reduced }: SceneProps) {
 
   return (
     <div className="p-5">
-      <SectionLabel text="MICROSOFT SENTINEL — INCIDENT VIEW" color="#7AA7FF" />
+      <SectionLabel text="MICROSOFT SENTINEL — INCIDENT VIEW" color="#82a6e6" />
 
-      <div className="rounded-xl border border-[#7AA7FF]/20 bg-[#7AA7FF]/4 p-5">
+      <div className="rounded-xl border border-[#82a6e6]/20 bg-[#82a6e6]/4 p-5">
         {/* Header */}
         <div className="flex items-start justify-between mb-4 pb-4 border-b border-white/5">
           <div>
-            <p className="font-mono text-[10px] text-slate-600 tracking-widest mb-1">INCIDENT</p>
+            <p className="font-mono text-[11px] text-meta tracking-widest mb-1">INCIDENT</p>
             <p className="font-mono text-2xl font-bold text-white">#10482</p>
           </div>
           <div className="flex flex-col items-end gap-1.5">
-            <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
+            <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
               HIGH
             </span>
-            <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">
+            <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-blue/20 text-blue-text border border-blue/30">
               INVESTIGATING
             </span>
           </div>
@@ -856,10 +856,10 @@ function Scene8({ onComplete, reduced }: SceneProps) {
         <AnimatePresence>
           {step >= 1 && (
             <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="mb-4">
-              <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-2">Entities</p>
+              <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-2">Entities</p>
               <div className="flex flex-wrap gap-2">
                 {["1 User Account", "1 IP Address", "1 Device"].map((e) => (
-                  <span key={e} className="font-mono text-[10px] px-2 py-1 rounded bg-[#7AA7FF]/10 border border-[#7AA7FF]/20 text-blue-300">
+                  <span key={e} className="font-mono text-[11px] px-2 py-1 rounded bg-[#82a6e6]/10 border border-[#82a6e6]/20 text-blue-text">
                     {e}
                   </span>
                 ))}
@@ -872,15 +872,15 @@ function Scene8({ onComplete, reduced }: SceneProps) {
         <AnimatePresence>
           {step >= 2 && (
             <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="mb-4">
-              <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-2">Evidence</p>
+              <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-2">Evidence</p>
               <div className="space-y-1.5">
                 {[
                   "7 failed sign-ins followed by successful authentication",
                   "Process creation post-authentication on endpoint",
                   "IP address matches threat intelligence indicator",
                 ].map((e, i) => (
-                  <p key={i} className="flex items-start gap-2 font-mono text-xs text-slate-400">
-                    <span className="text-blue-400/60 flex-shrink-0 mt-0.5">›</span>{e}
+                  <p key={i} className="flex items-start gap-2 font-mono text-xs text-muted">
+                    <span className="text-blue/60 flex-shrink-0 mt-0.5">›</span>{e}
                   </p>
                 ))}
               </div>
@@ -892,10 +892,10 @@ function Scene8({ onComplete, reduced }: SceneProps) {
         <AnimatePresence>
           {step >= 3 && (
             <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-              <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-2">Analyst Actions</p>
+              <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-2">Analyst Actions</p>
               <div className="flex flex-wrap gap-2">
                 {["Assign Analyst", "Add Comment", "Run Playbook", "Close Incident"].map((a) => (
-                  <button key={a} disabled aria-disabled className="font-mono text-[10px] px-3 py-1 rounded border border-slate-800 text-slate-500 cursor-default select-none">
+                  <button key={a} disabled aria-disabled className="font-mono text-[11px] px-3 py-1 rounded border border-line text-meta cursor-default select-none">
                     {a}
                   </button>
                 ))}
@@ -940,7 +940,7 @@ function Scene9({ onComplete, reduced }: SceneProps) {
     <div className="p-5">
       <SectionLabel
         text={complete ? "THREAT HUNT COMPLETE" : "BUILDING INVESTIGATION SUMMARY..."}
-        color={complete ? "#4FC3A1" : "#8FB4E8"}
+        color={complete ? "#98dcc2" : "#aec5f0"}
       />
 
       <div className="space-y-2">
@@ -953,11 +953,11 @@ function Scene9({ onComplete, reduced }: SceneProps) {
               transition={{ duration: 0.28 }}
               className="flex items-center gap-3 px-4 py-2 rounded-lg bg-black/40 border border-white/5"
             >
-              <span className="w-5 h-5 rounded-full bg-[#7AA7FF]/15 border border-[#7AA7FF]/35 flex items-center justify-center flex-shrink-0">
-                <span className="font-mono text-[9px] text-[#7AA7FF]">{i + 1}</span>
+              <span className="w-5 h-5 rounded-full bg-[#82a6e6]/15 border border-[#82a6e6]/35 flex items-center justify-center flex-shrink-0">
+                <span className="font-mono text-[11px] text-[#82a6e6]">{i + 1}</span>
               </span>
-              <span className="font-mono text-xs text-slate-300 flex-1">{label}</span>
-              <span className="font-mono text-[10px] text-emerald-400">✓</span>
+              <span className="font-mono text-xs text-[#c6cad2] flex-1">{label}</span>
+              <span className="font-mono text-[11px] text-mint">✓</span>
             </motion.div>
           ) : (
             <div key={label} className="h-[36px] rounded-lg bg-black/20 border border-white/5 opacity-30" />
@@ -970,10 +970,10 @@ function Scene9({ onComplete, reduced }: SceneProps) {
           <motion.div
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-4 flex items-center gap-3 px-4 py-3 rounded-lg border border-[#4FC3A1]/20 bg-[#4FC3A1]/5"
+            className="mt-4 flex items-center gap-3 px-4 py-3 rounded-lg border border-[#98dcc2]/20 bg-[#98dcc2]/5"
           >
-            <PulseDot color="#4FC3A1" />
-            <span className="font-mono text-sm text-[#4FC3A1] font-bold tracking-widest">THREAT HUNT COMPLETE</span>
+            <PulseDot color="#98dcc2" />
+            <span className="font-mono text-sm text-[#98dcc2] font-bold tracking-widest">THREAT HUNT COMPLETE</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -1009,7 +1009,7 @@ function Scene10({ onComplete, reduced }: SceneProps) {
 
   return (
     <div className="p-5">
-      <SectionLabel text="SENTINEL ARCHITECTURE" color="#7AA7FF" />
+      <SectionLabel text="SENTINEL ARCHITECTURE" color="#82a6e6" />
 
       <div className="flex flex-col items-center gap-0">
         {ARCH_STEPS.map((node, i) => (
@@ -1033,8 +1033,8 @@ function Scene10({ onComplete, reduced }: SceneProps) {
                 animate={{ height: 16 }}
                 className="flex flex-col items-center overflow-hidden"
               >
-                <div className="flex-1 w-px bg-slate-800" />
-                <div className="w-1 h-1 border-r border-b border-slate-700 rotate-45 -mt-0.5" />
+                <div className="flex-1 w-px bg-raised" />
+                <div className="w-1 h-1 border-r border-b border-white/10 rotate-45 -mt-0.5" />
               </motion.div>
             )}
           </div>
@@ -1068,13 +1068,13 @@ function Scene11({ onComplete, reduced }: SceneProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55 }}
       >
-        <p className="font-mono text-[10px] text-[#8FB4E8] tracking-[0.35em] uppercase mb-3">
+        <p className="font-mono text-[11px] text-[#aec5f0] tracking-[0.35em] uppercase mb-3">
           Azure Sentinel
         </p>
         <h2 className="font-bold text-xl sm:text-2xl text-white tracking-tight mb-1">
           Threat Hunting Playbook
         </h2>
-        <p className="font-mono text-slate-500 text-sm italic mb-6">
+        <p className="font-mono text-meta text-sm italic mb-6">
           &ldquo;Hunt. Investigate. Detect. Respond.&rdquo;
         </p>
 
@@ -1085,7 +1085,7 @@ function Scene11({ onComplete, reduced }: SceneProps) {
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + i * 0.07 }}
-              className="px-3 py-1 rounded-full border border-[#8FB4E8]/20 bg-[#8FB4E8]/5 font-mono text-[10px] text-[#8FB4E8]/80"
+              className="px-3 py-1 rounded-full border border-[#aec5f0]/20 bg-[#aec5f0]/5 font-mono text-[11px] text-[#aec5f0]/80"
             >
               {tag}
             </motion.span>
@@ -1096,7 +1096,7 @@ function Scene11({ onComplete, reduced }: SceneProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="font-mono text-[9px] text-slate-700 tracking-widest uppercase"
+          className="font-mono text-[11px] text-meta tracking-widest uppercase"
         >
           Simulated Demonstration · Replaying in 4s...
         </motion.p>
@@ -1135,7 +1135,7 @@ export default function SentinelThreatHuntSim() {
   const props: SceneProps = { onComplete: advance, reduced: shouldReduce };
 
   return (
-    <div className="rounded-xl border border-white/8 bg-[#0E141C] overflow-hidden shadow-2xl shadow-black/50">
+    <div className="rounded-xl border border-white/8 bg-[#101318] overflow-hidden shadow-2xl shadow-black/50">
       <SimHeader scene={scene} progress={progress} onJump={setScene} />
 
       <AnimatePresence mode="wait">

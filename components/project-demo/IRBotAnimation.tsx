@@ -30,8 +30,8 @@ const STEPS: WorkflowStep[] = [
     label: "Slack SOC Notification",
     sublabel: "#soc-alerts — @SOC-Team notified",
     icon: "#",
-    stroke: "#8FB4E8",
-    bg: "rgba(143,180,232,0.07)",
+    stroke: "#aec5f0",
+    bg: "rgba(174,197,240,0.07)",
     delay: 0.7,
   },
   {
@@ -39,8 +39,8 @@ const STEPS: WorkflowStep[] = [
     label: "Analyst Approval",
     sublabel: "Human-in-the-loop review (hover me)",
     icon: "?",
-    stroke: "#7AA7FF",
-    bg: "rgba(122,167,255,0.09)",
+    stroke: "#82a6e6",
+    bg: "rgba(130,166,230,0.09)",
     delay: 1.2,
     interactive: true,
   },
@@ -49,8 +49,8 @@ const STEPS: WorkflowStep[] = [
     label: "Confirmation",
     sublabel: "Confirmed by J.Smith — T+1:47",
     icon: "✓",
-    stroke: "#4FC3A1",
-    bg: "rgba(34,197,94,0.08)",
+    stroke: "#98dcc2",
+    bg: "rgba(152,220,194,0.08)",
     delay: 1.7,
   },
   {
@@ -58,8 +58,8 @@ const STEPS: WorkflowStep[] = [
     label: "Host Quarantine",
     sublabel: "192.168.1.127 — network access revoked",
     icon: "■",
-    stroke: "#7AA7FF",
-    bg: "rgba(122,167,255,0.09)",
+    stroke: "#82a6e6",
+    bg: "rgba(130,166,230,0.09)",
     delay: 2.2,
   },
   {
@@ -67,8 +67,8 @@ const STEPS: WorkflowStep[] = [
     label: "Audit Log Generated",
     sublabel: "IR-2847-2026-08-29.json — 4 min 12 sec",
     icon: "≡",
-    stroke: "#8FB4E8",
-    bg: "rgba(143,180,232,0.07)",
+    stroke: "#aec5f0",
+    bg: "rgba(174,197,240,0.07)",
     delay: 2.7,
   },
 ];
@@ -103,7 +103,7 @@ function WorkflowNode({ step, isLast, columnEnd }: { step: WorkflowStep; isLast:
             <p className="font-mono text-xs font-semibold" style={{ color: step.stroke }}>
               {step.label}
             </p>
-            <p className="font-mono text-[10px] text-muted mt-0.5 leading-snug">
+            <p className="font-mono text-[11px] text-muted mt-0.5 leading-snug">
               {step.sublabel}
             </p>
           </div>
@@ -148,8 +148,8 @@ export default function IRBotAnimation({ onComplete }: { onComplete: () => void 
     >
       <div ref={ref} className="px-6 py-7">
         <div className="flex items-center gap-2 mb-5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#7AA7FF] animate-pulse" />
-          <span className="text-[#7AA7FF] font-mono text-[10px] tracking-widest">APPROVAL WORKFLOW</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#82a6e6] animate-pulse" />
+          <span className="text-[#82a6e6] font-mono text-[11px] tracking-widest">APPROVAL WORKFLOW</span>
         </div>
 
         {/* Workflow node chain: two columns of three from sm up, so the panel reads landscape */}
@@ -163,12 +163,12 @@ export default function IRBotAnimation({ onComplete }: { onComplete: () => void 
 
         {/* Status bar */}
         <div className="flex flex-wrap gap-4 mt-5 pt-3 border-t border-white/5">
-          <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#4FC3A1]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4FC3A1] animate-ping" style={{ animationDuration: "1.5s" }} />
+          <span className="flex items-center gap-1.5 font-mono text-[11px] text-[#98dcc2]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#98dcc2] animate-ping" style={{ animationDuration: "1.5s" }} />
             SOCKET MODE CONNECTED
           </span>
-          <span className="text-muted font-mono text-[10px]">Response time: 4 min 12 sec</span>
-          <span className="text-[#4FC3A1] font-mono text-[10px]">Host quarantined</span>
+          <span className="text-muted font-mono text-[11px]">Response time: 4 min 12 sec</span>
+          <span className="text-[#98dcc2] font-mono text-[11px]">Host quarantined</span>
         </div>
       </div>
     </AnimationShell>

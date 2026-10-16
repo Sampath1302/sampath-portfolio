@@ -30,7 +30,7 @@ export const projects: Project[] = [
     kind: "Web application defence platform",
     description:
       "An adaptive web security platform that combines a WAF, intrusion detection, behavioural anomaly detection and threat intelligence into a single real-time dashboard.",
-    stack: ["Python", "FastAPI", "React", "TensorFlow", "MongoDB", "Docker", "Kubernetes"],
+    stack: ["Python", "FastAPI", "React", "TensorFlow", "SQL database", "Docker", "Kubernetes"],
     highlights: ["SQL injection and XSS detection", "Behavioural anomaly analysis", "Automated IP blocking"],
     evaluation:
       "In project testing: 96.8% detection accuracy, 2.3% false positives, 340 ms latency, 15K events per second.",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     slug: "azure-sentinel",
     title: "Azure Sentinel lab",
     category: "Hunt",
-    status: "in-progress",
+    status: "complete",
     summary: "Sentinel detection lab with automated Logic App response",
     kind: "Cloud security operations",
     description:
@@ -84,7 +84,7 @@ export const capabilities: Capability[] = [
     title: "Detection and investigation",
     description:
       "Triaging alerts, investigating them end to end and mapping what I find to MITRE ATT&CK.",
-    tools: ["Microsoft Sentinel", "Splunk", "MITRE ATT&CK", "NIST CSF", "ISO 27001"],
+    tools: ["Microsoft Sentinel (AI-assisted lab)", "MITRE ATT&CK", "NIST CSF", "ISO 27001"],
   },
   {
     title: "Response and automation",
@@ -139,20 +139,25 @@ export interface Certification {
   short?: string;
   issuer: string;
   status: "held" | "in-progress";
+  year?: number;
   note?: string;
   credentialId?: string;
 }
 
 export const certifications: Certification[] = [
-  { title: "Certified SOC Analyst", short: "CSA", issuer: "EC-Council", status: "held", credentialId: "ECC9531026478" },
-  { title: "Certified Network Defender", short: "CND", issuer: "EC-Council", status: "held", credentialId: "ECC2591834067" },
-  { title: "Certified Ethical Hacker", short: "CEH", issuer: "EC-Council", status: "held" },
-  { title: "Computer Hacking Forensic Investigator", short: "CHFI", issuer: "EC-Council", status: "held" },
-  { title: "Certified Cloud Security Engineer", short: "CCSE", issuer: "EC-Council", status: "held" },
-  { title: "Certified Secure Computer User", short: "CSCU", issuer: "EC-Council", status: "held" },
-  { title: "Graduate Program in Cybersecurity", issuer: "EHACK Academy", status: "held", note: "June 2025", credentialId: "115623" },
+  { title: "Certified SOC Analyst", short: "CSA", issuer: "EC-Council", status: "held", year: 2025, credentialId: "ECC9531026478" },
+  { title: "Certified Network Defender", short: "CND", issuer: "EC-Council", status: "held", year: 2023, credentialId: "ECC2591834067" },
+  {
+    title: "Graduate Program in Cyber Security",
+    issuer: "Ehack Academy",
+    status: "held",
+    year: 2025,
+    note: "Covers CEH, CHFI and CCSE",
+    credentialId: "115623",
+  },
+  { title: "Certified Secure Computer User", short: "CSCU", issuer: "EC-Council", status: "held", year: 2023 },
   { title: "Certified Penetration Tester", short: "CPT", issuer: "RedTeam Hacker Academy", status: "in-progress" },
-  { title: "Cybersecurity Architect Expert", issuer: "Microsoft", status: "in-progress" },
+  { title: "Cybersecurity Architect Expert", short: "SC-100 track", issuer: "Microsoft", status: "in-progress", year: 2026 },
 ];
 
 export interface Recognition {
@@ -183,7 +188,7 @@ export const recognition: Recognition[] = [
 export const heroIntro =
   "I don't just run security tools. I take them apart to understand how they work, then build my own. Curious, persistent, and hands-on when something breaks.";
 
-export const heroSpec = ["Bengaluru, IN", "EC-Council CSA · CND · CEH · CHFI", "Class of 2026"];
+export const heroSpec = ["Bengaluru, IN", "EC-Council CSA · CND", "Class of 2026"];
 
 /** The command deck's status log: each line restates a fact from this file */
 export const statusLog: { tone: "ok" | "progress"; text: string }[] = [
@@ -192,7 +197,7 @@ export const statusLog: { tone: "ok" | "progress"; text: string }[] = [
     text: `loaded ${certifications
       .filter((c) => c.status === "held" && c.short)
       .map((c) => c.short)
-      .join(", ")}`,
+      .join(", ")} + graduate program`,
   },
   { tone: "ok", text: "IR-Bot: containment waits for approval" },
   { tone: "progress", text: "learning KQL, CPT in progress" },

@@ -22,28 +22,28 @@ const NORMAL_TRAFFIC = [
 ] as const;
 
 const TOPOLOGY_NODES = [
-  { label: "INTERNET",         sub: "External network",    color: "#64748B" },
-  { label: "NETWORK GATEWAY",  sub: "Border router",       color: "#8FB4E8" },
-  { label: "QURIK IDPS",       sub: "Detection engine",    color: "#7AA7FF", highlight: true },
-  { label: "PROTECTED HOSTS",  sub: "8 systems monitored", color: "#4FC3A1" },
+  { label: "INTERNET",         sub: "External network",    color: "#858c98" },
+  { label: "NETWORK GATEWAY",  sub: "Border router",       color: "#aec5f0" },
+  { label: "QURIK IDPS",       sub: "Detection engine",    color: "#82a6e6", highlight: true },
+  { label: "PROTECTED HOSTS",  sub: "8 systems monitored", color: "#98dcc2" },
 ];
 
 const DETECTION_PIPELINE = [
-  { label: "TRAFFIC INGESTION",        sub: "Packet capture",   color: "#8FB4E8" },
-  { label: "FEATURE EXTRACTION",       sub: "Pattern & metadata", color: "#8FB4E8" },
-  { label: "RULE / ANOMALY ANALYSIS",  sub: "KNN + rule engine", color: "#7AA7FF" },
-  { label: "THREAT CLASSIFICATION",    sub: "Severity scoring", color: "#F0B43C" },
+  { label: "TRAFFIC INGESTION",        sub: "Packet capture",   color: "#aec5f0" },
+  { label: "FEATURE EXTRACTION",       sub: "Pattern & metadata", color: "#aec5f0" },
+  { label: "RULE / ANOMALY ANALYSIS",  sub: "KNN + rule engine", color: "#82a6e6" },
+  { label: "THREAT CLASSIFICATION",    sub: "Severity scoring", color: "#82a6e6" },
   { label: "SECURITY DECISION",        sub: "Block or allow",   color: "#E5604F" },
 ];
 
 const ARCH_NODES = [
-  { label: "INTERNET",            color: "#64748B" },
-  { label: "NETWORK TRAFFIC",     color: "#8FB4E8" },
-  { label: "QURIK IDPS ENGINE",   color: "#7AA7FF" },
-  { label: "THREAT ANALYSIS",     color: "#F0B43C" },
+  { label: "INTERNET",            color: "#858c98" },
+  { label: "NETWORK TRAFFIC",     color: "#aec5f0" },
+  { label: "QURIK IDPS ENGINE",   color: "#82a6e6" },
+  { label: "THREAT ANALYSIS",     color: "#82a6e6" },
   { label: "SECURITY DECISION",   color: "#E5604F" },
-  { label: "PREVENTION / BLOCK",  color: "#4FC3A1" },
-  { label: "PROTECTED HOSTS",     color: "#4FC3A1" },
+  { label: "PREVENTION / BLOCK",  color: "#98dcc2" },
+  { label: "PROTECTED HOSTS",     color: "#98dcc2" },
 ];
 
 const INCIDENT_TIMELINE = [
@@ -71,7 +71,7 @@ const TOTAL_SCENES = SCENE_DURATIONS.length;
 // SHARED UI
 // ──────────────────────────────────────────────────────────────
 
-function PulseDot({ color = "#4FC3A1" }: { color?: string }) {
+function PulseDot({ color = "#98dcc2" }: { color?: string }) {
   return (
     <span className="relative flex h-2 w-2 flex-shrink-0">
       <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ backgroundColor: color }} />
@@ -80,11 +80,11 @@ function PulseDot({ color = "#4FC3A1" }: { color?: string }) {
   );
 }
 
-function SLabel({ text, color = "#4FC3A1" }: { text: string; color?: string }) {
+function SLabel({ text, color = "#98dcc2" }: { text: string; color?: string }) {
   return (
     <div className="flex items-center gap-2 mb-4">
       <PulseDot color={color} />
-      <span className="font-mono text-[11px] tracking-widest text-slate-400">{text}</span>
+      <span className="font-mono text-[11px] tracking-widest text-muted">{text}</span>
     </div>
   );
 }
@@ -92,8 +92,8 @@ function SLabel({ text, color = "#4FC3A1" }: { text: string; color?: string }) {
 function Arrow() {
   return (
     <div className="flex flex-col items-center overflow-hidden" style={{ height: 16 }}>
-      <div className="flex-1 w-px bg-slate-800" />
-      <div className="w-1 h-1 border-r border-b border-slate-700 rotate-45 -mt-0.5" />
+      <div className="flex-1 w-px bg-raised" />
+      <div className="w-1 h-1 border-r border-b border-white/10 rotate-45 -mt-0.5" />
     </div>
   );
 }
@@ -112,12 +112,12 @@ function SimHeader({
       {/* Status row */}
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <PulseDot color="#4FC3A1" />
-          <span className="font-mono text-[10px] tracking-[0.2em] text-[#4FC3A1] uppercase">
+          <PulseDot color="#98dcc2" />
+          <span className="font-mono text-[11px] tracking-[0.2em] text-[#98dcc2] uppercase">
             Protection Active
           </span>
         </div>
-        <span className="font-mono text-[9px] text-slate-600 tracking-widest uppercase border border-slate-800 px-2 py-0.5 rounded">
+        <span className="font-mono text-[11px] text-meta tracking-widest uppercase border border-line px-2 py-0.5 rounded">
           Simulated Security Environment
         </span>
       </div>
@@ -127,19 +127,19 @@ function SimHeader({
           <p className="font-mono text-white text-xs font-bold tracking-[0.18em] uppercase">
             Live IDPS Simulation
           </p>
-          <p className="font-mono text-slate-600 text-[10px] mt-0.5">
+          <p className="font-mono text-meta text-[11px] mt-0.5">
             Intrusion Detection &amp; Prevention System · Simulated demonstration
           </p>
         </div>
         <div className="text-right ml-4 flex-shrink-0">
-          <p className="font-mono text-[#4FC3A1] text-[10px] tracking-widest">{SCENE_LABELS[scene - 1]}</p>
-          <p className="font-mono text-slate-700 text-[9px] mt-0.5">SCENE {scene} / {TOTAL_SCENES}</p>
+          <p className="font-mono text-[#98dcc2] text-[11px] tracking-widest">{SCENE_LABELS[scene - 1]}</p>
+          <p className="font-mono text-meta text-[11px] mt-0.5">SCENE {scene} / {TOTAL_SCENES}</p>
         </div>
       </div>
       {/* Progress bar */}
-      <div className="h-px bg-slate-900 rounded overflow-hidden">
+      <div className="h-px bg-surface rounded overflow-hidden">
         <motion.div
-          className="h-full bg-gradient-to-r from-[#4FC3A1] to-[#8FB4E8] rounded-full"
+          className="h-full bg-gradient-to-r from-[#98dcc2] to-[#aec5f0] rounded-full"
           animate={{ width: `${progress}%` }}
           transition={{ duration: 0.5, ease: "linear" }}
         />
@@ -151,18 +151,18 @@ function SimHeader({
             key={i}
             onClick={() => onJump(i + 1)}
             aria-label={`Scene ${i + 1}: ${SCENE_LABELS[i]}`}
-            className="rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#4FC3A1]"
+            className="rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#98dcc2]"
             style={{
               width:  i + 1 === scene ? "16px" : "5px",
               height: "5px",
               backgroundColor:
-                i + 1 === scene  ? "#4FC3A1"
-                : i + 1 < scene  ? "rgba(79,195,161,0.35)"
-                : "#27272a",
+                i + 1 === scene  ? "#98dcc2"
+                : i + 1 < scene  ? "rgba(152,220,194,0.35)"
+                : "#262b34",
             }}
           />
         ))}
-        <span className="font-mono text-[9px] text-slate-700 ml-auto">{scene}/{TOTAL_SCENES}</span>
+        <span className="font-mono text-[11px] text-meta ml-auto">{scene}/{TOTAL_SCENES}</span>
       </div>
     </div>
   );
@@ -212,11 +212,11 @@ function Scene1({ onComplete, reduced }: SceneProps) {
 
   return (
     <div className="p-5">
-      <SLabel text="NETWORK ACTIVITY MONITOR" color="#4FC3A1" />
+      <SLabel text="NETWORK ACTIVITY MONITOR" color="#98dcc2" />
       <div className="grid sm:grid-cols-2 gap-4">
         {/* Topology */}
         <div className="rounded-lg border border-white/8 bg-black/50 p-4">
-          <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-4">Network Topology</p>
+          <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-4">Network Topology</p>
           <div className="flex flex-col items-center">
             {TOPOLOGY_NODES.map((node, i) => (
               <div key={node.label} className="flex flex-col items-center w-full">
@@ -233,12 +233,12 @@ function Scene1({ onComplete, reduced }: SceneProps) {
                     }}
                   >
                     <p className="font-mono text-[11px] font-bold" style={{ color: node.color }}>{node.label}</p>
-                    <p className="font-mono text-[9px] text-slate-600 mt-0.5">{node.sub}</p>
+                    <p className="font-mono text-[11px] text-meta mt-0.5">{node.sub}</p>
                   </motion.div>
                 )}
                 {i < TOPOLOGY_NODES.length - 1 && i < topoStep && (
                   <div className="relative flex flex-col items-center" style={{ height: 22 }}>
-                    <div className="w-px flex-1 bg-slate-800" />
+                    <div className="w-px flex-1 bg-raised" />
                     {/* Flowing packet dot */}
                     <motion.div
                       animate={{ y: [-2, 20] }}
@@ -255,19 +255,19 @@ function Scene1({ onComplete, reduced }: SceneProps) {
 
         {/* Counters */}
         <div className="flex flex-col gap-3">
-          <div className="rounded-lg border border-[#8FB4E8]/15 bg-[#8FB4E8]/4 p-4">
-            <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-1">Packets Analyzed</p>
-            <p className="font-mono text-3xl font-bold text-[#8FB4E8]">{packets.toLocaleString()}</p>
-            <p className="font-mono text-[10px] text-slate-600 mt-1">events / session</p>
+          <div className="rounded-lg border border-[#aec5f0]/15 bg-[#aec5f0]/4 p-4">
+            <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-1">Packets Analyzed</p>
+            <p className="font-mono text-3xl font-bold text-[#aec5f0]">{packets.toLocaleString()}</p>
+            <p className="font-mono text-[11px] text-meta mt-1">events / session</p>
           </div>
-          <div className="rounded-lg border border-[#4FC3A1]/15 bg-[#4FC3A1]/4 p-4">
-            <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-1">Connections</p>
-            <p className="font-mono text-3xl font-bold text-[#4FC3A1]">{conns.toLocaleString()}</p>
-            <p className="font-mono text-[10px] text-slate-600 mt-1">monitored flows</p>
+          <div className="rounded-lg border border-[#98dcc2]/15 bg-[#98dcc2]/4 p-4">
+            <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-1">Connections</p>
+            <p className="font-mono text-3xl font-bold text-[#98dcc2]">{conns.toLocaleString()}</p>
+            <p className="font-mono text-[11px] text-meta mt-1">monitored flows</p>
           </div>
-          <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#4FC3A1]/20 bg-[#4FC3A1]/5">
-            <PulseDot color="#4FC3A1" />
-            <span className="font-mono text-xs text-[#4FC3A1] font-bold">SYSTEM PROTECTED</span>
+          <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#98dcc2]/20 bg-[#98dcc2]/5">
+            <PulseDot color="#98dcc2" />
+            <span className="font-mono text-xs text-[#98dcc2] font-bold">SYSTEM PROTECTED</span>
           </div>
         </div>
       </div>
@@ -303,9 +303,9 @@ function Scene2({ onComplete, reduced }: SceneProps) {
 
   return (
     <div className="p-5">
-      <SLabel text="TRAFFIC ANALYSIS" color="#4FC3A1" />
+      <SLabel text="TRAFFIC ANALYSIS" color="#98dcc2" />
       <div className="rounded-lg border border-white/8 bg-black/50 overflow-hidden mb-4">
-        <div className="grid grid-cols-[3.5rem_3rem_1fr_3.5rem] gap-x-2 px-3 py-1.5 border-b border-white/5 font-mono text-[9px] text-slate-700 uppercase tracking-widest">
+        <div className="grid grid-cols-[3.5rem_3rem_1fr_3.5rem] gap-x-2 px-3 py-1.5 border-b border-white/5 font-mono text-[11px] text-meta uppercase tracking-widest">
           <span>Time</span><span>Proto</span><span>Source</span><span className="text-right">Status</span>
         </div>
         <div className="px-2 py-1 min-h-[160px] space-y-0.5">
@@ -317,30 +317,30 @@ function Scene2({ onComplete, reduced }: SceneProps) {
               transition={{ duration: 0.2 }}
               className="grid grid-cols-[3.5rem_3rem_1fr_3.5rem] gap-x-2 px-1.5 py-1 rounded font-mono text-[11px]"
             >
-              <span className="text-slate-600">{ev.time}</span>
-              <span className="text-[#8FB4E8]/70">{ev.proto}</span>
-              <span className="text-slate-400 truncate">{ev.src}</span>
-              <span className="text-emerald-400 text-right">ALLOW</span>
+              <span className="text-meta">{ev.time}</span>
+              <span className="text-[#aec5f0]/70">{ev.proto}</span>
+              <span className="text-muted truncate">{ev.src}</span>
+              <span className="text-mint text-right">ALLOW</span>
             </motion.div>
           ))}
         </div>
       </div>
-      <div className="rounded-lg border border-[#4FC3A1]/15 bg-[#4FC3A1]/4 p-4">
+      <div className="rounded-lg border border-[#98dcc2]/15 bg-[#98dcc2]/4 p-4">
         <div className="flex items-center justify-between mb-2">
-          <p className="font-mono text-[10px] text-slate-500 uppercase tracking-widest">Normal Traffic</p>
-          <span className="font-mono text-[10px] text-[#4FC3A1]">100%</span>
+          <p className="font-mono text-[11px] text-meta uppercase tracking-widest">Normal Traffic</p>
+          <span className="font-mono text-[11px] text-[#98dcc2]">100%</span>
         </div>
-        <div className="h-2 rounded-full bg-slate-900 overflow-hidden mb-3">
+        <div className="h-2 rounded-full bg-surface overflow-hidden mb-3">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
             transition={{ duration: 1.5 }}
-            className="h-full rounded-full bg-gradient-to-r from-[#4FC3A1] to-emerald-300"
+            className="h-full rounded-full bg-gradient-to-r from-[#98dcc2] to-mint-hi"
           />
         </div>
         <div className="flex items-center justify-between">
-          <span className="font-mono text-[10px] text-slate-500">Threat Level</span>
-          <span className="font-mono text-xs text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">LOW</span>
+          <span className="font-mono text-[11px] text-meta">Threat Level</span>
+          <span className="font-mono text-xs text-mint font-bold px-2 py-0.5 rounded bg-mint/10 border border-mint/20">LOW</span>
         </div>
       </div>
     </div>
@@ -368,23 +368,23 @@ function Scene3({ onComplete, reduced }: SceneProps) {
   return (
     <div className="p-5">
       <div className="flex items-center gap-2 mb-4">
-        <PulseDot color={alert ? "#E5604F" : "#4FC3A1"} />
-        <span className={`font-mono text-[11px] tracking-widest transition-colors duration-500 ${alert ? "text-red-400" : "text-slate-400"}`}>
+        <PulseDot color={alert ? "#E5604F" : "#98dcc2"} />
+        <span className={`font-mono text-[11px] tracking-widest transition-colors duration-500 ${alert ? "text-red-400" : "text-muted"}`}>
           {alert ? "⚠ SUSPICIOUS ACTIVITY DETECTED" : "MONITORING — ANALYSING TRAFFIC"}
         </span>
       </div>
 
       <div className="rounded-lg border border-white/8 bg-black/50 overflow-hidden mb-4">
-        <div className="grid grid-cols-[3.5rem_3rem_1fr_3.5rem] gap-x-2 px-3 py-1.5 border-b border-white/5 font-mono text-[9px] text-slate-700 uppercase tracking-widest">
+        <div className="grid grid-cols-[3.5rem_3rem_1fr_3.5rem] gap-x-2 px-3 py-1.5 border-b border-white/5 font-mono text-[11px] text-meta uppercase tracking-widest">
           <span>Time</span><span>Proto</span><span>Source</span><span className="text-right">Status</span>
         </div>
         <div className="px-2 py-1 space-y-0.5">
           {NORMAL_TRAFFIC.slice(0, 3).map((ev, i) => (
             <div key={i} className="grid grid-cols-[3.5rem_3rem_1fr_3.5rem] gap-x-2 px-1.5 py-1 rounded font-mono text-[11px]">
-              <span className="text-slate-600">{ev.time}</span>
-              <span className="text-[#8FB4E8]/70">{ev.proto}</span>
-              <span className="text-slate-400 truncate">{ev.src}</span>
-              <span className="text-emerald-400 text-right">ALLOW</span>
+              <span className="text-meta">{ev.time}</span>
+              <span className="text-[#aec5f0]/70">{ev.proto}</span>
+              <span className="text-muted truncate">{ev.src}</span>
+              <span className="text-mint text-right">ALLOW</span>
             </div>
           ))}
           <AnimatePresence>
@@ -395,7 +395,7 @@ function Scene3({ onComplete, reduced }: SceneProps) {
                 transition={{ duration: 0.4 }}
                 className="grid grid-cols-[3.5rem_3rem_1fr_3.5rem] gap-x-2 px-1.5 py-1.5 rounded border border-red-500/25 font-mono text-[11px]"
               >
-                <span className="text-slate-400">08:14:41</span>
+                <span className="text-muted">08:14:41</span>
                 <span className="text-red-400">TCP</span>
                 <span className="text-red-400 font-bold truncate">10.10.24.17</span>
                 <span className="text-red-400 text-right font-bold">ALERT</span>
@@ -412,14 +412,14 @@ function Scene3({ onComplete, reduced }: SceneProps) {
             animate={{ opacity: 1, y: 0 }}
             className="rounded-lg border border-red-500/25 bg-red-500/5 p-4"
           >
-            <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-3">Suspicious Event Detail</p>
+            <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-3">Suspicious Event Detail</p>
             <div className="grid sm:grid-cols-3 gap-3">
-              <div><p className="font-mono text-[9px] text-slate-600 mb-1">Source</p>
+              <div><p className="font-mono text-[11px] text-meta mb-1">Source</p>
                 <p className="font-mono text-sm text-red-400 font-bold">10.10.24.17</p></div>
-              <div><p className="font-mono text-[9px] text-slate-600 mb-1">Destination</p>
-                <p className="font-mono text-sm text-amber-400">Protected Host</p></div>
-              <div><p className="font-mono text-[9px] text-slate-600 mb-1">Behavior</p>
-                <p className="font-mono text-sm text-slate-300">Abnormal pattern</p></div>
+              <div><p className="font-mono text-[11px] text-meta mb-1">Destination</p>
+                <p className="font-mono text-sm text-blue-text">Protected Host</p></div>
+              <div><p className="font-mono text-[11px] text-meta mb-1">Behavior</p>
+                <p className="font-mono text-sm text-[#c6cad2]">Abnormal pattern</p></div>
             </div>
           </motion.div>
         )}
@@ -473,15 +473,15 @@ function Scene4({ onComplete, reduced }: SceneProps) {
     };
   }, [onComplete, reduced]);
 
-  const scoreColor = score < 40 ? "#4FC3A1" : score < 70 ? "#F0B43C" : "#E5604F";
+  const scoreColor = score < 40 ? "#98dcc2" : score < 70 ? "#82a6e6" : "#E5604F";
 
   return (
     <div className="p-5">
-      <SLabel text="QURIK DETECTION ENGINE" color="#7AA7FF" />
+      <SLabel text="QURIK DETECTION ENGINE" color="#82a6e6" />
       <div className="grid sm:grid-cols-2 gap-4">
         {/* Pipeline */}
         <div>
-          <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-3">Analysis Pipeline</p>
+          <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-3">Analysis Pipeline</p>
           <div className="flex flex-col">
             {DETECTION_PIPELINE.map((stage, i) => (
               <div key={stage.label} className="flex flex-col">
@@ -494,11 +494,11 @@ function Scene4({ onComplete, reduced }: SceneProps) {
                     style={{ borderColor: `${stage.color}24`, backgroundColor: `${stage.color}07` }}
                   >
                     <p className="font-mono text-[11px] font-bold" style={{ color: stage.color }}>{stage.label}</p>
-                    <p className="font-mono text-[9px] text-slate-600">{stage.sub}</p>
+                    <p className="font-mono text-[11px] text-meta">{stage.sub}</p>
                   </motion.div>
                 )}
                 {i < DETECTION_PIPELINE.length - 1 && i < pStep && (
-                  <div className="ml-4 w-px h-3 bg-slate-800" />
+                  <div className="ml-4 w-px h-3 bg-raised" />
                 )}
               </div>
             ))}
@@ -507,7 +507,7 @@ function Scene4({ onComplete, reduced }: SceneProps) {
 
         {/* Threat score */}
         <div>
-          <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-3">Threat Score</p>
+          <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-3">Threat Score</p>
           <div
             className="rounded-lg border bg-black/60 p-5 text-center mb-3"
             style={{ borderColor: `${scoreColor}24` }}
@@ -515,9 +515,9 @@ function Scene4({ onComplete, reduced }: SceneProps) {
             <p className="font-mono text-5xl font-bold tabular-nums transition-colors duration-200" style={{ color: scoreColor }}>
               {score}
             </p>
-            <p className="font-mono text-[10px] text-slate-600 mt-1">/ 100</p>
+            <p className="font-mono text-[11px] text-meta mt-1">/ 100</p>
           </div>
-          <div className="h-2 rounded-full bg-slate-900 overflow-hidden mb-4">
+          <div className="h-2 rounded-full bg-surface overflow-hidden mb-4">
             <div
               className="h-full rounded-full transition-all duration-100"
               style={{ width: `${score}%`, backgroundColor: scoreColor }}
@@ -531,7 +531,7 @@ function Scene4({ onComplete, reduced }: SceneProps) {
                 className="rounded-lg border border-red-500/30 bg-red-500/7 p-3 text-center"
               >
                 <p className="font-mono text-sm font-bold text-red-400 tracking-widest">THREAT DETECTED</p>
-                <p className="font-mono text-[10px] text-slate-500 mt-1">Severity: HIGH · Score: 94</p>
+                <p className="font-mono text-[11px] text-meta mt-1">Severity: HIGH · Score: 94</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -575,7 +575,7 @@ function Scene5({ onComplete, reduced }: SceneProps) {
         {step >= 1 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
             className="flex items-center justify-between rounded-lg border border-red-500/25 bg-red-500/5 px-4 py-3 mb-3">
-            <span className="font-mono text-[10px] text-slate-500 uppercase tracking-widest">Threat Level</span>
+            <span className="font-mono text-[11px] text-meta uppercase tracking-widest">Threat Level</span>
             <span className="font-mono text-xs font-bold text-red-400 px-2 py-0.5 rounded bg-red-500/15 border border-red-500/25">HIGH</span>
           </motion.div>
         )}
@@ -584,9 +584,9 @@ function Scene5({ onComplete, reduced }: SceneProps) {
       <AnimatePresence>
         {step >= 2 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
-            className="flex items-center justify-between rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3 mb-4">
-            <span className="font-mono text-[10px] text-slate-500 uppercase tracking-widest">Action</span>
-            <span className="font-mono text-sm font-bold text-amber-400">BLOCK CONNECTION</span>
+            className="flex items-center justify-between rounded-lg border border-blue/20 bg-blue/5 px-4 py-3 mb-4">
+            <span className="font-mono text-[11px] text-meta uppercase tracking-widest">Action</span>
+            <span className="font-mono text-sm font-bold text-blue-text">BLOCK CONNECTION</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -607,11 +607,11 @@ function Scene5({ onComplete, reduced }: SceneProps) {
               className="flex flex-col items-center gap-1.5 py-1"
             >
               <span className="text-red-500 text-xl font-bold leading-none">✕</span>
-              <div className="px-5 py-1.5 rounded border border-[#4FC3A1]/40 bg-[#4FC3A1]/10 text-[#4FC3A1] font-bold text-center">
+              <div className="px-5 py-1.5 rounded border border-[#98dcc2]/40 bg-[#98dcc2]/10 text-[#98dcc2] font-bold text-center">
                 QURIK IDPS
               </div>
-              <div className="w-px h-4 bg-slate-800" />
-              <div className="px-5 py-1.5 rounded border border-slate-700 text-slate-400 text-center">
+              <div className="w-px h-4 bg-raised" />
+              <div className="px-5 py-1.5 rounded border border-white/10 text-muted text-center">
                 PROTECTED HOST
               </div>
             </motion.div>
@@ -622,10 +622,10 @@ function Scene5({ onComplete, reduced }: SceneProps) {
       <AnimatePresence>
         {step >= 4 && (
           <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-3 px-4 py-3 rounded-lg border border-[#4FC3A1]/25 bg-[#4FC3A1]/5">
-            <PulseDot color="#4FC3A1" />
-            <span className="font-mono text-sm text-[#4FC3A1] font-bold tracking-widest">THREAT BLOCKED</span>
-            <span className="font-mono text-[10px] text-slate-600 ml-auto hidden sm:block">Host unreachable</span>
+            className="flex items-center gap-3 px-4 py-3 rounded-lg border border-[#98dcc2]/25 bg-[#98dcc2]/5">
+            <PulseDot color="#98dcc2" />
+            <span className="font-mono text-sm text-[#98dcc2] font-bold tracking-widest">THREAT BLOCKED</span>
+            <span className="font-mono text-[11px] text-meta ml-auto hidden sm:block">Host unreachable</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -668,44 +668,44 @@ function Scene6({ onComplete, reduced }: SceneProps) {
 
   const metrics = [
     { label: "Threats Detected",  value: detected, color: "text-red-400",    border: "border-red-500/20",    bg: "bg-red-500/5"    },
-    { label: "Threats Blocked",   value: blocked,  color: "text-[#4FC3A1]",  border: "border-[#4FC3A1]/20",  bg: "bg-[#4FC3A1]/5"  },
-    { label: "Active Alerts",     value: alerts,   color: "text-amber-400",  border: "border-amber-500/20",  bg: "bg-amber-500/5"  },
-    { label: "Hosts Monitored",   value: hosts,    color: "text-[#8FB4E8]",  border: "border-[#8FB4E8]/20",  bg: "bg-[#8FB4E8]/5"  },
+    { label: "Threats Blocked",   value: blocked,  color: "text-[#98dcc2]",  border: "border-[#98dcc2]/20",  bg: "bg-[#98dcc2]/5"  },
+    { label: "Active Alerts",     value: alerts,   color: "text-blue-text",  border: "border-blue/20",  bg: "bg-blue/5"  },
+    { label: "Hosts Monitored",   value: hosts,    color: "text-[#aec5f0]",  border: "border-[#aec5f0]/20",  bg: "bg-[#aec5f0]/5"  },
   ];
 
   const threatLevels = [
-    { label: "LOW",      count: 4,  color: "#4FC3A1" },
-    { label: "MEDIUM",   count: 6,  color: "#F0B43C" },
-    { label: "HIGH",     count: 5,  color: "#F0B43C" },
+    { label: "LOW",      count: 4,  color: "#98dcc2" },
+    { label: "MEDIUM",   count: 6,  color: "#82a6e6" },
+    { label: "HIGH",     count: 5,  color: "#82a6e6" },
     { label: "CRITICAL", count: 2,  color: "#E5604F" },
   ];
 
   return (
     <div className="p-5">
       <div className="flex items-center justify-between mb-4">
-        <SLabel text="QURIK SECURITY DASHBOARD" color="#4FC3A1" />
+        <SLabel text="QURIK SECURITY DASHBOARD" color="#98dcc2" />
         <div className="flex items-center gap-1.5 -mt-4">
-          <PulseDot color="#4FC3A1" />
-          <span className="font-mono text-[10px] text-[#4FC3A1]">PROTECTED</span>
+          <PulseDot color="#98dcc2" />
+          <span className="font-mono text-[11px] text-[#98dcc2]">PROTECTED</span>
         </div>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
         {metrics.map(m => (
           <div key={m.label} className={`rounded-lg border ${m.border} ${m.bg} p-3 text-center`}>
-            <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-1">{m.label}</p>
+            <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-1">{m.label}</p>
             <p className={`font-mono text-2xl font-bold tabular-nums ${m.color}`}>{m.value}</p>
           </div>
         ))}
       </div>
 
       <div className="rounded-lg border border-white/8 bg-black/40 p-4">
-        <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-3">Threat Distribution</p>
+        <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-3">Threat Distribution</p>
         <div className="space-y-2">
           {threatLevels.map(level => (
             <div key={level.label} className="flex items-center gap-3">
-              <span className="font-mono text-[10px] w-16 flex-shrink-0" style={{ color: level.color }}>{level.label}</span>
-              <div className="flex-1 h-1.5 bg-slate-900 rounded overflow-hidden">
+              <span className="font-mono text-[11px] w-16 flex-shrink-0" style={{ color: level.color }}>{level.label}</span>
+              <div className="flex-1 h-1.5 bg-surface rounded overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${(level.count / 17) * 100}%` }}
@@ -714,7 +714,7 @@ function Scene6({ onComplete, reduced }: SceneProps) {
                   style={{ backgroundColor: level.color }}
                 />
               </div>
-              <span className="font-mono text-[10px] text-slate-500 w-4 flex-shrink-0">{level.count}</span>
+              <span className="font-mono text-[11px] text-meta w-4 flex-shrink-0">{level.count}</span>
             </div>
           ))}
         </div>
@@ -752,11 +752,11 @@ function Scene7({ onComplete, reduced }: SceneProps) {
   const incidentFields = [
     { label: "Threat",     value: "Suspicious Network Activity", span: true,  color: ""                },
     { label: "Source",     value: "10.10.24.17",                 span: false, color: "text-red-400"    },
-    { label: "Target",     value: "Protected Host",              span: false, color: "text-slate-300"   },
+    { label: "Target",     value: "Protected Host",              span: false, color: "text-[#c6cad2]"   },
     { label: "Severity",   value: "HIGH",                        span: false, color: "text-red-400"    },
-    { label: "Confidence", value: "94%",                         span: false, color: "text-amber-400"  },
-    { label: "Action",     value: "BLOCKED",                     span: false, color: "text-[#4FC3A1]"  },
-    { label: "Status",     value: "CONTAINED",                   span: true,  color: "text-[#4FC3A1]"  },
+    { label: "Confidence", value: "94%",                         span: false, color: "text-blue-text"  },
+    { label: "Action",     value: "BLOCKED",                     span: false, color: "text-[#98dcc2]"  },
+    { label: "Status",     value: "CONTAINED",                   span: true,  color: "text-[#98dcc2]"  },
   ];
 
   return (
@@ -768,8 +768,8 @@ function Scene7({ onComplete, reduced }: SceneProps) {
           <div className="grid grid-cols-2 gap-3">
             {incidentFields.map((f, i) => (
               <div key={i} className={f.span ? "col-span-2" : ""}>
-                <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-0.5">{f.label}</p>
-                <p className={`font-mono text-xs font-semibold ${f.color || "text-slate-300"}`}>{f.value}</p>
+                <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-0.5">{f.label}</p>
+                <p className={`font-mono text-xs font-semibold ${f.color || "text-[#c6cad2]"}`}>{f.value}</p>
               </div>
             ))}
           </div>
@@ -777,7 +777,7 @@ function Scene7({ onComplete, reduced }: SceneProps) {
 
         {/* Timeline */}
         <div>
-          <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mb-3">Response Timeline</p>
+          <p className="font-mono text-[11px] text-meta uppercase tracking-widest mb-3">Response Timeline</p>
           <div className="flex flex-col">
             {INCIDENT_TIMELINE.map((label, i) => (
               <div key={label} className="flex flex-col">
@@ -788,18 +788,18 @@ function Scene7({ onComplete, reduced }: SceneProps) {
                     transition={{ duration: 0.24 }}
                     className="flex items-center gap-2"
                   >
-                    <span className="w-4 h-4 rounded-full border-2 border-[#4FC3A1] flex items-center justify-center flex-shrink-0">
-                      <span className="text-[7px] text-[#4FC3A1]">✓</span>
+                    <span className="w-4 h-4 rounded-full border-2 border-[#98dcc2] flex items-center justify-center flex-shrink-0">
+                      <span className="text-[7px] text-[#98dcc2]">✓</span>
                     </span>
-                    <span className="font-mono text-xs text-slate-300">{label}</span>
+                    <span className="font-mono text-xs text-[#c6cad2]">{label}</span>
                   </motion.div>
                 ) : (
                   <div className="flex items-center gap-2 opacity-25">
-                    <span className="w-4 h-4 rounded-full border border-slate-700 flex-shrink-0" />
-                    <span className="font-mono text-xs text-slate-600">{label}</span>
+                    <span className="w-4 h-4 rounded-full border border-white/10 flex-shrink-0" />
+                    <span className="font-mono text-xs text-meta">{label}</span>
                   </div>
                 )}
-                {i < INCIDENT_TIMELINE.length - 1 && <div className="ml-2 w-px h-4 bg-slate-800" />}
+                {i < INCIDENT_TIMELINE.length - 1 && <div className="ml-2 w-px h-4 bg-raised" />}
               </div>
             ))}
           </div>
@@ -837,7 +837,7 @@ function Scene8({ onComplete, reduced }: SceneProps) {
 
   return (
     <div className="p-5">
-      <SLabel text="IDPS ARCHITECTURE" color="#7AA7FF" />
+      <SLabel text="IDPS ARCHITECTURE" color="#82a6e6" />
       <div className="flex gap-4 justify-center">
         {/* Main flow */}
         <div className="flex flex-col items-center w-full max-w-[230px]">
@@ -892,22 +892,22 @@ function Scene9({ onComplete, reduced }: SceneProps) {
 
   return (
     <div className="p-5">
-      <SLabel text="DETECT + PREVENT" color="#7AA7FF" />
+      <SLabel text="DETECT + PREVENT" color="#82a6e6" />
       <div className="grid grid-cols-2 gap-4 mb-4">
         {/* Detection */}
         <AnimatePresence>
           {step >= 1 && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-              className="rounded-lg border border-[#8FB4E8]/20 bg-[#8FB4E8]/4 p-4">
-              <p className="font-mono text-[10px] font-bold text-[#8FB4E8] tracking-widest mb-3 uppercase">
+              className="rounded-lg border border-[#aec5f0]/20 bg-[#aec5f0]/4 p-4">
+              <p className="font-mono text-[11px] font-bold text-[#aec5f0] tracking-widest mb-3 uppercase">
                 Intrusion Detection
               </p>
               <div className="space-y-2">
                 {DETECT.map((s, i) => (
                   <motion.div key={s} initial={{ opacity: 0, x: -4 }} animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }} className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#8FB4E8]/60 flex-shrink-0" />
-                    <span className="font-mono text-xs text-slate-300">{s}</span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#aec5f0]/60 flex-shrink-0" />
+                    <span className="font-mono text-xs text-[#c6cad2]">{s}</span>
                   </motion.div>
                 ))}
               </div>
@@ -919,8 +919,8 @@ function Scene9({ onComplete, reduced }: SceneProps) {
         <AnimatePresence>
           {step >= 2 && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-              className="rounded-lg border border-[#4FC3A1]/20 bg-[#4FC3A1]/4 p-4">
-              <p className="font-mono text-[10px] font-bold text-[#4FC3A1] tracking-widest mb-3 uppercase">
+              className="rounded-lg border border-[#98dcc2]/20 bg-[#98dcc2]/4 p-4">
+              <p className="font-mono text-[11px] font-bold text-[#98dcc2] tracking-widest mb-3 uppercase">
                 Intrusion Prevention
               </p>
               <div className="space-y-2">
@@ -929,8 +929,8 @@ function Scene9({ onComplete, reduced }: SceneProps) {
                   return (
                     <motion.div key={s} initial={{ opacity: 0, x: -4 }} animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }} className="flex items-center gap-2">
-                      <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${isAction ? "bg-[#4FC3A1]" : "bg-[#4FC3A1]/60"}`} />
-                      <span className={`font-mono text-xs ${isAction ? "text-[#4FC3A1] font-bold" : "text-slate-300"}`}>{s}</span>
+                      <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${isAction ? "bg-[#98dcc2]" : "bg-[#98dcc2]/60"}`} />
+                      <span className={`font-mono text-xs ${isAction ? "text-[#98dcc2] font-bold" : "text-[#c6cad2]"}`}>{s}</span>
                     </motion.div>
                   );
                 })}
@@ -943,11 +943,11 @@ function Scene9({ onComplete, reduced }: SceneProps) {
       <AnimatePresence>
         {step >= 3 && (
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
-            className="rounded-lg border border-[#7AA7FF]/25 bg-[#7AA7FF]/5 p-3 text-center">
-            <p className="font-mono text-sm font-bold text-[#7AA7FF] tracking-widest">
+            className="rounded-lg border border-[#82a6e6]/25 bg-[#82a6e6]/5 p-3 text-center">
+            <p className="font-mono text-sm font-bold text-[#82a6e6] tracking-widest">
               QURIK — DETECT + PREVENT
             </p>
-            <p className="font-mono text-[10px] text-slate-500 mt-1">
+            <p className="font-mono text-[11px] text-meta mt-1">
               Software IDPS operating across both detection and prevention layers
             </p>
           </motion.div>
@@ -978,15 +978,15 @@ function Scene10({ onComplete, reduced }: SceneProps) {
     <div className="p-8 flex flex-col items-center justify-center text-center min-h-[340px]">
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
         <div className="flex items-center justify-center gap-2 mb-4">
-          <PulseDot color="#4FC3A1" />
-          <span className="font-mono text-[10px] text-[#4FC3A1] tracking-[0.25em] uppercase">System Protected</span>
+          <PulseDot color="#98dcc2" />
+          <span className="font-mono text-[11px] text-[#98dcc2] tracking-[0.25em] uppercase">System Protected</span>
         </div>
 
         <h2 className="font-bold text-4xl text-white tracking-widest mb-1 font-mono">QURIK</h2>
-        <p className="font-mono text-slate-400 text-sm mb-1">
+        <p className="font-mono text-muted text-sm mb-1">
           Intrusion Detection &amp; Prevention System
         </p>
-        <p className="font-mono text-slate-600 text-sm italic mb-6">
+        <p className="font-mono text-meta text-sm italic mb-6">
           &ldquo;Detect. Analyze. Prevent.&rdquo;
         </p>
 
@@ -994,12 +994,12 @@ function Scene10({ onComplete, reduced }: SceneProps) {
         <div className="flex items-center justify-center gap-8 mb-6">
           {[
             { label: "Detected",   value: "17",  color: "text-red-400"    },
-            { label: "Blocked",    value: "15",  color: "text-[#4FC3A1]"  },
-            { label: "Confidence", value: "94%", color: "text-amber-400"  },
+            { label: "Blocked",    value: "15",  color: "text-[#98dcc2]"  },
+            { label: "Confidence", value: "94%", color: "text-blue-text"  },
           ].map(m => (
             <div key={m.label}>
               <p className={`font-mono text-2xl font-bold ${m.color}`}>{m.value}</p>
-              <p className="font-mono text-[9px] text-slate-600 uppercase tracking-widest mt-0.5">{m.label}</p>
+              <p className="font-mono text-[11px] text-meta uppercase tracking-widest mt-0.5">{m.label}</p>
             </div>
           ))}
         </div>
@@ -1011,7 +1011,7 @@ function Scene10({ onComplete, reduced }: SceneProps) {
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + i * 0.06 }}
-              className="px-3 py-1 rounded-full border border-[#4FC3A1]/20 bg-[#4FC3A1]/5 font-mono text-[10px] text-[#4FC3A1]/80"
+              className="px-3 py-1 rounded-full border border-[#98dcc2]/20 bg-[#98dcc2]/5 font-mono text-[11px] text-[#98dcc2]/80"
             >
               {tag}
             </motion.span>
@@ -1022,7 +1022,7 @@ function Scene10({ onComplete, reduced }: SceneProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
-          className="font-mono text-[9px] text-slate-700 tracking-widest uppercase"
+          className="font-mono text-[11px] text-meta tracking-widest uppercase"
         >
           Simulated Security Demonstration · Replaying in 4s...
         </motion.p>
@@ -1060,7 +1060,7 @@ export default function QurikIDPSSim() {
   const props: SceneProps = { onComplete: advance, reduced: shouldReduce };
 
   return (
-    <div className="rounded-xl border border-white/8 bg-[#0E141C] overflow-hidden shadow-2xl shadow-black/50">
+    <div className="rounded-xl border border-white/8 bg-[#101318] overflow-hidden shadow-2xl shadow-black/50">
       <SimHeader scene={scene} progress={progress} onJump={setScene} />
 
       <AnimatePresence mode="wait">

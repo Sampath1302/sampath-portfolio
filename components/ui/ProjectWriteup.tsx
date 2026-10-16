@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ViewTransition, type ReactNode } from "react";
 import { projects, type Project } from "@/lib/content";
 import StatusTag from "@/components/ui/StatusTag";
-import ProjectClip from "@/components/ui/ProjectClip";
+import CaseFilm from "@/components/ui/CaseFilm";
 
 export interface PipelineStep {
   label: string;
@@ -111,10 +111,7 @@ export default function ProjectWriteup({
         </dl>
 
         <figure className="lg:col-span-8">
-          <ProjectClip
-            slug={project.slug}
-            label={`${project.title} walkthrough: ${project.summary}`}
-          />
+          <CaseFilm slug={project.slug} title={project.title} />
           {onWatchWalkthrough && (
             <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-3 text-[0.9375rem] text-muted">
               <span>{project.summary}.</span>

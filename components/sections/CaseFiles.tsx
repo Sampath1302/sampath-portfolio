@@ -3,14 +3,14 @@ import { ViewTransition, type CSSProperties } from "react";
 import { projects } from "@/lib/content";
 import SectionHeading from "@/components/ui/SectionHeading";
 import StatusTag from "@/components/ui/StatusTag";
-import ProjectClip from "@/components/ui/ProjectClip";
+import CaseFilm from "@/components/ui/CaseFilm";
 
 export default function CaseFiles() {
   return (
     <section aria-labelledby="work" className="py-16 lg:py-20">
       <div className="grid gap-10 lg:grid-cols-12">
         <SectionHeading id="work" label="02 / case files" title="Projects">
-          Each one has a full write-up with an interactive walkthrough.
+          Each one has a short case file film, a full write-up and an interactive walkthrough.
         </SectionHeading>
       </div>
 
@@ -40,11 +40,7 @@ export default function CaseFiles() {
                 </p>
               </header>
 
-              <ProjectClip
-                slug={p.slug}
-                label={`${p.title} walkthrough: ${p.summary}`}
-                className="self-start lg:col-span-8 lg:row-start-2"
-              />
+              <CaseFilm slug={p.slug} title={p.title} className="self-start lg:col-span-8 lg:row-start-2" />
 
               <div className="max-w-[34rem] lg:col-span-4 lg:col-start-9 lg:row-start-2">
                 <p className="text-[1rem] leading-[1.65] text-ink/90">{p.description}</p>

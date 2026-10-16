@@ -68,7 +68,7 @@ export default function AnimationShell({
             <h1 className="font-display text-3xl sm:text-4xl font-semibold text-ink tracking-tight">
               {title}
             </h1>
-            <p className="text-slate-500 text-sm mt-0.5">{subtitle}</p>
+            <p className="text-meta text-sm mt-0.5">{subtitle}</p>
           </div>
           <button
             onClick={handleSkip}
@@ -88,14 +88,14 @@ export default function AnimationShell({
 
         {/* Progress bar */}
         <div className="mt-4 flex items-center gap-3">
-          <div className="flex-1 h-px bg-slate-900 rounded-full overflow-hidden">
+          <div className="flex-1 h-px bg-surface rounded-full overflow-hidden">
             <motion.div
               className="h-full bg-mint rounded-full"
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.1 }}
             />
           </div>
-          <span className="text-slate-700 font-mono text-[10px] w-8 text-right">
+          <span className="text-meta font-mono text-[11px] w-8 text-right">
             {Math.round(progress)}%
           </span>
         </div>

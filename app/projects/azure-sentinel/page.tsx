@@ -9,7 +9,7 @@ import { projects } from "@/lib/content";
 // Client-only: the simulation uses random values and timers
 const SentinelThreatHuntSim = dynamic(() => import("@/components/project-demo/SentinelThreatHuntSim"), {
   ssr: false,
-  loading: () => <div className="h-[28rem] rounded-lg border border-line bg-surface" />,
+  loading: () => <div className="glass h-[28rem] rounded-2xl" />,
 });
 
 const project = projects.find((p) => p.slug === "azure-sentinel")!;
@@ -59,7 +59,7 @@ export default function SentinelPage() {
               title="Sample detection"
               note="A brute-force rule from the lab. It was AI-generated; I reviewed it and I'm learning to write rules like it myself."
             >
-              <div className="overflow-x-auto rounded-lg border border-line bg-surface">
+              <div className="glass overflow-x-auto rounded-2xl">
                 <pre className="p-5 font-mono text-[0.8125rem] leading-[1.8] text-ink/85">{sampleRule}</pre>
               </div>
             </WriteupSection>

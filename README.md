@@ -62,13 +62,21 @@ npm run build && npx next start -p 3200
 node scripts/check-hero-contrast.mjs
 ```
 
-## Project clips
+## Case file films
 
-Each project has a short silent loop (`<slug>.mp4`, `<slug>.webm`, `<slug>-poster.jpg`) recorded from
-its walkthrough ("Open the live version" on the project page). They are cropped to the animation
-panel only, recorded at a 640px viewport so the text stays readable at card size, and encoded at
-1152px wide, 30 fps, BT.709. If an animation changes, re-record its clip and update the clip's
-size in `components/ui/ProjectClip.tsx`.
+Each project has a 26-second silent "case file" film in four chapters (the threat, detection,
+response, result), made with [Remotion](https://www.remotion.dev/) in `films/`. Remotion is only a
+local tool: it has its own `package.json` and is not part of the site build.
+
+```bash
+cd films
+npm install
+npm run render          # all films; or: npm run render -- qurik
+```
+
+This writes `public/media/films/<slug>.webm`, `.mp4` and `-poster.jpg` (1280×720) for the site and
+`exports/<slug>-1080.mp4` (1080×1080, for LinkedIn, gitignored). Chapter captions live in
+`lib/films.ts` and are shared with the site's player, so edit them there and re-render.
 
 ## Before deploying
 

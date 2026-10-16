@@ -8,7 +8,7 @@ interface ConnectorProps {
   x1: number; y1: number; x2: number; y2: number;
   delay: number; color?: string;
 }
-function Connector({ x1, y1, x2, y2, delay, color = "#7AA7FF" }: ConnectorProps) {
+function Connector({ x1, y1, x2, y2, delay, color = "#82a6e6" }: ConnectorProps) {
   const len = Math.hypot(x2 - x1, y2 - y1);
   return (
     <motion.line
@@ -25,7 +25,7 @@ function Connector({ x1, y1, x2, y2, delay, color = "#7AA7FF" }: ConnectorProps)
 interface PacketProps {
   fromX: number; toX: number; y: number; delay: number; color?: string;
 }
-function Packet({ fromX, toX, y, delay, color = "#7AA7FF" }: PacketProps) {
+function Packet({ fromX, toX, y, delay, color = "#82a6e6" }: PacketProps) {
   return (
     <motion.circle r={4} cy={y} fill={color}
       initial={{ cx: fromX, opacity: 0 }}
@@ -37,19 +37,19 @@ function Packet({ fromX, toX, y, delay, color = "#7AA7FF" }: PacketProps) {
 
 /* Node definitions */
 const NODES = [
-  { x: 60,  label: "CLOUD LOGS",  icon: "☁", stroke: "#64748B", fill: "rgba(100,116,139,0.12)", sub: "SigninLogs · AuditLogs" },
-  { x: 200, label: "SENTINEL",    icon: "◉", stroke: "#7AA7FF", fill: "rgba(122,167,255,0.14)", sub: "SIEM Platform"         },
-  { x: 370, label: "KQL RULE",    icon: "{}", stroke: "#5B8BEB", fill: "rgba(91,139,235,0.14)", sub: "Threat hunting"        },
-  { x: 530, label: "INCIDENT",    icon: "⚡", stroke: "#F0B43C", fill: "rgba(249,115,22,0.13)", sub: "#4821 HIGH"            },
-  { x: 680, label: "SOAR",        icon: "⚙", stroke: "#4FC3A1", fill: "rgba(34,197,94,0.12)", sub: "Auto-response"          },
+  { x: 60,  label: "CLOUD LOGS",  icon: "☁", stroke: "#858c98", fill: "rgba(133,140,152,0.12)", sub: "SigninLogs · AuditLogs" },
+  { x: 200, label: "SENTINEL",    icon: "◉", stroke: "#82a6e6", fill: "rgba(130,166,230,0.14)", sub: "SIEM Platform"         },
+  { x: 370, label: "KQL RULE",    icon: "{}", stroke: "#6f93d6", fill: "rgba(111,147,214,0.14)", sub: "Threat hunting"        },
+  { x: 530, label: "INCIDENT",    icon: "⚡", stroke: "#82a6e6", fill: "rgba(130,166,230,0.13)", sub: "#4821 HIGH"            },
+  { x: 680, label: "SOAR",        icon: "⚙", stroke: "#98dcc2", fill: "rgba(152,220,194,0.12)", sub: "Auto-response"          },
 ] as const;
 
 // connector x edges (r=26)
 const EDGES: [number, number, string][] = [
-  [86,  174, "#64748B"],
-  [226, 344, "#7AA7FF"],
-  [396, 504, "#5B8BEB"],
-  [556, 654, "#F0B43C"],
+  [86,  174, "#858c98"],
+  [226, 344, "#82a6e6"],
+  [396, 504, "#6f93d6"],
+  [556, 654, "#82a6e6"],
 ];
 
 function SentinelSVG({ inView }: { inView: boolean }) {
@@ -59,7 +59,7 @@ function SentinelSVG({ inView }: { inView: boolean }) {
 
       {/* Subtle grid */}
       {[57, 114, 171].map((y) => (
-        <line key={y} x1={0} y1={y} x2={740} y2={y} stroke="#7AA7FF" strokeOpacity={0.03} />
+        <line key={y} x1={0} y1={y} x2={740} y2={y} stroke="#82a6e6" strokeOpacity={0.03} />
       ))}
 
       {/* ── Connector lines ── */}
@@ -87,8 +87,8 @@ function SentinelSVG({ inView }: { inView: boolean }) {
           )}
           <circle cx={n.x} cy={110} r={26} fill={n.fill} stroke={n.stroke} strokeWidth={1.5} />
           <text x={n.x} y={115} textAnchor="middle" fill="white" fontSize={i === 2 ? 10 : 13} fontFamily="monospace">{n.icon}</text>
-          <text x={n.x} y={152} textAnchor="middle" fill="#CBD5E1" fontSize={10.5} fontFamily="monospace" fontWeight="bold" letterSpacing="0.8">{n.label}</text>
-          <text x={n.x} y={165} textAnchor="middle" fill="#8B98AA" fontSize={9.5} fontFamily="monospace">{n.sub}</text>
+          <text x={n.x} y={152} textAnchor="middle" fill="#c6cad2" fontSize={10.5} fontFamily="monospace" fontWeight="bold" letterSpacing="0.8">{n.label}</text>
+          <text x={n.x} y={165} textAnchor="middle" fill="#aeb4bf" fontSize={9.5} fontFamily="monospace">{n.sub}</text>
         </motion.g>
       ))}
 
@@ -96,15 +96,15 @@ function SentinelSVG({ inView }: { inView: boolean }) {
       {inView && (
         <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.0, duration: 0.5 }}>
           <rect x={272} y={41} width={196} height={31} rx={3}
-            fill="rgba(0,0,0,0.6)" stroke="#5B8BEB" strokeWidth={1} strokeOpacity={0.4} />
-          <text x={370} y={53} textAnchor="middle" fill="#5B8BEB" fontSize={8.5} fontFamily="monospace">SigninLogs | where ResultType != 0</text>
-          <text x={370} y={64} textAnchor="middle" fill="#8B98AA" fontSize={8.5} fontFamily="monospace">| where FailedAttempts {"> threshold"}</text>
+            fill="rgba(0,0,0,0.6)" stroke="#6f93d6" strokeWidth={1} strokeOpacity={0.4} />
+          <text x={370} y={53} textAnchor="middle" fill="#6f93d6" fontSize={8.5} fontFamily="monospace">SigninLogs | where ResultType != 0</text>
+          <text x={370} y={64} textAnchor="middle" fill="#aeb4bf" fontSize={8.5} fontFamily="monospace">| where FailedAttempts {"> threshold"}</text>
         </motion.g>
       )}
 
       {/* MITRE label near Incident node */}
       {inView && (
-        <motion.text x={566} y={62} textAnchor="middle" fill="#F0B43C" fontSize={9.5} fontFamily="monospace"
+        <motion.text x={566} y={62} textAnchor="middle" fill="#82a6e6" fontSize={9.5} fontFamily="monospace"
           initial={{ opacity: 0 }}
           animate={{ opacity: [0, 1, 1, 0] }}
           transition={{ delay: 3.0, duration: 2.5, repeat: Infinity, repeatDelay: 4 }}>
@@ -129,17 +129,17 @@ export default function SentinelAnimation({ onComplete }: { onComplete: () => vo
     >
       <div ref={ref} className="px-6 py-7">
         <div className="flex items-center gap-2 mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#7AA7FF] animate-pulse" />
-          <span className="text-[#7AA7FF] font-mono text-[10px] tracking-widest">DETECTION PIPELINE</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#82a6e6] animate-pulse" />
+          <span className="text-[#82a6e6] font-mono text-[11px] tracking-widest">DETECTION PIPELINE</span>
         </div>
         <SentinelSVG inView={inView} />
         <div className="flex flex-wrap gap-4 mt-3 pt-3 border-t border-white/5">
-          <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#4FC3A1]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4FC3A1] animate-ping" style={{ animationDuration: "1.5s" }} />
+          <span className="flex items-center gap-1.5 font-mono text-[11px] text-[#98dcc2]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#98dcc2] animate-ping" style={{ animationDuration: "1.5s" }} />
             24 RULES ACTIVE
           </span>
-          <span className="text-muted font-mono text-[10px]">Incident #4821 created</span>
-          <span className="text-[#4FC3A1] font-mono text-[10px]">SOAR response triggered</span>
+          <span className="text-muted font-mono text-[11px]">Incident #4821 created</span>
+          <span className="text-[#98dcc2] font-mono text-[11px]">SOAR response triggered</span>
         </div>
       </div>
     </AnimationShell>

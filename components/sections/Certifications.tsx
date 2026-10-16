@@ -34,7 +34,8 @@ export default function Certifications() {
                   </th>
                   <td className="order-3 col-span-2 text-[0.9375rem] text-muted sm:order-none sm:py-4 sm:pr-4">
                     {c.issuer}
-                    {c.note && <span>, {c.note}</span>}
+                    {c.year && <span>, {c.year}</span>}
+                    {c.note && <span className="block text-[0.8125rem] text-meta">{c.note}</span>}
                   </td>
                   <td className="order-4 col-span-2 font-mono text-xs text-meta sm:order-none sm:py-4 sm:pr-4">
                     {c.credentialId ?? <span className="hidden sm:inline">–</span>}

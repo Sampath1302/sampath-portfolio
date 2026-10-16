@@ -30,6 +30,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Honesty
 - Every number and line in the command deck comes from `lib/content.ts`: gauges count held certifications, projects and internships, and each ring fills to a real share (held of all certifications, projects complete, internships finished). The status log (`statusLog`) only restates facts from that file.
 - The SOC wall's log lines are illustrative ambience: made-up hosts, masked IPs, `aria-hidden`. They never mention Sampath or claim anything about him.
+- The case file films use only facts from `lib/content.ts` and the project pages. QURIK's numbers always carry "in project testing"; numbers from a page's sample run carry "example test run" or "example run"; Sentinel always says it was built with AI assistance and that Sampath is learning KQL. No invented metrics, customers or incidents.
+- Certifications: EC-Council CSA, CND and CSCU, plus Ehack Academy's Graduate Program in Cyber Security (which covers CEH, CHFI and CCSE). Never list CEH, CHFI or CCSE as separate certifications. Splunk is never listed: Sampath has not used it.
 
 ## Motion
 Motion CSS lives in `app/globals.css`. Mint = complete / held, blue = in progress.
@@ -47,9 +49,10 @@ Motion CSS lives in `app/globals.css`. Mint = complete / held, blue = in progres
 ## Where things live
 - **Content**: all text, projects, experience and certifications are in `lib/content.ts`; personal links in `lib/siteConfig.ts`. Edit content there, not in components.
 - **Home page sections**: `components/sections/` (Hero, Capabilities, CaseFiles, Experience, Certifications, Achievements, Contact).
-- **Shared UI**: `components/ui/` (Nav, CommandDeck, SocWall, WallPause, StatusTag, SectionHeading, ProjectWriteup, ProjectPage, ProjectClip, MotionLayer).
+- **Shared UI**: `components/ui/` (Nav, CommandDeck, SocWall, WallPause, StatusTag, SectionHeading, ProjectWriteup, ProjectPage, CaseFilm, MotionLayer).
 - **Project pages**: `app/projects/<slug>/page.tsx`, built on `ProjectWriteup`. Interactive demos in `components/project-demo/`; the two simulations are loaded with `next/dynamic` and `ssr: false` because they use random values and timers.
-- **Project clips**: `public/media/<slug>.webm|.mp4|-poster.jpg`, shown by `ProjectClip`. They are screen recordings of each walkthrough animation (opened via "Open the live version"), cropped to the animation panel only, recorded at a 640px viewport and encoded at 1152px wide, 30 fps, BT.709. Each clip keeps its own aspect ratio, listed in `ProjectClip`. Re-record them if an animation changes. The walkthrough animations keep their own data colours (teal, blue, amber, red) so the clips still match them; only their frame follows the command deck look.
+- **Case file films**: one 26-second motion-graphics film per project, made with Remotion in `films/` (its own `package.json`; never part of the site build or deployed). Chapters (The threat, Detection, Response, Result) and their captions live in `lib/films.ts`, which both the films and the site player read. `cd films && npm install && npm run render` writes `public/media/films/<slug>.webm|.mp4|-poster.jpg` (1280×720, 30 fps, BT.709) and the 1080×1080 LinkedIn versions to `exports/` (gitignored); `node stills.mjs <dir>` renders review stills. `components/ui/CaseFilm.tsx` plays a film muted on project cards while in view or hovered (poster only under reduced motion or Save-Data) and opens a modal `<dialog>` player with chapter markers and keys (Space/K, ← →, 1–4, Esc). Re-render after changing a film, `lib/films.ts` or the project facts it shows.
+- **Demos and walkthroughs** (`components/project-demo/`) use the command deck palette too: mint, blue and blue-text, red only for real threats, graphite surfaces, and labels of at least 11px.
 
 ## Architecture rules
 1. All routes live in `/app`. Do not create `/src/app`.

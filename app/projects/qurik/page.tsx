@@ -9,7 +9,7 @@ import { projects } from "@/lib/content";
 // Client-only: the simulation uses random values and timers
 const QurikIDPSSim = dynamic(() => import("@/components/project-demo/QurikIDPSSim"), {
   ssr: false,
-  loading: () => <div className="h-[28rem] rounded-lg border border-line bg-surface" />,
+  loading: () => <div className="glass h-[28rem] rounded-2xl" />,
 });
 
 const project = projects.find((p) => p.slug === "qurik")!;
@@ -48,7 +48,7 @@ export default function QurikPage() {
             "Automated IP blocking",
             "Real-time alert dashboard",
           ]}
-          stack={["Python", "FastAPI", "React", "TensorFlow", "MongoDB", "PostgreSQL", "Docker", "Kubernetes", "Apache Kafka"]}
+          stack={["Python", "FastAPI", "React", "TensorFlow", "SQL database", "Docker", "Kubernetes"]}
           extra={
             <WriteupSection
               title="Evaluation"
@@ -78,7 +78,6 @@ export default function QurikPage() {
           }}
           lessons={[
             "Building a real-time detection engine means constantly balancing false positives against detection sensitivity. TensorFlow behavioural models improved accuracy over a purely rule-based approach.",
-            "Kafka as the event streaming backbone was essential for handling 15K+ events per second without dropping packets under peak load.",
             "The hardest part was designing a threat scoring algorithm that accounts for behavioural context across multiple request patterns.",
           ]}
         />
