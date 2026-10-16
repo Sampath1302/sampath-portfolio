@@ -7,7 +7,7 @@ export default function Contact() {
   return (
     <section aria-labelledby="contact" className="pt-16 pb-10 lg:pt-20">
       <div className="glass grid gap-10 rounded-[24px] p-6 sm:p-10 lg:grid-cols-12">
-        <SectionHeading id="contact" label="06 / contact" title="Let&apos;s talk." />
+        <SectionHeading id="contact" label="07 / contact" title="Let&apos;s talk." />
 
         <div className="lg:col-span-8">
           <p className="max-w-[34rem] text-[1.0625rem] leading-relaxed text-muted">

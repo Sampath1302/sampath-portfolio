@@ -46,14 +46,22 @@ export default function Hero() {
             <p className="mt-5 max-w-[33rem] text-[1.0625rem] leading-[1.7] text-muted sm:text-[1.1rem]">{heroIntro}</p>
 
             <div className="mt-9 grid grid-cols-2 gap-3 text-center sm:flex sm:flex-wrap">
-              <a href="#work" data-magnetic className="btn-mint col-span-2 rounded-xl px-6 py-3.5 font-semibold">
+              <a href="#work" data-magnetic className="btn-mint col-span-2 rounded-xl px-6 py-3.5 sm:px-[1.125rem] font-semibold">
                 See my projects
+              </a>
+              <a
+                href={siteConfig.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-glass col-span-2 rounded-xl px-6 py-3.5 sm:px-[1.125rem] font-medium transition-colors"
+              >
+                Download résumé
               </a>
               <a
                 href={siteConfig.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-glass rounded-xl px-6 py-3.5 font-medium transition-colors"
+                className="btn-glass rounded-xl px-6 py-3.5 sm:px-[1.125rem] font-medium transition-colors"
               >
                 GitHub
               </a>
@@ -61,7 +69,7 @@ export default function Hero() {
                 href={siteConfig.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-glass rounded-xl px-6 py-3.5 font-medium transition-colors"
+                className="btn-glass rounded-xl px-6 py-3.5 sm:px-[1.125rem] font-medium transition-colors"
               >
                 LinkedIn
               </a>

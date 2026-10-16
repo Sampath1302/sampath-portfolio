@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ViewTransition, type CSSProperties } from "react";
-import { projects } from "@/lib/content";
+import { moreProjects, projects } from "@/lib/content";
 import SectionHeading from "@/components/ui/SectionHeading";
 import StatusTag from "@/components/ui/StatusTag";
 import CaseFilm from "@/components/ui/CaseFilm";
@@ -74,6 +74,21 @@ export default function CaseFiles() {
           </li>
         ))}
       </ol>
+
+      <ul className="mt-6 space-y-6">
+        {moreProjects.map((p) => (
+          <li key={p.title} className="glass grid gap-x-10 gap-y-3 rounded-[20px] p-5 sm:p-8 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <p className="font-mono text-[0.75rem] text-meta">Also built</p>
+              <h3 className="mt-2 font-display text-[1.5rem] font-semibold leading-tight tracking-[-0.01em] text-ink sm:text-[1.75rem]">
+                {p.title}
+              </h3>
+              <p className="mt-2 font-mono text-[0.75rem] uppercase text-meta">{p.context}</p>
+            </div>
+            <p className="max-w-[40rem] text-[1rem] leading-[1.65] text-ink/90 lg:col-span-7">{p.description}</p>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

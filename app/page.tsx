@@ -2,6 +2,7 @@ import Hero from "@/components/sections/Hero";
 import Capabilities from "@/components/sections/Capabilities";
 import CaseFiles from "@/components/sections/CaseFiles";
 import Experience from "@/components/sections/Experience";
+import Education from "@/components/sections/Education";
 import Certifications from "@/components/sections/Certifications";
 import Achievements from "@/components/sections/Achievements";
 import Contact from "@/components/sections/Contact";
@@ -14,6 +15,7 @@ export default function Home() {
         <Capabilities />
         <CaseFiles />
         <Experience />
+        <Education />
         <Certifications />
         <Achievements />
         <Contact />

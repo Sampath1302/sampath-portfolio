@@ -43,7 +43,11 @@ export default function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled || menuOpen ? "border-b border-white/[0.06] bg-graphite/95" : "border-b border-transparent"
+        menuOpen
+          ? "border-b border-white/[0.06] bg-graphite"
+          : scrolled
+            ? "border-b border-white/[0.06] bg-graphite/95"
+            : "border-b border-transparent"
       }`}
     >
       <div className="mx-auto flex h-20 max-w-[1240px] items-center justify-between px-5 sm:px-8">
@@ -77,6 +81,16 @@ export default function Nav() {
               );
             })}
             <li>
+              <a
+                href={siteConfig.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-[10px] px-3.5 py-2 text-[#c6cad2] transition-colors hover:text-ink"
+              >
+                Résumé
+              </a>
+            </li>
+            <li>
               <a href={`mailto:${siteConfig.email}`} className="btn-mint block rounded-[10px] px-4 py-2 font-semibold">
                 Email me
               </a>
@@ -99,11 +113,16 @@ export default function Nav() {
       {menuOpen && (
         <div id="mobile-menu" className="border-t border-white/[0.06] px-5 pb-6 md:hidden">
           <ul className="flex flex-col pt-2">
-            {[...navLinks, { label: "Email me", href: `mailto:${siteConfig.email}`, id: "email" }].map((link) => (
+            {[
+              ...navLinks,
+              { label: "Résumé", href: siteConfig.resume, id: "resume" },
+              { label: "Email me", href: `mailto:${siteConfig.email}`, id: "email" },
+            ].map((link) => (
               <li key={link.href} className="border-b border-line last:border-b-0">
                 <a
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
+                  {...(link.id === "resume" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="block py-3.5 text-base text-ink"
                 >
                   {link.label}

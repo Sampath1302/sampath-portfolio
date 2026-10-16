@@ -12,6 +12,8 @@ export const siteConfig = {
   email: "Sampathkumar78295@gmail.com",
   github: "https://github.com/Sampath1302",
   linkedin: "https://www.linkedin.com/in/sampath-kumar-ms-b86306339/",
+  /** Approved public résumé in public/ */
+  resume: "/Sampath-Kumar-MS-Resume.pdf",
   /** Used in <head> metadata */
   siteTitle: "Sampath Kumar MS | SOC Analyst, Detection & Response",
   siteDescription:

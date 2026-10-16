@@ -114,7 +114,7 @@ export const experience: Role[] = [
   {
     company: "HackerHub8",
     role: "Junior Cybersecurity Intern",
-    period: "Jan – May 2026",
+    period: "Jan 2026 – May 2026",
     points: [
       "Built a Python web vulnerability scanner using BFS crawling and OWASP security header analysis.",
       "Detected exposed endpoints and generated structured JSON reports for vulnerability assessment work.",
@@ -123,9 +123,9 @@ export const experience: Role[] = [
     ],
   },
   {
-    company: "Prodigy Infotech",
+    company: "Prodigy InfoTech",
     role: "Cyber Security Intern",
-    period: "Nov – Dec 2025",
+    period: "Nov 2025",
     points: [
       "Developed Python security tools for threat detection and network analysis.",
       "Built a packet sniffer with socket and Scapy for traffic monitoring and anomaly identification.",
@@ -134,30 +134,58 @@ export const experience: Role[] = [
   },
 ];
 
+export interface Education {
+  degree: string;
+  school: string;
+  year: string;
+  detail: string;
+}
+
+export const education: Education[] = [
+  { degree: "B.Tech, Cyber Security", school: "Presidency University, Bengaluru", year: "2026", detail: "CGPA 7.93" },
+];
+
+/** Shorter project entries: a card on the home page, no film or write-up page yet */
+export interface ProjectNote {
+  title: string;
+  context: string;
+  description: string;
+}
+
+export const moreProjects: ProjectNote[] = [
+  {
+    title: "E-Governance Security Monitoring System",
+    context: "AICTE",
+    description:
+      "Real-time security dashboard for monitoring, anomaly detection and alerting, with automated response to SQLi, XSS and bot attacks, and compliance through content-based log classification.",
+  },
+];
+
 export interface Certification {
   title: string;
   short?: string;
   issuer: string;
   status: "held" | "in-progress";
-  year?: number;
+  /** As on the certificate, e.g. "Oct 2025" */
+  date?: string;
   note?: string;
   credentialId?: string;
 }
 
 export const certifications: Certification[] = [
-  { title: "Certified SOC Analyst", short: "CSA", issuer: "EC-Council", status: "held", year: 2025, credentialId: "ECC9531026478" },
-  { title: "Certified Network Defender", short: "CND", issuer: "EC-Council", status: "held", year: 2023, credentialId: "ECC2591834067" },
+  { title: "Certified SOC Analyst", short: "CSA", issuer: "EC-Council", status: "held", date: "Oct 2025", credentialId: "ECC9531026478" },
+  { title: "Certified Network Defender", short: "CND", issuer: "EC-Council", status: "held", date: "Jan 2023", credentialId: "ECC2591834067" },
   {
     title: "Graduate Program in Cyber Security",
     issuer: "Ehack Academy",
     status: "held",
-    year: 2025,
-    note: "Covers CEH, CHFI and CCSE",
+    date: "Jun 2025",
+    note: "Curriculum covering CEH, CHFI and CCSE",
     credentialId: "115623",
   },
-  { title: "Certified Secure Computer User", short: "CSCU", issuer: "EC-Council", status: "held", year: 2023 },
+  { title: "Certified Secure Computer User", short: "CSCU", issuer: "EC-Council", status: "held", date: "Sep 2023", credentialId: "ECC4518297630" },
   { title: "Certified Penetration Tester", short: "CPT", issuer: "RedTeam Hacker Academy", status: "in-progress" },
-  { title: "Cybersecurity Architect Expert", short: "SC-100 track", issuer: "Microsoft", status: "in-progress", year: 2026 },
+  { title: "Cybersecurity Architect Expert", short: "SC-100 track", issuer: "Microsoft", status: "in-progress", date: "2026" },
 ];
 
 export interface Recognition {
