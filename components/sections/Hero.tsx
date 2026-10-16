@@ -1,65 +1,82 @@
+import type { CSSProperties } from "react";
 import { siteConfig } from "@/lib/siteConfig";
-import CaseQueue from "@/components/ui/CaseQueue";
-import EventTicker from "@/components/ui/EventTicker";
+import { heroIntro, heroSpec } from "@/lib/content";
+import CommandDeck from "@/components/ui/CommandDeck";
+import SocWall from "@/components/ui/SocWall";
+
+const command = "whoami --brief";
 
 export default function Hero() {
   return (
-    <section aria-labelledby="hero-title" className="pt-32 pb-20 sm:pt-40 lg:pb-28">
-      <div className="grid items-end gap-14 lg:grid-cols-12 lg:gap-10">
-        <div className="lg:col-span-6">
-          <p className="mb-8 inline-flex items-center gap-2 text-sm text-muted">
-            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-resolved" />
-            Open to SOC analyst roles
+    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
+      <SocWall />
+
+      <div className="mx-auto flex max-w-[1240px] flex-wrap items-center gap-14 px-5 pt-32 pb-20 sm:px-8 lg:min-h-[900px] lg:flex-nowrap lg:pt-36 lg:pb-24">
+        <div className="min-w-0 flex-[1_1_520px]">
+          <p className="rise mb-6 font-mono text-[0.92rem] text-meta" style={{ "--d": "0.1s" } as CSSProperties}>
+            <span className="text-mint">sampath@soc</span>:~${" "}
+            <span className="relative inline-block text-ink">
+              <span className="typ inline-block whitespace-nowrap">{command}</span>
+              <span
+                aria-hidden
+                className="caret absolute top-[0.12em] left-[3px] h-[1.1em] w-[9px] bg-mint"
+                style={{ "--chars": `${command.length}ch` } as CSSProperties}
+              />
+            </span>
           </p>
 
           <h1
             id="hero-title"
-            className="font-display text-[3.5rem] font-semibold leading-[0.92] tracking-[-0.025em] text-ink sm:text-[5rem] lg:text-[6.25rem]"
+            className="rise metal pb-[0.06em] font-display text-[3.75rem] font-bold leading-[0.92] tracking-[-0.025em] sm:text-[5rem] xl:text-[6.4rem]"
+            style={{ "--d": "0.25s" } as CSSProperties}
           >
-            <span className="hero-line">Sampath</span>
-            <span className="hero-line">Kumar MS</span>
+            Sampath
+            <br />
+            Kumar MS
           </h1>
 
-          <p className="mt-6 font-display text-xl font-medium text-ink/80 sm:text-2xl">
-            {siteConfig.role}
-          </p>
+          <div className="rise" style={{ "--d": "0.4s" } as CSSProperties}>
+            <div className="mt-6 flex items-center gap-3.5">
+              <span aria-hidden className="hidden h-0.5 w-9 shrink-0 bg-gradient-to-r from-mint to-blue sm:block" />
+              <p className="font-display text-[1.15rem] font-semibold text-ink sm:text-[1.4rem]">
+                SOC analyst <span className="text-mint">/</span> Detection &amp; response
+              </p>
+            </div>
 
-          <p className="mt-6 max-w-[34rem] text-[1.0625rem] leading-[1.65] text-muted">
-            I&apos;m a 2026 cybersecurity graduate in Bengaluru focused on blue-team work:
-            investigating alerts, automating incident response, and testing the systems I
-            defend. EC-Council CSA, CND, CEH and CHFI certified.
-          </p>
+            <p className="mt-5 max-w-[33rem] text-[1.0625rem] leading-[1.7] text-muted sm:text-[1.1rem]">{heroIntro}</p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a
-              href={`mailto:${siteConfig.email}`}
-              data-magnetic
-              className="rounded-md bg-signal px-5 py-2.5 text-[0.9375rem] font-semibold text-night transition-colors hover:bg-[#f5c562]"
-            >
-              Email me
-            </a>
-            <a
-              href={siteConfig.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md border border-line px-5 py-2.5 text-[0.9375rem] font-medium text-ink transition-colors hover:border-muted"
-            >
-              GitHub
-            </a>
-            <a
-              href={siteConfig.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md border border-line px-5 py-2.5 text-[0.9375rem] font-medium text-ink transition-colors hover:border-muted"
-            >
-              LinkedIn
-            </a>
+            <div className="mt-9 grid grid-cols-2 gap-3 text-center sm:flex sm:flex-wrap">
+              <a href="#work" data-magnetic className="btn-mint col-span-2 rounded-xl px-6 py-3.5 font-semibold">
+                See my projects
+              </a>
+              <a
+                href={siteConfig.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-glass rounded-xl px-6 py-3.5 font-medium transition-colors"
+              >
+                GitHub
+              </a>
+              <a
+                href={siteConfig.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-glass rounded-xl px-6 py-3.5 font-medium transition-colors"
+              >
+                LinkedIn
+              </a>
+            </div>
+
+            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[0.8rem] text-meta">
+              {heroSpec.map((s) => (
+                <li key={s}>{s}</li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="lg:col-span-6 lg:pl-6">
-          <CaseQueue />
-          <EventTicker />
+        <div className="min-w-0 flex-[1_1_500px]">
+          <CommandDeck />
         </div>
       </div>
     </section>

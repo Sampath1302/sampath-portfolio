@@ -43,9 +43,9 @@ export function WriteupSection({
   children: ReactNode;
 }) {
   return (
-    <section className="grid gap-6 border-t border-line py-14 lg:grid-cols-12 lg:gap-10">
+    <section className="grid gap-6 border-t border-white/[0.06] py-14 lg:grid-cols-12 lg:gap-10">
       <div className="lg:col-span-4">
-        <h2 className="font-display text-2xl font-semibold leading-tight text-ink sm:text-[1.75rem]">{title}</h2>
+        <h2 className="font-display text-2xl font-semibold leading-tight text-ink sm:text-[1.875rem]">{title}</h2>
         {note && <p className="mt-2.5 max-w-xs text-[0.9375rem] leading-relaxed text-muted">{note}</p>}
       </div>
       <div className="min-w-0 lg:col-span-8">{children}</div>
@@ -69,40 +69,43 @@ export default function ProjectWriteup({
   const next = projects[(index + 1) % projects.length];
 
   return (
-    <main id="main" className="mx-auto max-w-[1120px] px-5 pt-28 pb-16 sm:px-8 sm:pt-32">
-      <Link href="/#work" className="text-sm text-muted link-sweep hover:text-ink">
+    <main id="main" className="mx-auto max-w-[1240px] px-5 pt-28 pb-16 sm:px-8 sm:pt-32">
+      <Link href="/#work" className="font-mono text-[0.8125rem] text-meta link-sweep hover:text-ink">
         Back to all projects
       </Link>
 
       {/* Header */}
       <header className="grid gap-10 pt-10 pb-14 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-8">
-          <p className="text-[0.9375rem] text-muted">{project.kind}</p>
+          <p className="flex items-center gap-2.5 font-mono text-[0.8125rem] text-meta">
+            <span aria-hidden className="h-px w-5 bg-gradient-to-r from-mint to-blue" />
+            {project.kind}
+          </p>
           {/* shares its name with the home page row, so the title glides between pages */}
           <ViewTransition name={`project-title-${project.slug}`}>
-            <h1 className="mt-3 font-display text-[3rem] font-semibold leading-[0.95] tracking-[-0.025em] text-ink sm:text-[4.5rem]">
+            <h1 className="metal mt-3 pb-[0.06em] font-display text-[3rem] font-bold leading-[0.95] tracking-[-0.025em] sm:text-[4.5rem]">
               {project.title}
             </h1>
           </ViewTransition>
           <p className="mt-6 max-w-[38rem] text-[1.0625rem] leading-[1.65] text-ink/85">{intro}</p>
         </div>
 
-        <dl className="grid h-fit grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-6 text-sm lg:col-span-4 lg:grid-cols-1 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-1">
+        <dl className="glass grid h-fit grid-cols-2 gap-x-6 gap-y-5 rounded-[20px] p-6 text-sm lg:col-span-4 lg:grid-cols-1">
           <div>
-            <dt className="text-muted">Status</dt>
+            <dt className="font-mono text-[0.75rem] text-meta">Status</dt>
             <dd className="mt-1">
               <StatusTag
                 label={project.status === "complete" ? "Complete" : "In progress"}
-                tone={project.status === "complete" ? "resolved" : "signal"}
+                tone={project.status === "complete" ? "mint" : "blue"}
               />
             </dd>
           </div>
           <div>
-            <dt className="text-muted">Focus</dt>
+            <dt className="font-mono text-[0.75rem] text-meta">Focus</dt>
             <dd className="mt-1 text-ink">{project.category}</dd>
           </div>
           <div className="col-span-2 lg:col-span-1">
-            <dt className="text-muted">Built with</dt>
+            <dt className="font-mono text-[0.75rem] text-meta">Built with</dt>
             <dd className="mt-1 leading-relaxed text-ink">{stack.join(", ")}</dd>
           </div>
         </dl>
@@ -118,7 +121,7 @@ export default function ProjectWriteup({
               <button
                 type="button"
                 onClick={onWatchWalkthrough}
-                className="text-ink link-sweep hover:text-signal"
+                className="py-2.5 text-mint link-sweep"
               >
                 Open the live version
               </button>
@@ -129,10 +132,10 @@ export default function ProjectWriteup({
 
       <WriteupSection title="How it works" note="The path a request or alert takes through the system.">
         <ol className="relative">
-          <span aria-hidden className="absolute left-[0.6875rem] top-3 bottom-3 w-px bg-line" />
+          <span aria-hidden className="absolute left-[0.6875rem] top-3 bottom-3 w-px bg-gradient-to-b from-mint/50 to-blue/30" />
           {pipeline.map((step, i) => (
             <li key={step.label} className="relative flex gap-5 pb-6 last:pb-0">
-              <span className="relative z-10 flex h-[1.375rem] w-[1.375rem] shrink-0 items-center justify-center rounded-full border border-line bg-night text-[0.6875rem] font-medium tabular-nums text-muted">
+              <span className="relative z-10 flex h-[1.375rem] w-[1.375rem] shrink-0 items-center justify-center rounded-full border border-mint/40 bg-graphite font-mono text-[0.6875rem] font-medium text-mint">
                 {i + 1}
               </span>
               <div className="-mt-0.5">
@@ -148,7 +151,7 @@ export default function ProjectWriteup({
         <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
           {capabilities.map((c) => (
             <li key={c} className="flex gap-3 text-[0.9375rem] leading-snug text-ink/90">
-              <span aria-hidden className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-faint" />
+              <span aria-hidden className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-mint/70" />
               {c}
             </li>
           ))}
@@ -158,8 +161,8 @@ export default function ProjectWriteup({
       {extra}
 
       {demo && (
-        <section className="border-t border-line py-14">
-          <h2 className="font-display text-2xl font-semibold leading-tight text-ink sm:text-[1.75rem]">Try it</h2>
+        <section className="border-t border-white/[0.06] py-14">
+          <h2 className="font-display text-2xl font-semibold leading-tight text-ink sm:text-[1.875rem]">Try it</h2>
           <p className="mt-2.5 max-w-[38rem] text-[0.9375rem] leading-relaxed text-muted">
             A simulated, interactive version of the workflow. The data is made up for the demo.
           </p>
@@ -169,14 +172,14 @@ export default function ProjectWriteup({
 
       {sampleRun && (
         <WriteupSection title="Example run" note={sampleRun.note ?? "Illustrative output from a test run."}>
-          <div className="overflow-x-auto rounded-lg border border-line bg-surface">
+          <div className="glass overflow-x-auto rounded-2xl">
             <pre className="p-5 font-mono text-[0.8125rem] leading-[1.8] text-muted">
-              <span className="text-faint">$ </span>
+              <span className="text-mint">$ </span>
               <span className="text-ink">{sampleRun.command}</span>
               {"\n"}
               {sampleRun.lines.map((l) => (
                 <span key={l.label} className="block">
-                  <span className="text-resolved">ok</span> {l.label}
+                  <span className="text-mint">[ok]</span> {l.label}
                   {l.value && <span className="text-ink">  {l.value}</span>}
                 </span>
               ))}
@@ -193,11 +196,11 @@ export default function ProjectWriteup({
         </div>
       </WriteupSection>
 
-      <nav aria-label="Next project" className="border-t border-line pt-10">
-        <p className="text-[0.9375rem] text-muted">Next project</p>
+      <nav aria-label="Next project" className="border-t border-white/[0.06] pt-10">
+        <p className="font-mono text-[0.8125rem] text-meta">Next project</p>
         <Link
           href={`/projects/${next.slug}`}
-          className="group mt-2 inline-block font-display text-3xl font-semibold text-ink transition-colors hover:text-signal sm:text-4xl"
+          className="group mt-2 inline-block font-display text-3xl font-semibold text-ink transition-colors hover:text-mint sm:text-4xl"
         >
           {next.title}
           <span className="mt-1 block font-sans text-[0.9375rem] font-normal text-muted">{next.summary}</span>

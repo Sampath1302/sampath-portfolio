@@ -7,20 +7,20 @@ import ProjectClip from "@/components/ui/ProjectClip";
 
 export default function CaseFiles() {
   return (
-    <section aria-labelledby="work" className="border-t border-line py-24 lg:py-32">
+    <section aria-labelledby="work" className="py-16 lg:py-20">
       <div className="grid gap-10 lg:grid-cols-12">
-        <SectionHeading id="work" title="Projects">
+        <SectionHeading id="work" label="02 / case files" title="Projects">
           Each one has a full write-up with an interactive walkthrough.
         </SectionHeading>
       </div>
 
-      <ol className="mt-14 lg:mt-20">
+      <ol className="mt-12 space-y-6 lg:mt-16">
         {projects.map((p) => (
-          <li key={p.slug} className="border-t border-line py-14 first:border-t-0 first:pt-0 last:pb-0 lg:py-20">
+          <li key={p.slug}>
             <article
               data-spotlight
-              style={{ "--spot-size": "520px", "--spot-color": "var(--color-surface)" } as CSSProperties}
-              className="grid gap-x-10 gap-y-6 lg:grid-cols-12"
+              style={{ "--spot-size": "520px" } as CSSProperties}
+              className="glass grid gap-x-10 gap-y-6 rounded-[20px] p-5 sm:p-8 lg:grid-cols-12"
             >
               <header className="lg:col-span-8">
                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
@@ -29,9 +29,10 @@ export default function CaseFiles() {
                       {p.title}
                     </h3>
                   </ViewTransition>
+                  <span className="font-mono text-[0.75rem] uppercase text-meta">{p.category}</span>
                   <StatusTag
                     label={p.status === "complete" ? "Complete" : "In progress"}
-                    tone={p.status === "complete" ? "resolved" : "signal"}
+                    tone={p.status === "complete" ? "mint" : "blue"}
                   />
                 </div>
                 <p className="mt-1.5 text-[0.9375rem] text-muted">
@@ -51,7 +52,7 @@ export default function CaseFiles() {
                 <ul className="mt-5 space-y-1.5 text-[0.9375rem] text-muted">
                   {p.highlights.map((h) => (
                     <li key={h} className="flex gap-2.5">
-                      <span aria-hidden className="mt-[0.6rem] h-1 w-1 shrink-0 rounded-full bg-muted" />
+                      <span aria-hidden className="mt-[0.6rem] h-1 w-1 shrink-0 rounded-full bg-mint/70" />
                       {h}
                     </li>
                   ))}
@@ -61,14 +62,14 @@ export default function CaseFiles() {
                   <p className="mt-5 text-[0.9375rem] leading-relaxed text-muted">{p.evaluation}</p>
                 )}
 
-                <p className="mt-5 text-[0.9375rem] leading-relaxed text-muted">
+                <p className="mt-5 font-mono text-[0.8125rem] leading-relaxed text-meta">
                   <span className="sr-only">Built with: </span>
                   {p.stack.join(", ")}
                 </p>
 
                 <Link
                   href={`/projects/${p.slug}`}
-                  className="mt-6 inline-block text-[0.9375rem] font-medium text-signal link-sweep"
+                  className="mt-6 inline-block text-[0.9375rem] font-medium text-mint link-sweep"
                 >
                   Read the {p.title} write-up
                 </Link>

@@ -8,14 +8,16 @@ import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
-    <main id="main" className="mx-auto max-w-[1120px] px-5 sm:px-8">
+    <main id="main">
       <Hero />
-      <Capabilities />
-      <CaseFiles />
-      <Experience />
-      <Certifications />
-      <Achievements />
-      <Contact />
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+        <Capabilities />
+        <CaseFiles />
+        <Experience />
+        <Certifications />
+        <Achievements />
+        <Contact />
+      </div>
     </main>
   );
 }

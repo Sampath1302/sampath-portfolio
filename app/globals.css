@@ -3,129 +3,299 @@
 /* Fonts come from next/font variables set on <body> */
 @theme inline {
   --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-plex-condensed), var(--font-plex-sans), ui-sans-serif, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-display: var(--font-chakra), var(--font-plex-sans), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
 }
 
 /*
- * "Night shift" palette
- * signal   = needs attention (amber, like alert severity)
- * resolved = done / held (teal)
+ * "Command deck" palette (Mint + blue)
+ * mint = primary accent, complete / held
+ * blue = secondary, in progress (blue-text is its readable tint)
  */
 @theme {
-  --color-night: #0e141c;
-  --color-surface: #151e29;
-  --color-raised: #1b2633;
-  --color-line: #263345;
-  --color-ink: #e4e9f0;
-  --color-muted: #8b98aa;
-  --color-faint: #66758a;
-  --color-signal: #f0b43c;
-  --color-resolved: #4fc3a1;
-  --color-info: #7aa7ff;
+  --color-graphite: #101318;
+  --color-surface: #161a21;
+  --color-raised: #1d222b;
+  --color-line: #262b34;
+  --color-ink: #eceef2;
+  --color-muted: #aeb4bf;
+  --color-meta: #858c98;
+  --color-mint: #98dcc2;
+  --color-mint-hi: #c4eedd;
+  --color-on-mint: #0e2219;
+  --color-blue: #82a6e6;
+  --color-blue-text: #aec5f0;
   --color-threat: #e5604f;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
-  background: var(--color-night);
+  scroll-padding-top: 5.5rem;
+  background: var(--color-graphite);
   color-scheme: dark;
-  scrollbar-color: var(--color-line) var(--color-night);
+  scrollbar-color: var(--color-line) var(--color-graphite);
 }
 
 body {
-  font-feature-settings: "ss01", "tnum" 0;
+  background: var(--color-graphite);
+  overflow-x: clip;
 }
 
 ::selection {
-  background: var(--color-signal);
-  color: var(--color-night);
+  background: var(--color-mint);
+  color: var(--color-on-mint);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-signal);
+  outline: 2px solid var(--color-mint);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/*
- * Motion ("live SOC"). Amber = alert / needs attention, teal = resolved.
- * Scroll states come from MotionLayer: [data-enter="pending"] until the
- * element enters, then "done". Without JS nothing is ever pending.
- */
 :root {
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-rise: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Background network fades in once its code has loaded */
-.soc-background {
-  opacity: 0;
-  transition: opacity 1.2s ease-out;
-}
-.soc-background[data-ready] {
-  opacity: 1;
+@layer components {
+/* Glass panel: faint fill, hairline edge, a lit top edge. No backdrop blur. */
+.glass {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0.015));
+  border: 1px solid rgb(255 255 255 / 0.07);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
 }
 
-/* Hero name: each line rises out of its own clip */
-@keyframes line-in {
+/* Mint primary button and glass secondary button */
+.btn-mint {
+  color: var(--color-on-mint);
+  background: linear-gradient(180deg, var(--color-mint-hi), var(--color-mint));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    0 10px 26px -14px rgb(152 220 194 / 0.35);
+}
+.btn-mint:hover {
+  background: linear-gradient(180deg, #d4f4e7, var(--color-mint-hi));
+}
+.btn-glass {
+  color: var(--color-ink);
+  background: rgb(255 255 255 / 0.04);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08);
+}
+.btn-glass:hover {
+  background: rgb(255 255 255 / 0.08);
+}
+
+/* Brushed-metal name */
+.metal {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e4e8 55%, #8f96a3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+}
+
+/*
+ * Hero motion (plays once on load, pure CSS so it matches the server HTML)
+ */
+@keyframes rise {
   from {
-    transform: translateY(45%);
-    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+.rise {
+  animation: rise 0.9s var(--ease-rise) var(--d, 0s) both;
+}
+
+/* Terminal line: the command types in, the caret follows it, then blinks */
+@keyframes type {
+  from {
+    clip-path: inset(0 100% 0 0);
   }
   to {
-    transform: none;
-    clip-path: inset(-10% 0 -25% 0);
+    clip-path: inset(0 0 0 0);
   }
 }
-.hero-line {
-  display: block;
-  animation: line-in 0.7s var(--ease-out) both;
+@keyframes caret-follow {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--chars));
+  }
 }
-.hero-line + .hero-line {
-  animation-delay: 0.12s;
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.typ {
+  animation: type 1.2s steps(14) 0.3s both;
+}
+.caret {
+  transform: translateX(var(--chars));
+  animation:
+    caret-follow 1.2s steps(14) 0.3s both,
+    blink 1s steps(1) 1.5s infinite;
 }
 
-/* Case queue: rows are ingested one by one, arrive as "New" and are triaged to their status.
-   Pure CSS, so it matches the server HTML and plays even without JS. */
-@keyframes ingest {
+/* Command deck: gauges draw to their real values, log lines arrive, a slow sheen */
+@keyframes gauge {
+  from {
+    stroke-dashoffset: 276.5;
+  }
+}
+.gauge {
+  animation: gauge 1.8s var(--ease-rise) var(--d, 0.5s) both;
+}
+@keyframes log-in {
   from {
     opacity: 0;
     transform: translateY(6px);
   }
 }
-.ingest {
-  animation: ingest 0.35s var(--ease-out) var(--ingest, 0s) both;
+.log-in {
+  animation: log-in 0.4s ease-out var(--d, 0s) both;
 }
-@keyframes triage-out {
-  to {
-    opacity: 0;
-    transform: translateY(-4px);
+@keyframes sheen {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  60%,
+  100% {
+    transform: translateX(320%) skewX(-18deg);
   }
 }
-@keyframes triage-in {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
+.sheen {
+  animation: sheen 11s ease-in-out 2s infinite;
+}
+@keyframes led {
+  50% {
+    opacity: 0.4;
   }
 }
-.triage-new {
-  animation: triage-out 0.3s var(--ease-out) var(--triage, 0s) both;
-}
-.triage-status {
-  animation: triage-in 0.3s var(--ease-out) var(--triage, 0s) both;
+.led {
+  animation: led 2.4s ease-in-out infinite;
 }
 
-/* Ticker: each new event slides up into the line */
-@keyframes ticker-in {
-  from {
-    opacity: 0;
-    transform: translateY(70%);
+/*
+ * SOC wall: illustrative SIEM panels behind the hero.
+ * Only transform and opacity animate. Paused off-screen and in hidden tabs
+ * (data-paused, set by WallPause). Static on phones.
+ */
+@keyframes scroll-x {
+  to {
+    transform: translateX(-50%);
   }
 }
-.ticker-in {
-  animation: ticker-in 0.35s var(--ease-out) both;
+@keyframes scroll-y {
+  to {
+    transform: translateY(-50%);
+  }
 }
+@keyframes pulse-cell {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes bar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes drift-a {
+  50% {
+    transform: translate(80px, -40px) scale(1.12);
+  }
+}
+@keyframes drift-b {
+  50% {
+    transform: translate(-90px, 50px) scale(1.08);
+  }
+}
+@layer components {
+.wall-panel {
+  position: relative;
+  overflow: hidden;
+  contain: strict;
+  padding: 14px 16px;
+  border: 1px solid rgb(255 255 255 / 0.07);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.015);
+}
+}
+.w-scroll-x {
+  animation: scroll-x 9s linear infinite;
+}
+.w-scroll-y {
+  animation: scroll-y var(--dur, 28s) linear infinite;
+}
+.w-cell {
+  animation: pulse-cell var(--dur, 3s) ease-in-out var(--d, 0s) infinite;
+}
+.w-bar {
+  transform-origin: 50% 100%;
+  animation: bar var(--dur, 2.6s) ease-in-out var(--d, 0s) infinite;
+}
+.w-spin {
+  animation: spin var(--dur, 9s) linear infinite var(--dir, normal);
+}
+.w-drift-a {
+  animation: drift-a 18s ease-in-out infinite;
+}
+.w-drift-b {
+  animation: drift-b 22s ease-in-out infinite;
+}
+[data-soc-wall][data-paused] *,
+[data-soc-wall][data-paused] {
+  animation-play-state: paused !important;
+}
+.wall-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+}
+
+/* Phones: a flat, still wall with just the event-rate chart and heatmap */
+@media (max-width: 767px) {
+  .wall-stage {
+    transform: none !important;
+    inset: 72px 16px auto 16px !important;
+    width: auto !important;
+    height: 460px !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    opacity: 0.35 !important;
+  }
+  .wall-stage > .wall-mobile-hide {
+    display: none;
+  }
+  /* text runs over the whole phone wall, so veil it evenly */
+  .wall-fade-x {
+    background: rgb(16 19 24 / 0.82) !important;
+  }
+  [data-soc-wall] *,
+  [data-soc-wall] {
+    animation: none !important;
+  }
+}
+
+/*
+ * Scroll, once each. States come from MotionLayer: [data-enter="pending"]
+ * until the element enters, then "done". Without JS nothing is ever pending.
+ */
 
 /* Experience: the rail draws down, then each role's marker lands */
 .timeline-rail {
@@ -144,16 +314,13 @@ body {
 
 /* Certification statuses tick from unchecked to their real state */
 .status-tag[data-enter] {
-  transition: color 0.35s ease-out calc(var(--i, 0) * 70ms);
-}
-.status-tag[data-enter] .status-dot {
-  transition: background-color 0.35s ease-out calc(var(--i, 0) * 70ms);
+  transition:
+    color 0.35s ease-out calc(var(--i, 0) * 70ms),
+    background-color 0.35s ease-out calc(var(--i, 0) * 70ms);
 }
 .status-tag[data-enter="pending"] {
-  color: var(--color-muted);
-}
-.status-tag[data-enter="pending"] .status-dot {
-  background-color: var(--color-line);
+  color: var(--color-meta);
+  background-color: rgb(255 255 255 / 0.04);
 }
 
 /* Project clips settle into their frame */
@@ -164,14 +331,14 @@ body {
 }
 .enter-clip[data-enter="pending"] {
   transform: scale(0.97);
-  clip-path: inset(3% 3% round 8px);
+  clip-path: inset(3% 3% round 12px);
 }
 
-/* Cursor spotlight: a raised-surface tint under the pointer, hover only */
+/* Cursor spotlight: a faint lift under the pointer, hover only */
 [data-spotlight]:hover {
   background-image: radial-gradient(
     var(--spot-size, 260px) circle at var(--mx, 50%) var(--my, 50%),
-    var(--spot-color, var(--color-raised)),
+    var(--spot-color, rgb(255 255 255 / 0.04)),
     transparent 75%
   );
 }
@@ -180,8 +347,7 @@ body {
 [data-magnetic] {
   transition:
     transform 0.25s var(--ease-out),
-    background-color 0.15s,
-    border-color 0.15s;
+    background-color 0.15s;
 }
 
 /* Links: a faint resting underline, swept to full colour on hover and focus */
@@ -218,7 +384,7 @@ body {
   animation-duration: 0.25s;
 }
 
-/* Respect user motion preferences */
+/* Respect user motion preferences: every animation lands on its final frame */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -229,6 +395,10 @@ body {
     transition-duration: 0.01ms !important;
     transition-delay: 0s !important;
     scroll-behavior: auto !important;
+  }
+  [data-soc-wall] *,
+  [data-soc-wall] {
+    animation: none !important;
   }
   ::view-transition-group(*),
   ::view-transition-old(*),

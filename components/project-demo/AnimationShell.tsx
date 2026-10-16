@@ -56,7 +56,7 @@ export default function AnimationShell({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, y: -16 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-[#0E141C] flex flex-col items-center justify-center px-6 py-28"
+      className="min-h-screen bg-graphite flex flex-col items-center justify-center px-6 py-28"
     >
       <div className="w-full max-w-3xl">
         {/* Header */}
@@ -72,7 +72,7 @@ export default function AnimationShell({
           </div>
           <button
             onClick={handleSkip}
-            className="mt-1 text-ink text-sm border border-line hover:border-signal hover:text-signal px-3.5 py-1.5 rounded-md transition-colors"
+            className="mt-1 text-ink text-sm btn-glass px-3.5 py-1.5 rounded-lg transition-colors"
             aria-label="Skip the walkthrough and return to the write-up"
           >
             Skip
@@ -80,15 +80,17 @@ export default function AnimationShell({
         </div>
 
         {/* Visualization panel */}
-        <div className="rounded-lg border border-line bg-surface overflow-hidden shadow-2xl shadow-black/60">
+        <div className="glass rounded-2xl p-1.5 shadow-2xl shadow-black/60">
+          <div className="rounded-xl bg-surface overflow-hidden">
           {children}
+          </div>
         </div>
 
         {/* Progress bar */}
         <div className="mt-4 flex items-center gap-3">
           <div className="flex-1 h-px bg-slate-900 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-signal rounded-full"
+              className="h-full bg-mint rounded-full"
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.1 }}
             />

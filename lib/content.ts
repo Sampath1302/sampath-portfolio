@@ -178,3 +178,23 @@ export const recognition: Recognition[] = [
     detail: "Including LLM exploitation, April 2026.",
   },
 ];
+
+/** Hero copy */
+export const heroIntro =
+  "I don't just run security tools. I take them apart to understand how they work, then build my own. Curious, persistent, and hands-on when something breaks.";
+
+export const heroSpec = ["Bengaluru, IN", "EC-Council CSA · CND · CEH · CHFI", "Class of 2026"];
+
+/** The command deck's status log: each line restates a fact from this file */
+export const statusLog: { tone: "ok" | "progress"; text: string }[] = [
+  {
+    tone: "ok",
+    text: `loaded ${certifications
+      .filter((c) => c.status === "held" && c.short)
+      .map((c) => c.short)
+      .join(", ")}`,
+  },
+  { tone: "ok", text: "IR-Bot: containment waits for approval" },
+  { tone: "progress", text: "learning KQL, CPT in progress" },
+  { tone: "ok", text: "open to SOC analyst roles" },
+];

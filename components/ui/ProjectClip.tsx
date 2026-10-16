@@ -44,10 +44,10 @@ export default function ProjectClip({ slug, label, className = "" }: ProjectClip
   }, []);
 
   return (
-    <div data-enter className={`enter-clip overflow-hidden rounded-lg border border-line bg-surface ${className}`}>
+    <div data-enter className={`enter-clip glass rounded-[18px] p-1.5 ${className}`}>
       <video
         ref={ref}
-        className="block h-auto w-full"
+        className="block h-auto w-full rounded-xl bg-surface"
         width={width}
         height={height}
         poster={`/media/${slug}-poster.jpg`}

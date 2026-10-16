@@ -3,15 +3,16 @@
 Personal portfolio for SOC analyst and security operations roles: four project write-ups with
 interactive walkthroughs, internship experience, certifications and contact details.
 
-The design is called "night shift": a calm dark slate UI set in IBM Plex, where amber means
-in progress / needs attention and teal means complete / held. The hero shows the projects as a
-SIEM-style case queue.
+The design is called "command deck": a modern SOC command centre on cool graphite, set in Chakra
+Petch, IBM Plex Sans and JetBrains Mono, where mint means complete / held and soft blue means in
+progress. The hero shows a "Command deck" panel of real counts and the projects over a "live SOC
+wall" of illustrative panels.
 
 ## Stack
 
 - Next.js 16 (App Router), React 19, TypeScript (strict)
 - Tailwind CSS v4, configured in `app/globals.css` (`tailwind.config.ts` is not used)
-- Framer Motion for the case queue and the project walkthroughs
+- Framer Motion for the project walkthroughs
 
 ## Run it
 
@@ -35,7 +36,7 @@ npm run build
 | All site text: projects, experience, certifications, recognition | `lib/content.ts` |
 | Name, email, links, site URL and page title | `lib/siteConfig.ts` |
 | Home page sections | `components/sections/` |
-| Shared UI (nav, case queue, status tags, project write-up layout) | `components/ui/` |
+| Shared UI (nav, command deck, SOC wall, status tags, project write-up layout) | `components/ui/` |
 | Project pages | `app/projects/<slug>/page.tsx` |
 | Walkthrough animations and interactive simulations | `components/project-demo/` |
 | Looping project clips and posters | `public/media/` |
@@ -47,16 +48,18 @@ Edit text in `lib/content.ts` and `lib/siteConfig.ts`, not in components.
 
 ## Motion
 
-The site behaves like a live SOC: a faint background network where amber alerts travel to a node
-and are resolved in teal, a case queue that ingests and triages its rows, and a "last event"
-ticker built from the site content. Scroll effects play once, and everything has a still version
-for reduced motion. `AGENTS.md` describes each piece.
+The hero is the only part that keeps moving: a terminal line types `whoami --brief`, and the
+"Command deck" panel draws its gauges from real counts in `lib/content.ts` in front of a "live SOC
+wall" of illustrative SIEM panels. The wall uses only CSS transforms and opacity, pauses off-screen
+and in hidden tabs, is static on phones and is a still frame under reduced motion. Elsewhere,
+scroll effects play once. `AGENTS.md` describes each piece.
 
-The background is kept faint on purpose so muted text stays readable over it. If you change its
-colours or opacity, rerun the check:
+The wall is faded behind the text on purpose. If you change its colours, opacity or fades, rerun
+the contrast check against a production server:
 
 ```bash
-node scripts/check-background-contrast.mjs
+npm run build && npx next start -p 3200
+node scripts/check-hero-contrast.mjs
 ```
 
 ## Project clips
@@ -75,5 +78,6 @@ size in `components/ui/ProjectClip.tsx`.
 
 ## Fonts
 
-IBM Plex is served through `next/font/google`. The link-preview image needs static TTF files, so
-IBM Plex Sans Condensed is also kept in `assets/fonts/` (SIL Open Font License).
+Chakra Petch, IBM Plex Sans and JetBrains Mono are served through `next/font/google`. The
+link-preview image needs static TTF files, so Chakra Petch is also kept in `assets/fonts/` (SIL Open
+Font License).
