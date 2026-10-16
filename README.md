@@ -80,8 +80,9 @@ This writes `public/media/films/<slug>.webm`, `.mp4` and `-poster.jpg` (1280×72
 
 ## Before deploying
 
-- Set `url` in `lib/siteConfig.ts` to the real domain. It is currently the placeholder
-  `https://sampathkumar.example`, and link previews (LinkedIn, Slack, X) are built from it.
+- The live site is https://sampath-portfolio.vercel.app. `url` in `lib/siteConfig.ts` holds it;
+  canonical URLs, `og:url` and link previews (LinkedIn, Slack, X) are built from it, so change it
+  there if the domain changes.
 - After deploying, check the preview with LinkedIn's Post Inspector.
 
 ## Fonts
