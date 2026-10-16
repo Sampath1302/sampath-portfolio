@@ -52,29 +52,37 @@ export default function CaseFilm({ slug, title, className = "" }: CaseFilmProps)
         onPointerEnter={hoverPlay}
         aria-haspopup="dialog"
         aria-label={`Play the ${title} case file film`}
-        className="group relative block aspect-video w-full overflow-hidden rounded-xl bg-surface focus-visible:outline-offset-2"
+        className="group block w-full rounded-xl text-left focus-visible:outline-offset-2"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element -- a lazy poster under the video, not a content image */}
-        <img src={src(slug, "-poster.jpg")} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
-        <video
-          ref={preview}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${playing ? "opacity-100" : "opacity-0"}`}
-          muted
-          loop
-          playsInline
-          preload="none"
-          aria-hidden
-          tabIndex={-1}
-          onPlaying={() => setPlaying(true)}
-        >
-          <source src={src(slug, ".mp4")} type="video/mp4" />
-          <source src={src(slug, ".webm")} type="video/webm" />
-        </video>
-        <span className="btn-glass absolute top-3 right-3 inline-flex items-center gap-2 rounded-lg bg-graphite/70 px-3 py-2 font-mono text-[0.78rem] text-ink transition-colors group-hover:bg-graphite/90">
-          <svg width="10" height="12" viewBox="0 0 10 12" aria-hidden>
-            <path d="M0 0 L10 6 L0 12 Z" fill="var(--color-mint)" />
-          </svg>
-          Case file · {clock(FILM_SECONDS)}
+        <span className="relative block aspect-video overflow-hidden rounded-xl bg-surface">
+          {/* eslint-disable-next-line @next/next/no-img-element -- a lazy poster under the video, not a content image */}
+          <img src={src(slug, "-poster.jpg")} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+          <video
+            ref={preview}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${playing ? "opacity-100" : "opacity-0"}`}
+            muted
+            loop
+            playsInline
+            preload="none"
+            aria-hidden
+            tabIndex={-1}
+            onPlaying={() => setPlaying(true)}
+          >
+            <source src={src(slug, ".mp4")} type="video/mp4" />
+            <source src={src(slug, ".webm")} type="video/webm" />
+          </video>
+        </span>
+        {/* below the frame, so it never covers the film's own header or timecode */}
+        <span className="flex items-center justify-between gap-3 px-2 pt-2.5 pb-1 font-mono text-[0.78rem]">
+          <span className="inline-flex items-center gap-2 text-ink transition-colors group-hover:text-mint">
+            <svg width="10" height="12" viewBox="0 0 10 12" aria-hidden>
+              <path d="M0 0 L10 6 L0 12 Z" fill="var(--color-mint)" />
+            </svg>
+            Play case file
+          </span>
+          <span className="text-meta">
+            {CHAPTER_NAMES.length} chapters · {clock(FILM_SECONDS)}
+          </span>
         </span>
       </button>
       {open && (
