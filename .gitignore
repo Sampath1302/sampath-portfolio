@@ -52,3 +52,6 @@ next-env.d.ts
 # Remotion film project: dependencies and LinkedIn exports stay local
 /films/node_modules/
 /exports/
+
+# local AI output folder
+/Claude outputs/

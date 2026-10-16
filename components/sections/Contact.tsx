@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/siteConfig";
+import { availability } from "@/lib/content";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Contact() {
@@ -45,6 +46,8 @@ export default function Contact() {
             </li>
             <li className="ml-2 font-mono text-[0.8125rem] text-meta">{siteConfig.location}</li>
           </ul>
+
+          <p className="mt-6 font-mono text-[0.8125rem] leading-relaxed text-meta">{availability}</p>
         </div>
       </div>
 

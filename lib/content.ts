@@ -84,13 +84,13 @@ export const capabilities: Capability[] = [
     title: "Detection and investigation",
     description:
       "Triaging alerts, investigating them end to end and mapping what I find to MITRE ATT&CK.",
-    tools: ["Microsoft Sentinel (AI-assisted lab)", "MITRE ATT&CK", "NIST CSF", "ISO 27001"],
+    tools: ["Microsoft Sentinel (AI-assisted lab)", "Wireshark", "Microsoft Purview DLP", "MITRE ATT&CK", "NIST CSF", "ISO 27001"],
   },
   {
     title: "Response and automation",
     description:
       "Building SOAR-style workflows that keep a human approval step in front of every containment action.",
-    tools: ["Python", "PowerShell", "Node.js", "Slack API", "Logic Apps"],
+    tools: ["Python", "PowerShell", "Node.js", "Slack API", "Logic Apps", "Active Directory", "Windows Server", "Linux"],
   },
   {
     title: "Assessment and testing",
@@ -99,6 +99,16 @@ export const capabilities: Capability[] = [
     tools: ["Burp Suite", "Nessus", "OpenVAS", "Nmap", "Metasploit"],
   },
 ];
+
+/** From the résumé's "Security operations experience" */
+export const securityOperations = [
+  "Conducted vulnerability assessments with Nessus, OpenVAS and Nmap, and analysed the findings.",
+  "Analysed network traffic in Wireshark to identify anomalies and threats.",
+  "Configured firewalls and access control policies in Active Directory.",
+  "Investigated Microsoft Purview DLP alerts and carried out response actions.",
+];
+
+export const availability = "Open to fully remote work, flexible across time zones · English, Kannada, Tamil, Hindi";
 
 export const currentlyLearning =
   "KQL, the Microsoft Cybersecurity Architect Expert path and the Certified Penetration Tester course.";
@@ -149,6 +159,7 @@ export const education: Education[] = [
 export interface ProjectNote {
   title: string;
   context: string;
+  status: ProjectStatus;
   description: string;
 }
 
@@ -156,6 +167,7 @@ export const moreProjects: ProjectNote[] = [
   {
     title: "E-Governance Security Monitoring System",
     context: "AICTE",
+    status: "complete",
     description:
       "Real-time security dashboard for monitoring, anomaly detection and alerting, with automated response to SQLi, XSS and bot attacks, and compliance through content-based log classification.",
   },

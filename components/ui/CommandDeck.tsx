@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { certifications, experience, projects, statusLog } from "@/lib/content";
+import { certifications, experience, moreProjects, projects, statusLog } from "@/lib/content";
 import StatusTag from "@/components/ui/StatusTag";
 
 const CIRC = 276.5; // 2πr for r = 44
@@ -24,10 +24,11 @@ interface Gauge {
  */
 export default function CommandDeck() {
   const held = certifications.filter((c) => c.status === "held").length;
-  const complete = projects.filter((p) => p.status === "complete").length;
+  const allProjects = [...projects, ...moreProjects];
+  const complete = allProjects.filter((p) => p.status === "complete").length;
   const gauges: Gauge[] = [
     { id: "ga", value: held, label: "Certifications held", fill: `${held} of ${certifications.length}`, of: `${held} of ${certifications.length} certifications held`, share: held / certifications.length, from: "var(--color-mint)", to: "var(--color-blue)" },
-    { id: "gb", value: projects.length, label: "Security projects", fill: `${complete} complete`, of: `${projects.length} security projects, ${complete} complete`, share: complete / projects.length, from: "var(--color-blue)", to: "var(--color-mint)" },
+    { id: "gb", value: allProjects.length, label: "Security projects", fill: `${complete} of ${allProjects.length} complete`, of: `${allProjects.length} security projects, ${complete} complete`, share: complete / allProjects.length, from: "var(--color-blue)", to: "var(--color-mint)" },
     { id: "gc", value: experience.length, label: "Internships", fill: "both completed", of: `${experience.length} internships completed`, share: 1, from: "var(--color-mint)", to: "var(--color-blue)" },
   ];
 

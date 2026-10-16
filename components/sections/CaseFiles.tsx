@@ -83,7 +83,13 @@ export default function CaseFiles() {
               <h3 className="mt-2 font-display text-[1.5rem] font-semibold leading-tight tracking-[-0.01em] text-ink sm:text-[1.75rem]">
                 {p.title}
               </h3>
-              <p className="mt-2 font-mono text-[0.75rem] uppercase text-meta">{p.context}</p>
+              <p className="mt-2 flex items-center gap-3 font-mono text-[0.75rem] text-meta">
+                <span className="uppercase">{p.context}</span>
+                <StatusTag
+                  label={p.status === "complete" ? "Complete" : "In progress"}
+                  tone={p.status === "complete" ? "mint" : "blue"}
+                />
+              </p>
             </div>
             <p className="max-w-[40rem] text-[1rem] leading-[1.65] text-ink/90 lg:col-span-7">{p.description}</p>
           </li>

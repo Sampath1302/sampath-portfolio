@@ -1,4 +1,4 @@
-import { capabilities, currentlyLearning } from "@/lib/content";
+import { capabilities, currentlyLearning, securityOperations } from "@/lib/content";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Capabilities() {
@@ -20,6 +20,18 @@ export default function Capabilities() {
                 </ul>
               </div>
             ))}
+          </div>
+
+          <div className="glass mt-4 rounded-2xl p-6">
+            <h3 className="font-display text-[1.125rem] font-semibold leading-snug text-ink">Security operations experience</h3>
+            <ul className="mt-4 grid gap-x-8 gap-y-2.5 border-t border-white/[0.06] pt-4 sm:grid-cols-2">
+              {securityOperations.map((s) => (
+                <li key={s} className="flex gap-2.5 text-[0.9375rem] leading-relaxed text-muted">
+                  <span aria-hidden className="mt-[0.6rem] h-1 w-1 shrink-0 rounded-full bg-mint/70" />
+                  {s}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <p className="mt-8 max-w-[36rem] border-l-2 border-blue pl-4 text-[0.9375rem] leading-relaxed text-muted">
